@@ -26,7 +26,7 @@ To run the documentation site locally:
 ```bash
 npm run dev
 # or
-pnpm dev
+bun run dev
 # or
 yarn dev
 ```
