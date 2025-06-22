@@ -1,9 +1,7 @@
 import { NextRequest } from "next/server";
 
-const GITHUB_API =
-  "https://api.github.com/repos/Anti-Raid/antiraid/contents/docs/src";
-const RAW_BASE =
-  "https://raw.githubusercontent.com/Anti-Raid/antiraid/development/docs/src";
+const GITHUB_API = "https://api.github.com/repos/Anti-Raid/antiraid/contents/docs/src";
+const RAW_BASE = "https://raw.githubusercontent.com/Anti-Raid/antiraid/development/docs/src";
 
 async function fetchDocsList(dir = "") {
   const url = dir ? `${GITHUB_API}/${dir}` : GITHUB_API;
@@ -49,8 +47,8 @@ export async function GET(req: NextRequest) {
   try {
     const docs = await getAllDocs();
     const results = docs
-      .filter((doc) => doc.content.toLowerCase().includes(q.toLowerCase()))
-      .map((doc) => ({
+      .filter(doc => doc.content.toLowerCase().includes(q.toLowerCase()))
+      .map(doc => ({
         url: `/docs/${doc.path.replace(/\\/g, "/").replace(/\.md$/, "")}`,
         title: doc.path.split("/").pop()?.replace(/\.md$/, "") || "",
         snippet: doc.content.slice(0, 200),

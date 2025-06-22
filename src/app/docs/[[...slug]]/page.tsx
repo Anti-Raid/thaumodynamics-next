@@ -1,17 +1,8 @@
 import { getCompiledDoc } from "@/lib/remote-docs";
-import {
-  DocsPage,
-  DocsBody,
-  DocsDescription,
-  DocsTitle,
-} from "fumadocs-ui/page";
+import { DocsPage, DocsBody, DocsDescription, DocsTitle } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug?: string[] }>;
-}) {
+export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug || [];
   const doc = await getCompiledDoc(slug);
@@ -20,15 +11,11 @@ export default async function Page({
 
   return (
     <DocsPage toc={toc} full={true}>
-      <DocsTitle>
-        {String(frontmatter.title || slug[slug.length - 1] || "Docs")}
-      </DocsTitle>
-      <DocsDescription>
-        {frontmatter.description ? String(frontmatter.description) : undefined}
-      </DocsDescription>
+      <DocsTitle>{String(frontmatter.title || slug[slug.length - 1] || "Docs")}</DocsTitle>
+      <DocsDescription>{frontmatter.description ? String(frontmatter.description) : undefined}</DocsDescription>
       <DocsBody>{MdxContent && <MdxContent />}</DocsBody>
     </DocsPage>
   );
 }
 
-export const dynamic = "force-dynamic"; // always fetch fresh
+export const dynamic = "force-dynamic"; 
