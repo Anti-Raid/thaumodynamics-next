@@ -1,12 +1,5 @@
-import { defineDocs, defineConfig } from 'fumadocs-mdx/config';
+import { defineConfig } from "fumadocs-mdx/config";
 
-// Options: https://fumadocs.vercel.app/docs/mdx/collections#define-docs
-export const docs = defineDocs({
-  dir: 'content/docs',
-});
+// No docs/meta export, since docs are now fetched remotely
 
-export default defineConfig({
-  mdxOptions: {
-    // MDX options
-  },
-});
+export default defineConfig();

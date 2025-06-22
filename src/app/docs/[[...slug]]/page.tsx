@@ -1,52 +1,34 @@
-import { source } from '@/lib/source';
+import { getCompiledDoc } from "@/lib/remote-docs";
 import {
   DocsPage,
   DocsBody,
   DocsDescription,
   DocsTitle,
-} from 'fumadocs-ui/page';
-import { notFound } from 'next/navigation';
-import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { getMDXComponents } from '@/mdx-components';
+} from "fumadocs-ui/page";
+import { notFound } from "next/navigation";
 
-export default async function Page(props: {
+export default async function Page({
+  params,
+}: {
   params: Promise<{ slug?: string[] }>;
 }) {
-  const params = await props.params;
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
-
-  const MDXContent = page.data.body;
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug || [];
+  const doc = await getCompiledDoc(slug);
+  if (!doc) notFound();
+  const { content: MdxContent, frontmatter, toc } = doc;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
-      <DocsBody>
-        <MDXContent
-          components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
-            a: createRelativeLink(source, page),
-          })}
-        />
-      </DocsBody>
+    <DocsPage toc={toc} full={true}>
+      <DocsTitle>
+        {String(frontmatter.title || slug[slug.length - 1] || "Docs")}
+      </DocsTitle>
+      <DocsDescription>
+        {frontmatter.description ? String(frontmatter.description) : undefined}
+      </DocsDescription>
+      <DocsBody>{MdxContent && <MdxContent />}</DocsBody>
     </DocsPage>
   );
 }
 
-export async function generateStaticParams() {
-  return source.generateParams();
-}
-
-export async function generateMetadata(props: {
-  params: Promise<{ slug?: string[] }>;
-}) {
-  const params = await props.params;
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
-
-  return {
-    title: page.data.title,
-    description: page.data.description,
-  };
-}
+export const dynamic = "force-dynamic"; // always fetch fresh

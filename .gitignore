@@ -12,6 +12,7 @@
 /out/
 /build
 *.tsbuildinfo
+/docs-cache
 
 # misc
 .DS_Store
