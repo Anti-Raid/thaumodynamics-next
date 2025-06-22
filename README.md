@@ -4,7 +4,7 @@ Welcome to the documentation site for **AntiRaid**, a highly customizable Discor
 
 ## What is AntiRaid?
 
-AntiRaid is not just another anti-raid or anti-nuke bot. It offers a unique approach to server protection by leveraging **structured templating** and a (coming soon) template shop, allowing you to tailor your server's defenses to your specific needs. Instead of a one-size-fits-all solution, AntiRaid empowers you to create, customize, and extend your own moderation and security workflows.
+AntiRaid is not just another anti-raid or anti-nuke bot. It offers a unique approach to server protection by leveraging **structured templating** and a template shop, allowing you to tailor your server's defenses to your specific needs. Instead of a one-size-fits-all solution, AntiRaid empowers you to create, customize, and extend your own moderation and security workflows.
 
 ### Philosophy
 - **Flexibility First:** Use Lua scripting for advanced templating and automation.
