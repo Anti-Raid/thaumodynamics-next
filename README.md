@@ -34,12 +34,12 @@ yarn dev
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Using AntiRaid
-- **Read the [Introduction](docs-cache/docs/README.md)** to understand the bot's philosophy and setup.
-- **Explore [User Guides](docs-cache/docs/user/)** for templating, permissions, backups, lockdowns, and more.
-- **Check [Dev Guides](docs-cache/docs/dev/)** for advanced usage and integration.
+- **Read the [Introduction](https://docs.antiraid.xyz/docs/README.md)** to understand the bot's philosophy and setup.
+- **Explore [User Guides](https://docs.antiraid.xyz/docs/user/)** for templating, permissions, backups, lockdowns, and more.
+- **Check [Dev Guides](https://docs.antiraid.xyz/docs/dev/)** for advanced usage and integration.
 
 ## API Reference
-See the [OpenAPI spec](docs-cache/openapi.json) for details on available endpoints and integration options.
+See the [OpenAPI spec](https://docs.antiraid.xyz/openapi.json) for details on available endpoints and integration options.
 
 ## Learn More
 - [Next.js Documentation](https://nextjs.org/docs)
