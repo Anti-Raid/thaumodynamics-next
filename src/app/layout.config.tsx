@@ -3,7 +3,6 @@ import { type LinkItemType } from "fumadocs-ui/layouts/docs";
 import { FaDiscord, FaCogs, FaBook } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
 import Image from "next/image";
-import styles from "./header.module.css";
 
 /**
  * Shared layout configurations
@@ -34,7 +33,7 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <>
-        <div className={styles.header}>
+        <div className="flex items-center gap-2">
           <Image
             src="https://antiraid.xyz/logo.webp"
             alt="Logo"
