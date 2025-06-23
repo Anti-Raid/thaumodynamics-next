@@ -6,7 +6,6 @@ import {
   DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
-import { getGithubLastEdit } from "fumadocs-core/server";
 
 export default async function Page({
   params,
@@ -16,7 +15,9 @@ export default async function Page({
   const resolvedParams = await params;
   const slug = resolvedParams.slug || [];
   const doc = await getCompiledDoc(slug);
+
   if (!doc) notFound();
+
   const { content: MdxContent, frontmatter, toc } = doc;
 
   return (
