@@ -56,9 +56,6 @@ export const baseOptions: BaseLayoutProps = {
           text: "User Guide",
           description: "How to guide on setting up AntiRaid",
           url: "/docs/README",
-          menu: {
-            className: "lg:col-start-2",
-          },
         },
         {
           icon: <FaBook />,

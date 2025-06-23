@@ -30,22 +30,42 @@ function getLocalCommitSha() {
 }
 
 async function sparseCheckoutDocs() {
+  const tempDir = path.join(CACHE_DIR, "temp");
+  // Check if temp exists and is a sparse checkout of only docs/src
+  if (fs.existsSync(tempDir)) {
+    const gitDir = path.join(tempDir, ".git");
+    const sparseConfig = path.join(tempDir, ".git", "info", "sparse-checkout");
+    let isSparse = false;
+    if (fs.existsSync(gitDir) && fs.existsSync(sparseConfig)) {
+      const configContent = fs.readFileSync(sparseConfig, "utf8");
+      if (configContent.trim() === `${DOCS_PATH}`) {
+        isSparse = true;
+      }
+    }
+    if (!isSparse) {
+      log("Removing existing temp directory (not a sparse checkout of docs/src)...");
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    } else {
+      log("Sparse checkout of docs/src already exists, skipping clone.");
+    }
+  }
+  if (!fs.existsSync(tempDir)) {
+    log("Cloning docs/src only (sparse checkout)...");
+    execSync(
+      `git clone --depth=1 --filter=blob:none --sparse https://github.com/${REPO}.git temp`,
+      { cwd: CACHE_DIR, stdio: "inherit" },
+    );
+    execSync(`git sparse-checkout set ${DOCS_PATH}`,
+      { cwd: tempDir, stdio: "inherit" },
+    );
+  }
+  // Remove old docs and move new docs
   if (fs.existsSync(DOCS_OUT)) {
     log("Removing old docs...");
     fs.rmSync(DOCS_OUT, { recursive: true, force: true });
   }
-  if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR);
-  log("Cloning docs/src only (sparse checkout)...");
-  execSync(
-    `git clone --depth=1 --filter=blob:none --sparse https://github.com/${REPO}.git temp`,
-    { cwd: CACHE_DIR, stdio: "inherit" },
-  );
-  execSync(`git sparse-checkout set ${DOCS_PATH}`, {
-    cwd: path.join(CACHE_DIR, "temp"),
-    stdio: "inherit",
-  });
-  fs.renameSync(path.join(CACHE_DIR, "temp", DOCS_PATH), DOCS_OUT);
-  fs.rmSync(path.join(CACHE_DIR, "temp"), { recursive: true, force: true });
+  fs.renameSync(path.join(tempDir, DOCS_PATH), DOCS_OUT);
+  fs.rmSync(tempDir, { recursive: true, force: true });
 }
 
 async function downloadOpenAPI() {
