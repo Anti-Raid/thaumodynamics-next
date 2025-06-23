@@ -15,6 +15,7 @@
     "fumadocs-core": "15.2.11",
     "fumadocs-mdx": "11.6.1",
     "fumadocs-ui": "15.2.11",
+    "fumadocs-openapi": "2.0.0",
     "next": "15.3.1",
     "next-mdx-remote": "^5.0.0",
     "node-fetch": "^3.3.2",
