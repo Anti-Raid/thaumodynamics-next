@@ -19,16 +19,8 @@ export default async function Page({
   if (!doc) notFound();
   const { content: MdxContent, frontmatter, toc } = doc;
 
-  // Get last updated time from GitHub
-  const githubPath = slug.length ? slug.join("/") + ".md" : "README.md";
-  const lastEdit = await getGithubLastEdit({
-    owner: "AntiRaid",
-    repo: "antiraid",
-    path: `development/docs/src/${githubPath}`,
-  });
-
   return (
-    <DocsPage toc={toc} lastUpdate={lastEdit ? new Date(lastEdit) : undefined}>
+    <DocsPage toc={toc}>
       <DocsTitle>
         {String(frontmatter.title || slug[slug.length - 1] || "Docs")}
       </DocsTitle>
