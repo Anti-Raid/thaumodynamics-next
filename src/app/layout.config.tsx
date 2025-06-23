@@ -64,7 +64,7 @@ export const baseOptions: BaseLayoutProps = {
           icon: <FaBook />,
           text: "Developer's Guide",
           description: "Everything you need to know about AntiRaid's.",
-          url: "/dev/go_jobs/",
+          url: "/docs/dev/go_jobs/README.md",
         },
       ],
     },
