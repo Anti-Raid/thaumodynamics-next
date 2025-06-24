@@ -1,28 +1,32 @@
-import { z } from "zod";
-import { listLocalDocs } from "@/lib/local-docs";
-import { NextRequest } from "next/server";
+import { listLocalDocs, getLocalDocFile } from "@/lib/local-docs";
 
-// Recursively build a Fumadocs-compatible page tree from local docs
 async function walk(dir = "", prefix = "") {
   const files = await listLocalDocs(dir);
   let out: any[] = [];
   for (const file of files) {
-    if (file.type === "file" && file.name.endsWith(".md")) {
-      // If the file is README.md, include it in the path
-      const isReadme = file.name.toLowerCase() === "readme.md";
+    if (file.type === "file" && (file.name.endsWith(".md") || file.name.endsWith(".mdx"))) {
+      // If the file is README.md or README.mdx, include it in the path
+      const isReadme = /^readme\.(md|mdx)$/i.test(file.name);
       const url =
         "/docs/" +
         (
-          prefix + (isReadme ? file.name : file.name.replace(/\.mdx?$/, ""))
+          prefix + (isReadme ? file.name : file.name.replace(/\.(md|mdx)$/, ""))
         ).replace(/\/+/g, "/");
+      let content = null;
+      try {
+        content = await getLocalDocFile(file.path);
+      } catch (e) {
+        content = null;
+      }
       out.push({
         type: "page",
         name: file.name.replace(/\.(md|mdx)$/, ""),
         url,
+        content,
       });
     } else if (file.type === "dir") {
       const newDir = dir
-        ? `${dir.replace(/^\/+/, "")}/${file.name}`
+        ? `${dir.replace(/^\/+/g, "")}/${file.name}`
         : file.name;
       const newPrefix = prefix + file.name + "/";
       const children = await walk(newDir, newPrefix);

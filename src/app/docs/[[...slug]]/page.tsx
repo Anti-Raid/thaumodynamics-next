@@ -37,7 +37,7 @@ export default async function Page({
         repo: 'AntiRaid',
         owner: 'Anti-Raid',
         sha: 'development',
-        path: `//docs/${slug.join('/')}`,
+        path: `/docs/${slug.join('/')}`,
       }}>
       <DocsTitle>
         {String(frontmatter.title || slug[slug.length - 1] || "Docs")}
@@ -54,7 +54,9 @@ export default async function Page({
             TypeTable,
             Accordion,
             Accordions,
-           APIPage: (props) => <APIPage {...openapi.getAPIPageProps(props)} />,
+             APIPage: (props) => (
+                <APIPage {...openapi.getAPIPageProps(props)} />
+              ),
           }}
         />
       </DocsBody>

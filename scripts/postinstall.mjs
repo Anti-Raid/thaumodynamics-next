@@ -92,9 +92,50 @@ async function downloadOpenAPI() {
   log("OpenAPI schema saved to " + outPath);
 }
 
+async function ensureApiReferenceFolder() {
+  const apiRefDir = path.join(DOCS_OUT, "api-reference");
+  if (!fs.existsSync(apiRefDir)) {
+    fs.mkdirSync(apiRefDir, { recursive: true });
+    log("Created docs-cache/docs/api-reference directory.");
+  }
+  // Copy openapi.json
+  const srcOpenApi = path.join(CACHE_DIR, "openapi.json");
+  const destOpenApi = path.join(apiRefDir, "openapi.json");
+  if (fs.existsSync(srcOpenApi)) {
+    fs.copyFileSync(srcOpenApi, destOpenApi);
+    log("Copied openapi.json to docs-cache/docs/api-reference.");
+  } else {
+    log("Warning: openapi.json not found in docs-cache.");
+  }
+  // Ensure meta.json
+  const metaPath = path.join(apiRefDir, "meta.json");
+  if (!fs.existsSync(metaPath)) {
+    fs.writeFileSync(
+      metaPath,
+      JSON.stringify({
+        title: "API Reference",
+        description: "A demo for Fumadocs OpenAPI",
+        root: true,
+        icon: "Rocket",
+        pages: ["---API Reference---", "index"]
+      }, null, 2)
+    );
+    log("Created meta.json in docs-cache/docs/api-reference.");
+  }
+}
+
 async function ensureDocsUpToDate() {
   await sparseCheckoutDocs();
   await downloadOpenAPI();
+  await ensureApiReferenceFolder();
+  // Run OpenAPI MDX generation
+  try {
+    log("Generating MDX files from OpenAPI schema...");
+    execSync('bun run scripts/generate-docs.mjs', { stdio: "inherit", shell: true });
+    log("MDX files generated.");
+  } catch (e) {
+    log("Error running generate-docs.mjs: " + e.message);
+  }
   log("Docs and OpenAPI are up to date.");
 }
 
