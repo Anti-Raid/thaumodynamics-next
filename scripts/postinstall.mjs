@@ -53,10 +53,10 @@ async function sparseCheckoutDocs() {
     log("Cloning docs/src only (sparse checkout)...");
     execSync(
       `git clone --depth=1 --filter=blob:none --sparse https://github.com/${REPO}.git temp`,
-      { cwd: CACHE_DIR, stdio: "inherit" },
+      { cwd: CACHE_DIR, stdio: "inherit", shell: true },
     );
     execSync(`git sparse-checkout set ${DOCS_PATH}`,
-      { cwd: tempDir, stdio: "inherit" },
+      { cwd: tempDir, stdio: "inherit", shell: true },
     );
   }
   // Remove old docs and move new docs
