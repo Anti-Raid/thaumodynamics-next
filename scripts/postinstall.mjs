@@ -14,6 +14,15 @@ function log(msg) {
   console.log(`[postinstall] ${msg}`);
 }
 
+function checkGitAvailable() {
+  try {
+    execSync("git --version", { stdio: "ignore", shell: true });
+  } catch (e) {
+    log("Error: git is not available in PATH. Please install git.");
+    process.exit(1);
+  }
+}
+
 async function getLatestCommitSha() {
   const res = await fetch(GITHUB_API);
   if (!res.ok) throw new Error(`Failed to fetch latest commit: ${res.status}`);
@@ -23,13 +32,17 @@ async function getLatestCommitSha() {
 
 function getLocalCommitSha() {
   try {
-    return execSync("git rev-parse HEAD", { cwd: DOCS_OUT }).toString().trim();
+    return execSync("git rev-parse HEAD", { cwd: DOCS_OUT, shell: true }).toString().trim();
   } catch {
     return null;
   }
 }
 
 async function sparseCheckoutDocs() {
+  checkGitAvailable();
+  if (!fs.existsSync(CACHE_DIR)) {
+    fs.mkdirSync(CACHE_DIR, { recursive: true });
+  }
   const tempDir = path.join(CACHE_DIR, "temp");
   // Check if temp exists and is a sparse checkout of only docs/src
   if (fs.existsSync(tempDir)) {
