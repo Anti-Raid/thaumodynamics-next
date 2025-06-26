@@ -6,7 +6,7 @@ import {
   DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
-import { openapi } from '../../../lib/source';
+import { openapi, source } from '../../../lib/source';
 import defaultComponents from 'fumadocs-ui/mdx';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
@@ -65,3 +65,26 @@ export default async function Page({
 }
 
 export const dynamic = "force-dynamic";
+
+// Add Open Graph image metadata for docs pages
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  const { slug = [] } = await params;
+  const page = source.getPage ? source.getPage(slug) : null;
+  if (!page) notFound();
+  const image = ['/docs-og', ...slug, 'image.png'].join('/');
+  return {
+    title: page.data?.title,
+    description: page.data?.description,
+    openGraph: {
+      images: image,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: image,
+    },
+  };
+}
