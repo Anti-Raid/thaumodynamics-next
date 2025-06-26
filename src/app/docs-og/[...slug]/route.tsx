@@ -12,7 +12,7 @@ export async function GET(
   return generateOGImage({
     title: page.data.title,
     description: page.data.description,
-    site: 'AntiRaid',
+    site: 'Anti',
   });
 }
 

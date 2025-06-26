@@ -73,12 +73,13 @@ export async function generateMetadata({
   params: Promise<{ slug?: string[] }>;
 }) {
   const { slug = [] } = await params;
-  const page = source.getPage ? source.getPage(slug) : null;
-  if (!page) notFound();
+  const doc = await getCompiledDoc(slug);
+  if (!doc) notFound();
+  const { frontmatter } = doc;
   const image = ['/docs-og', ...slug, 'image.png'].join('/');
   return {
-    title: page.data?.title,
-    description: page.data?.description,
+    title: frontmatter.title,
+    description: frontmatter.description,
     openGraph: {
       images: image,
     },
