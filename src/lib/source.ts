@@ -10,8 +10,11 @@ async function getAllDocs(dir = ''): Promise<{ path: string; type: 'page'; data:
   for (const entry of entries) {
     if (entry.type === 'file' && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))) {
       const content = await getLocalDocFile(entry.path);
+      let docPath = entry.path;
+      if (docPath.endsWith('.md')) docPath = docPath.slice(0, -3);
+      else if (docPath.endsWith('.mdx')) docPath = docPath.slice(0, -4);
       files.push({
-        path: entry.path,
+        path: docPath,
         type: 'page',
         data: { content },
       });
@@ -24,7 +27,7 @@ async function getAllDocs(dir = ''): Promise<{ path: string; type: 'page'; data:
 
 // Synchronous wrapper for loader (loader expects sync files or array, not async)
 let allDocs: { path: string; type: 'page'; data: { content: string } }[] = [];
-(async () => {
+export const docsReady = (async () => {
   allDocs = await getAllDocs();
 })();
 

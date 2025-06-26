@@ -76,16 +76,17 @@ export async function generateMetadata({
   const doc = await getCompiledDoc(slug);
   if (!doc) notFound();
   const { frontmatter } = doc;
-  const image = ['/docs-og', ...slug, 'image.png'].join('/');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://docs.antiraid.xyz'; // <-- Set your real domain here
+  const image = `${baseUrl}/docs-og/${slug.join('/')}/image.png`;
   return {
     title: frontmatter.title,
     description: frontmatter.description,
     openGraph: {
-      images: image,
+      images: [image],
     },
     twitter: {
       card: 'summary_large_image',
-      images: image,
+      images: [image],
     },
   };
 }
