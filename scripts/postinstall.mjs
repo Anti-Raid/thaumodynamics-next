@@ -124,6 +124,91 @@ async function ensureApiReferenceFolder() {
   }
 }
 
+async function copyImagesToPublic() {
+  const exts = [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"];
+  const rootDir = path.resolve(".");
+  const publicDir = path.join(rootDir, "public");
+
+  function isImage(file) {
+    return exts.includes(path.extname(file).toLowerCase());
+  }
+
+  function walk(dir, callback) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath, callback);
+      } else if (entry.isFile() && isImage(entry.name)) {
+        callback(fullPath);
+      }
+    }
+  }
+
+  // Clean public
+  if (fs.existsSync(publicDir)) {
+    fs.rmSync(publicDir, { recursive: true, force: true });
+  }
+  fs.mkdirSync(publicDir, { recursive: true });
+
+  const usedNames = new Set();
+  walk(rootDir, (imgPath) => {
+    // Don't copy from node_modules, .git, public itself, or docs-cache/temp
+    if (imgPath.includes("node_modules") || imgPath.includes(".git") || imgPath.startsWith(publicDir) || imgPath.includes("docs-cache/temp")) return;
+    let base = path.basename(imgPath);
+    let dest = path.join(publicDir, base);
+    let count = 1;
+    // Prevent filename collisions
+    while (usedNames.has(dest) || fs.existsSync(dest)) {
+      const ext = path.extname(base);
+      const name = path.basename(base, ext);
+      dest = path.join(publicDir, `${name}_${count}${ext}`);
+      count++;
+    }
+    usedNames.add(dest);
+    fs.copyFileSync(imgPath, dest);
+    log(`Copied image: ${base}`);
+  });
+  log("All images copied to public.");
+}
+
+async function fixNextImagePaths() {
+  const exts = ['.tsx', '.jsx', '.ts', '.js'];
+  const rootDir = path.resolve(process.cwd(), 'src');
+
+  function walk(dir) {
+    let results = [];
+    const list = fs.readdirSync(dir);
+    list.forEach(file => {
+      const filePath = path.join(dir, file);
+      const stat = fs.statSync(filePath);
+      if (stat && stat.isDirectory()) {
+        results = results.concat(walk(filePath));
+      } else if (exts.includes(path.extname(file))) {
+        results.push(filePath);
+      }
+    });
+    return results;
+  }
+
+  function fixImageSrcs(filePath) {
+    let changed = false;
+    let code = fs.readFileSync(filePath, 'utf8');
+    // Regex to match <Image ... src="something" ...>
+    code = code.replace(/(<Image[^>]*src=\s*["'])(?![\/]|https?:\/\/)([^"'>]+)/g, (match, p1, p2) => {
+      changed = true;
+      return p1 + '/' + p2;
+    });
+    if (changed) {
+      fs.writeFileSync(filePath, code, 'utf8');
+      log(`Fixed: ${filePath}`);
+    }
+  }
+
+  const files = walk(rootDir);
+  files.forEach(fixImageSrcs);
+  log('next/image src paths fixed.');
+}
+
 async function ensureDocsUpToDate() {
   await sparseCheckoutDocs();
   await downloadOpenAPI();
@@ -137,6 +222,8 @@ async function ensureDocsUpToDate() {
     log("Error running generate-docs.mjs: " + e.message);
   }
   log("Docs and OpenAPI are up to date.");
+  await copyImagesToPublic();
+  await fixNextImagePaths();
 }
 
 ensureDocsUpToDate().catch((e) => {

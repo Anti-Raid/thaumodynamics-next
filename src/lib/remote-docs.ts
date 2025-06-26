@@ -66,6 +66,14 @@ function sanitizeMarkdown(mdx: string): string {
     }
   );
 
+  // Sanitize image paths: ![alt](something.png) => ![alt](/something.png) if not already root-relative or absolute
+  mdx = mdx.replace(/(!\[[^\]]*\]\()([^/\s][^)]*)\)/g, (_match, p1, p2) => {
+    // If p2 starts with http:// or https://, leave as is
+    if (/^https?:\/\//.test(p2)) return `${p1}${p2})`;
+    // Otherwise, prepend a slash
+    return `${p1}/${p2})`;
+  });
+
   // Sanitize links to add /docs/ prefix
   mdx = sanitizeLinks(mdx);
 
