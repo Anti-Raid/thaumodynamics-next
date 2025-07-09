@@ -21,7 +21,7 @@ AntiRaid is not just another anti-raid or anti-nuke bot. It offers a unique appr
 ## Getting Started
 
 ### Development
-To run the documentation site locally:
+To run the documentation site locally by running:
 
 ```bash
 npm run dev
