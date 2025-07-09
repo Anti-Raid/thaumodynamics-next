@@ -178,7 +178,7 @@ const Layout: React.FC = () => {
               className="px-8 py-4 bg-fd-card hover:bg-fd-accent text-fd-card-foreground rounded-xl font-semibold text-lg flex items-center space-x-2 border border-fd-border transition-all duration-300"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => window.open("/docs/api", "_blank")}
+              onClick={() => window.open("/docs/README", "_blank")}
             >
               <FiExternalLink className="w-5 h-5" />
               <span>API Reference</span>
