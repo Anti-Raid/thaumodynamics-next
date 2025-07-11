@@ -35,15 +35,6 @@ export const docs = defineDocs({
 
 export default defineConfig({
   lastModifiedTime: 'git',
-  
-  // Configure GitHub repository settings
-  repository: {
-    provider: 'github',
-    owner: 'Anti-Raid',
-    name: 'antiraid',
-    branch: 'development',
-    rootDir: 'docs/src'
-  },
 
   mdxOptions: {
     rehypeCodeOptions: {
