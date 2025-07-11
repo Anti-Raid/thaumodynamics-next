@@ -12,6 +12,7 @@ import { transformerTwoslash } from 'fumadocs-twoslash';
 import { createFileSystemTypesCache } from 'fumadocs-twoslash/cache-fs';
 import type { ElementContent } from 'hast';
 import { z } from 'zod';
+import { remarkInstall } from 'fumadocs-docgen';
 
 export const docs = defineDocs({
   docs: {
@@ -34,11 +35,12 @@ export const docs = defineDocs({
 
 export default defineConfig({
   lastModifiedTime: 'git',
+
   mdxOptions: {
     rehypeCodeOptions: {
       lazy: true,
       experimentalJSEngine: true,
-      langs: ['ts', 'js', 'html', 'tsx', 'mdx'],
+      langs: ['ts', 'js', 'html', 'tsx', 'mdx', 'md', 'css', 'json', 'bash'],
       inline: 'tailing-curly-colon',
       themes: {
         light: 'purple-light',
@@ -68,5 +70,8 @@ export default defineConfig({
         },
       ],
     },
+    remarkPlugins: [
+      [remarkInstall, { persist: { id: 'package-manager' } }],
+    ],
   },
 });

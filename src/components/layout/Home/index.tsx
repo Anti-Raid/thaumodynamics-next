@@ -22,6 +22,7 @@ import {
   FiGithub,
   FiExternalLink,
 } from "react-icons/fi";
+import Link from "next/link";
 
 const Layout: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -164,25 +165,17 @@ const Layout: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
+          <Link href="/docs/README">
             <motion.button
               className="px-8 py-4 bg-gradient-to-r from-fd-primary to-purple-600 text-white rounded-xl font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => window.open("/docs/README", "_blank")}
             >
               <FiBook className="w-5 h-5" />
               <span>Get Started</span>
               <FiArrowRight className="w-5 h-5" />
             </motion.button>
-            <motion.button
-              className="px-8 py-4 bg-fd-card hover:bg-fd-accent text-fd-card-foreground rounded-xl font-semibold text-lg flex items-center space-x-2 border border-fd-border transition-all duration-300"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => window.open("/docs/README", "_blank")}
-            >
-              <FiExternalLink className="w-5 h-5" />
-              <span>API Reference</span>
-            </motion.button>
+          </Link>
           </motion.div>
         </div>
       </section>
