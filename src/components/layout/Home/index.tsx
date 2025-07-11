@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import {
   motion,
   useScroll,
@@ -24,19 +25,42 @@ import {
 } from "react-icons/fi";
 import Link from "next/link";
 
-const Layout: React.FC = () => {
+function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-fd-background">
+      <div className="text-center p-8">
+        <h2 className="text-2xl font-bold text-fd-foreground mb-4">Something went wrong</h2>
+        <p className="text-fd-muted-foreground mb-4">{error.message}</p>
+        <button
+          onClick={resetErrorBoundary}
+          className="px-4 py-2 bg-fd-primary text-white rounded-lg"
+        >
+          Try again
+        </button>
+      </div>
+    </div>
+  );
+}
+
+const HomeContent: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
   const y2 = useTransform(scrollY, [0, 300], [0, -100]);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    // Throttle mouse move updates to prevent excessive state updates
+    requestAnimationFrame(() => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    });
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [handleMouseMove]);
 
   const fadeInUp: Variants = {
     initial: { opacity: 0, y: 60 },
@@ -379,6 +403,14 @@ const Layout: React.FC = () => {
         </div>
       </footer>
     </div>
+  );
+};
+
+const Layout: React.FC = () => {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <HomeContent />
+    </ErrorBoundary>
   );
 };
 

@@ -6,26 +6,25 @@ import {
   DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
-import { openapi } from "../../../lib/source";
-import defaultComponents from "fumadocs-ui/mdx";
-import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import { TypeTable } from "fumadocs-ui/components/type-table";
-import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
-import { APIPage as OpenAPIPage } from "fumadocs-openapi/ui";
-import type { MDXComponents } from "mdx/types";
+import type { Metadata } from "next";
+import { EditLink } from "@/components/EditLink";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug?: string[] }>;
-}) {
+interface Props {
+  params: Promise<{
+    slug?: string[];
+  }>;
+}
+
+export default async function Page({ params }: Props) {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug || [];
-  const doc = await getCompiledDoc(slug);
+  const doc = await getCompiledDoc(resolvedParams.slug || []);
 
-  if (!doc) notFound();
+  if (!doc) {
+    notFound();
+  }
 
   const { content: Mdx, frontmatter, toc } = doc;
+  const docPath = (resolvedParams.slug || []).join("/");
 
   return (
     <DocsPage
@@ -34,44 +33,39 @@ export default async function Page({
         style: "clerk",
         single: false,
       }}
-      editOnGithub={{
-        repo: "AntiRaid",
-        owner: "Anti-Raid",
-        sha: "development",
-        path: `/docs/${slug.join("/")}`,
-      }}
     >
       <DocsTitle>
-        {String(frontmatter.title || slug[slug.length - 1] || "Docs")}
+        {String(frontmatter.title || resolvedParams.slug?.[resolvedParams.slug.length - 1] || "Docs")}
       </DocsTitle>
       <DocsDescription>
         {frontmatter.description ? String(frontmatter.description) : undefined}
       </DocsDescription>
       <DocsBody>
-        <Mdx components={getMDXComponents()} />
+        <Mdx />
+        <div className="mt-8 pt-4 border-t border-fd-border">
+          <EditLink path={docPath} />
+        </div>
       </DocsBody>
     </DocsPage>
   );
 }
 
-export const dynamic = "force-dynamic";
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
+  const doc = await getCompiledDoc(resolvedParams.slug || []);
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug?: string[] }>;
-}) {
-  const { slug = [] } = await params;
-  const doc = await getCompiledDoc(slug);
-  if (!doc) notFound();
+  if (!doc) {
+    return {};
+  }
+
   const { frontmatter } = doc;
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://docs.antiraid.xyz";
-  const image = `${baseUrl}/docs-og/${slug.join("/")}/image.png`;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://docs.antiraid.xyz";
+  const docPath = (resolvedParams.slug || []).join("/");
+  const image = `${baseUrl}/docs-og/${docPath}/image.png`;
 
   return {
-    title: frontmatter.title,
-    description: frontmatter.description,
+    title: typeof frontmatter.title === 'string' ? frontmatter.title : undefined,
+    description: typeof frontmatter.description === 'string' ? frontmatter.description : undefined,
     openGraph: {
       images: [image],
     },
@@ -79,18 +73,5 @@ export async function generateMetadata({
       card: "summary_large_image",
       images: [image],
     },
-  };
-}
-
-function getMDXComponents(components?: MDXComponents): MDXComponents {
-  return {
-    ...defaultComponents,
-    ...components,
-    Tabs,
-    Tab,
-    TypeTable,
-    Accordion,
-    Accordions,
-    APIPage: (props) => <OpenAPIPage {...openapi.getAPIPageProps(props)} />,
   };
 }

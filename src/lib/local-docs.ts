@@ -3,6 +3,14 @@ import path from "path";
 
 const DOCS_ROOT = path.resolve(process.cwd(), "docs-cache", "docs");
 
+// Validate path is within DOCS_ROOT
+function validatePath(filePath: string): void {
+  const normalizedPath = path.normalize(filePath);
+  if (!normalizedPath.startsWith(DOCS_ROOT)) {
+    throw new Error('Invalid path: Attempted path traversal');
+  }
+}
+
 // Sanitizer to remove Fumadocs JSX comment
 function sanitizeContent(content: string): string {
   return content.replace(
@@ -15,6 +23,8 @@ export async function getLocalDocFile(file: string): Promise<string> {
   // Remove double .md/.mdx extensions if present
   file = file.replace(/\.(md|mdx)\.(md|mdx)$/i, ".$1");
   const filePath = path.join(DOCS_ROOT, file);
+  validatePath(filePath);
+  
   let content: string | undefined;
   let triedMdx = false;
   try {
@@ -24,6 +34,7 @@ export async function getLocalDocFile(file: string): Promise<string> {
     if (file.endsWith('.md')) {
       const mdxFile = file.replace(/\.md$/, '.mdx');
       const mdxPath = path.join(DOCS_ROOT, mdxFile);
+      validatePath(mdxPath);
       try {
         content = await fs.readFile(mdxPath, "utf8");
         triedMdx = true;
