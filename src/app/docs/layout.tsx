@@ -7,12 +7,8 @@ import "katex/dist/katex.min.css";
 
 export default function Layout({
   children,
-  editOnGithub,
-  lastEdit,
 }: {
   children: ReactNode;
-  editOnGithub?: any;
-  lastEdit?: any;
 }) {
   return (
     <DocsLayout
@@ -63,8 +59,6 @@ export default function Layout({
           },
         },
       }}
-      {...(editOnGithub ? { editOnGithub } : {})}
-      {...(lastEdit ? { lastEdit } : {})}
     >
       {children}
     </DocsLayout>
