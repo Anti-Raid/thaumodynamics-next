@@ -1,10 +1,18 @@
-import { source, docsReady } from '@/lib/source';
-import { createFromSource } from 'fumadocs-core/search/server';
-import { NextResponse } from 'next/server';
+import { createSearchAPI } from "fumadocs-core/search/server";
+import { source } from "@/lib/source";
 
-const handler = createFromSource(source);
+export const { GET } = createSearchAPI("advanced", {
+  indexes: await Promise.all(
+    source.getPages().map(async (page) => {
+      const { structuredData } = await page.data.load();
 
-export async function GET(request: Request) {
-  await docsReady; // Ensure docs are loaded
-  return handler.GET(request);
-}
+      return {
+        title: page.data.title,
+        description: page.data.description,
+        url: page.url,
+        id: page.url,
+        structuredData,
+      };
+    }),
+  ),
+});

@@ -1,19 +1,48 @@
+import * as Twoslash from "fumadocs-twoslash/ui";
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
+import { Callout } from "fumadocs-ui/components/callout";
+import { File, Files, Folder } from "fumadocs-ui/components/files";
+import {
+  Tab,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "fumadocs-ui/components/tabs";
+import { TypeTable } from "fumadocs-ui/components/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
+import * as lucideIcons from "lucide-react";
+import * as FaIcons from "react-icons/fa";
+import * as Fa6Icons from "react-icons/fa6";
+import * as MdIcons from "react-icons/md";
+import * as TbIcons from "react-icons/tb";
+import * as IoIcons from "react-icons/io5";
 import type { MDXComponents } from "mdx/types";
-import { CodeBlock, Pre } from 'fumadocs-ui/components/codeblock';
-import { Callout } from 'fumadocs-ui/components/callout';
-import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Mermaid } from "@/components/mdx/mermaid";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
+    ...(lucideIcons as unknown as MDXComponents),
+    ...(FaIcons as unknown as MDXComponents),
+    ...(Fa6Icons as unknown as MDXComponents),
+    ...(MdIcons as unknown as MDXComponents),
+    ...(TbIcons as unknown as MDXComponents),
+    ...(IoIcons as unknown as MDXComponents),
     ...defaultMdxComponents,
-    pre: ({ ref: _ref, ...props }) => (
-      <CodeBlock {...props}>
-        <Pre>{props.children}</Pre>
-      </CodeBlock>
-    ),
-    Callout,
+    ...Twoslash,
+    File,
+    Files,
+    Folder,
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+    Tab,
+    Accordion,
+    Accordions,
+    Mermaid,
     TypeTable,
+    Callout,
     ...components,
   };
 }

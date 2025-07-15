@@ -1,18 +1,21 @@
 import {
   rehypeCodeDefaultOptions,
   remarkSteps,
-} from 'fumadocs-core/mdx-plugins';
+} from "fumadocs-core/mdx-plugins";
+import { remarkInstall } from "fumadocs-docgen";
 import {
   defineConfig,
   defineDocs,
   frontmatterSchema,
   metaSchema,
-} from 'fumadocs-mdx/config';
-import { transformerTwoslash } from 'fumadocs-twoslash';
-import { createFileSystemTypesCache } from 'fumadocs-twoslash/cache-fs';
-import type { ElementContent } from 'hast';
-import { z } from 'zod';
-import { remarkInstall } from 'fumadocs-docgen';
+} from "fumadocs-mdx/config";
+import { transformerTwoslash } from "fumadocs-twoslash";
+import { createFileSystemTypesCache } from "fumadocs-twoslash/cache-fs";
+import { remarkAutoTypeTable } from "fumadocs-typescript";
+import type { ElementContent } from "hast";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import { z } from "zod";
 
 export const docs = defineDocs({
   docs: {
@@ -34,17 +37,16 @@ export const docs = defineDocs({
 });
 
 export default defineConfig({
-  lastModifiedTime: 'git',
-
+  lastModifiedTime: "git",
   mdxOptions: {
     rehypeCodeOptions: {
       lazy: true,
       experimentalJSEngine: true,
-      langs: ['ts', 'js', 'html', 'tsx', 'mdx', 'md', 'css', 'json', 'bash'],
-      inline: 'tailing-curly-colon',
+      langs: ["ts", "js", "html", "tsx", "mdx"],
+      inline: "tailing-curly-colon",
       themes: {
-        light: 'purple-light',
-        dark: 'purple',
+        light: "tokyo-night",
+        dark: "tokyo-night",
       },
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
@@ -52,12 +54,12 @@ export default defineConfig({
           typesCache: createFileSystemTypesCache(),
         }),
         {
-          name: '@shikijs/transformers:remove-notation-escape',
+          name: "@shikijs/transformers:remove-notation-escape",
           code(hast) {
             function replace(node: ElementContent): void {
-              if (node.type === 'text') {
-                node.value = node.value.replace('[\\!code', '[!code');
-              } else if ('children' in node) {
+              if (node.type === "text") {
+                node.value = node.value.replace("[\\!code", "[!code");
+              } else if ("children" in node) {
                 for (const child of node.children) {
                   replace(child);
                 }
@@ -70,8 +72,15 @@ export default defineConfig({
         },
       ],
     },
+    remarkCodeTabOptions: {
+      parseMdx: true,
+    },
     remarkPlugins: [
-      [remarkInstall, { persist: { id: 'package-manager' } }],
+      remarkSteps,
+      remarkMath,
+      remarkAutoTypeTable,
+      [remarkInstall, { persist: { id: "package-manager" } }],
     ],
+    rehypePlugins: (v) => [rehypeKatex, ...v],
   },
 });

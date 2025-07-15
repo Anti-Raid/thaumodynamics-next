@@ -1,27 +1,71 @@
-"use client";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import Image from "next/image";
 import type { ReactNode } from "react";
-import { baseOptions } from "@/app/layout.config";
-import { useEffect, useState } from "react";
+import { baseOptions, linkItems } from "@/app/layout.config";
+import { source } from "@/lib/source";
+import "katex/dist/katex.min.css";
 
-async function fetchPageTree() {
-  const res = await fetch("/api/get/docs/indexing");
-  if (!res.ok) return { name: "root", children: [] };
-  return await res.json();
-}
-
-export default function Layout({ children }: { children: ReactNode }) {
-  const [tree, setTree] = useState<{ name: string; children: any[] }>({
-    name: "root",
-    children: [],
-  });
-  useEffect(() => {
-    fetchPageTree().then(setTree);
-  }, []);
-
-  // @ts-ignore
+export default function Layout({
+  children,
+  editOnGithub,
+  lastEdit,
+}: {
+  children: ReactNode;
+  editOnGithub?: any;
+  lastEdit?: any;
+}) {
   return (
-    <DocsLayout tree={tree} {...baseOptions}>
+    <DocsLayout
+      {...baseOptions}
+      tree={source.pageTree}
+      // just icon items
+      links={linkItems.filter((item) => item.type === "icon")}
+      nav={{
+        ...baseOptions.nav,
+        title: (
+          <>
+            <Image
+              src="https://antiraid.xyz/logo.webp"
+              alt="Logo"
+              width="32"
+              height="32"
+            />
+            <span className="font-medium max-md:hidden [.uwu_&]:hidden">
+              AntiRaid
+            </span>
+          </>
+        ),
+      }}
+      sidebar={{
+        tabs: {
+          transform(option, node) {
+            const meta = source.getNodeMeta(node);
+            if (!meta || !node.icon) return option;
+
+            const color = `var(--${meta.path.split("/")[0]}-color, var(--color-fd-foreground))`;
+
+            return {
+              ...option,
+              icon: (
+                <div
+                  className="size-full rounded-lg max-md:border max-md:bg-(--tab-color)/10 max-md:p-1.5 [&_svg]:size-full"
+                  style={
+                    {
+                      color,
+                      "--tab-color": color,
+                    } as object
+                  }
+                >
+                  {node.icon}
+                </div>
+              ),
+            };
+          },
+        },
+      }}
+      {...(editOnGithub ? { editOnGithub } : {})}
+      {...(lastEdit ? { lastEdit } : {})}
+    >
       {children}
     </DocsLayout>
   );

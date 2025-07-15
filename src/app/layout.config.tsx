@@ -1,8 +1,8 @@
+import type { LinkItemType } from "fumadocs-ui/layouts/docs";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { type LinkItemType } from "fumadocs-ui/layouts/docs";
-import { FaDiscord, FaCogs, FaBook, FaDownload } from "react-icons/fa";
-import { SiGithub } from "react-icons/si";
 import Image from "next/image";
+import { FaBook, FaCogs, FaDiscord, FaDownload } from "react-icons/fa";
+import { SiGithub } from "react-icons/si";
 
 /**
  * Shared layout configurations
@@ -60,13 +60,15 @@ export const baseOptions: BaseLayoutProps = {
         {
           icon: <FaBook />,
           text: "Developer's Guide",
-          description: "Everything you need to know about AntiRaid's infrastructure.",
+          description:
+            "Everything you need to know about AntiRaid's infrastructure.",
           url: "/docs/dev/go_jobs/README.md",
         },
         {
           icon: <FaDownload />,
           text: "Setup Guide",
-          description: "Everything you need to know on how to setup AntiRaid on your local server.",
+          description:
+            "Everything you need to know on how to setup AntiRaid on your local server.",
           url: "/docs/dev/hosting/README.md",
         },
       ],

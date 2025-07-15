@@ -1,77 +1,174 @@
-import { getCompiledDoc } from "@/lib/remote-docs";
+import * as path from "node:path";
+import Link from "fumadocs-core/link";
+import { getPageTreePeers } from "fumadocs-core/server";
+import { APIPage } from "fumadocs-openapi/ui";
+import * as Twoslash from "fumadocs-twoslash/ui";
+import { createGenerator } from "fumadocs-typescript";
+import { AutoTypeTable } from "fumadocs-typescript/ui";
+import { Banner } from "fumadocs-ui/components/banner";
+import { Callout } from "fumadocs-ui/components/callout";
+import { Card, Cards } from "fumadocs-ui/components/card";
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
+import { TypeTable } from "fumadocs-ui/components/type-table";
 import {
-  DocsPage,
-  DocsBody,
-  DocsDescription,
-  DocsTitle,
-} from "fumadocs-ui/page";
-import { notFound } from "next/navigation";
+  PageArticle,
+  PageBreadcrumb,
+  PageFooter,
+  PageLastUpdate,
+  PageRoot,
+  PageTOC,
+  PageTOCItems,
+  PageTOCPopover,
+  PageTOCPopoverContent,
+  PageTOCPopoverItems,
+  PageTOCPopoverTrigger,
+  PageTOCTitle,
+} from "fumadocs-ui/layouts/docs/page";
 import type { Metadata } from "next";
-import { EditLink } from "@/components/EditLink";
+import { notFound } from "next/navigation";
+import type { ComponentProps, FC, ReactElement } from "react";
+import { Mermaid } from "@/components/mdx/mermaid";
+import { createMetadata } from "@/lib/metadata";
+import { openapi, source } from "@/lib/source";
+import { getMDXComponents } from "@/mdx-components";
 
-interface Props {
-  params: Promise<{
-    slug?: string[];
-  }>;
-}
+const generator = createGenerator();
 
-export default async function Page({ params }: Props) {
-  const resolvedParams = await params;
-  const doc = await getCompiledDoc(resolvedParams.slug || []);
+export const revalidate = false;
 
-  if (!doc) {
-    notFound();
-  }
+export default async function Page(props: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<ReactElement> {
+  const params = await props.params;
+  const page = source.getPage(params.slug);
 
-  const { content: Mdx, frontmatter, toc } = doc;
-  const docPath = (resolvedParams.slug || []).join("/");
+  if (!page) notFound();
+
+  const { body: Mdx, toc, lastModified } = await page.data.load();
 
   return (
-    <DocsPage
-      toc={toc}
-      tableOfContent={{
-        style: "clerk",
+    <PageRoot
+      toc={{
+        toc,
         single: false,
       }}
     >
-      <DocsTitle>
-        {String(frontmatter.title || resolvedParams.slug?.[resolvedParams.slug.length - 1] || "Docs")}
-      </DocsTitle>
-      <DocsDescription>
-        {frontmatter.description ? String(frontmatter.description) : undefined}
-      </DocsDescription>
-      <DocsBody>
-        <Mdx />
-        <div className="mt-8 pt-4 border-t border-fd-border">
-          <EditLink path={docPath} />
+      {toc.length > 0 && (
+        <PageTOCPopover>
+          <PageTOCPopoverTrigger />
+          <PageTOCPopoverContent>
+            <PageTOCPopoverItems />
+          </PageTOCPopoverContent>
+        </PageTOCPopover>
+      )}
+      <PageArticle className="max-md:pb-16">
+        <PageBreadcrumb />
+        <h1 className="font-semibold text-3xl">{page.data.title}</h1>
+        <p className="text-fd-muted-foreground text-lg">
+          {page.data.description}
+        </p>
+        <div className="prose flex-1 text-fd-foreground/80">
+          <Mdx
+            components={getMDXComponents({
+              ...Twoslash,
+              a: ({ href, ...props }) => {
+                const found = source.getPageByHref(href ?? "", {
+                  dir: path.dirname(page.path),
+                });
+
+                if (!found) return <Link href={href} {...props} />;
+
+                return (
+                  <div>
+                    <Link
+                      href={
+                        found.hash
+                          ? `${found.page.url}#${found.hash}`
+                          : found.page.url
+                      }
+                      {...props}
+                    />
+
+                    <p className="font-medium">{found.page.data.title}</p>
+                    <p className="text-fd-muted-foreground">
+                      {found.page.data.description}
+                    </p>
+                  </div>
+                );
+              },
+              Banner,
+              Mermaid,
+              TypeTable,
+              Accordion,
+              Accordions,
+              AutoTypeTable: (props) => (
+                <AutoTypeTable generator={generator} {...props} />
+              ),
+              blockquote: Callout as unknown as FC<
+                ComponentProps<"blockquote">
+              >,
+              APIPage: (props) => (
+                <APIPage {...openapi.getAPIPageProps(props)} />
+              ),
+              DocsCategory: ({ url }) => <DocsCategory url={url ?? page.url} />,
+            })}
+          />
+          {page.data.index ? <DocsCategory url={page.url} /> : null}
         </div>
-      </DocsBody>
-    </DocsPage>
+        {lastModified && <PageLastUpdate date={lastModified} />}
+        <PageFooter />
+      </PageArticle>
+      {toc.length > 0 && (
+        <PageTOC>
+          <PageTOCTitle />
+          <PageTOCItems variant="clerk" />
+        </PageTOC>
+      )}
+    </PageRoot>
   );
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
-  const doc = await getCompiledDoc(resolvedParams.slug || []);
+function DocsCategory({ url }: { url: string }) {
+  return (
+    <Cards>
+      {getPageTreePeers(source.pageTree, url).map((peer) => (
+        <Card key={peer.url} title={peer.name} href={peer.url}>
+          {peer.description}
+        </Card>
+      ))}
+    </Cards>
+  );
+}
 
-  if (!doc) {
-    return {};
-  }
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const { slug = [] } = await props.params;
+  const page = source.getPage(slug);
+  if (!page) notFound();
 
-  const { frontmatter } = doc;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://docs.antiraid.xyz";
-  const docPath = (resolvedParams.slug || []).join("/");
-  const image = `${baseUrl}/docs-og/${docPath}/image.png`;
+  const description =
+    page.data.description ?? "The library for building documentation sites";
 
-  return {
-    title: typeof frontmatter.title === 'string' ? frontmatter.title : undefined,
-    description: typeof frontmatter.description === 'string' ? frontmatter.description : undefined,
+  const image = {
+    url: ["/og", ...slug, "image.png"].join("/"),
+    width: 1200,
+    height: 630,
+  };
+
+  return createMetadata({
+    title: page.data.title,
+    description,
     openGraph: {
+      url: `/docs/${page.slugs.join("/")}`,
       images: [image],
     },
     twitter: {
-      card: "summary_large_image",
       images: [image],
     },
-  };
+  });
+}
+
+export function generateStaticParams() {
+  return source.generateParams();
 }

@@ -1,52 +1,33 @@
-# AntiRaid Docs
+# Fumadocs Starter
 
-Welcome to the documentation site for **AntiRaid**, a highly customizable Discord bot focused on server protection, flexibility, and user empowerment. This site is built with Next.js and [Fumadocs](https://fumadocs.vercel.app), providing a modern, interactive experience for both users and developers.
+This is a starter template for building documentation using [Fumadocs](https://fumadocs.vercel.app), integrated with OpenAPI and designed to work seamlessly with the Vercel AI SDK.
 
-## What is AntiRaid?
-
-AntiRaid is not just another anti-raid or anti-nuke bot. It offers a unique approach to server protection by leveraging **structured templating** and a template shop, allowing you to tailor your server's defenses to your specific needs. Instead of a one-size-fits-all solution, AntiRaid empowers you to create, customize, and extend your own moderation and security workflows.
-
-### Philosophy
-- **Flexibility First:** Use Lua scripting for advanced templating and automation.
-- **Custom Permissions:** Fine-tune who can use which commands and features, combining Discord permissions with [kittycat](https://github.com/InfinityBotList/kittycat) for granular control.
-- **Transparency:** Open documentation and clear guides for both users and developers.
-
-## Key Features
-- **Structured Templating:** Personalize bot behavior, messages, and embeds using Lua.
-- **Lockdowns:** Quickly restrict channels or roles during attacks, with multiple lockdown modes.
-- **Backups:** Save and restore your server's structure, roles, channels, and more (see [Backups](https://docs.antiraid.xyz/docs/user/backups/README.md)).
-- **Captcha:** Protect your server with advanced captcha verification.
-- **Permission System:** Combine Discord and custom permissions for ultimate control.
+It’s powered by [Next.js](https://nextjs.org) and was generated using [Create Fumadocs](https://github.com/fuma-nama/fumadocs).
 
 ## Getting Started
 
-### Development
-To run the documentation site locally by running:
+Run the development server:
 
-```sh
+```bash
 npm run dev
 # or
-bun run dev
+pnpm dev
 # or
 yarn dev
 ```
 
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Using AntiRaid
-- **Read the [Introduction](https://docs.antiraid.xyz/docs/README.md)** to understand the bot's philosophy and setup.
-- **Explore [User Guides](https://docs.antiraid.xyz/docs/user/)** for templating, permissions, backups, lockdowns, and more.
-- **Check [Dev Guides](https://docs.antiraid.xyz/docs/dev/)** for advanced usage and integration.
+## What’s Inside
 
-## API Reference
-See the [OpenAPI spec](https://docs.antiraid.xyz/openapi.json) for details on available endpoints and integration options.
+- 🧩 **Fumadocs** – Fast, flexible documentation powered by MDX.
+- 📘 **Orama** – Built-in search integration.
+- 🧠 **AI SDK** – Supports the [Vercel AI SDK](https://sdk.vercel.ai) for advanced AI chat features.
+- 🧱 **MCP-Ready** – Easily extend with an optional MCP Server for more advanced workflows.
+- ⚡️ **Twoslash** – Embed live, type-checked code examples with rich editor features (errors, completions, hovers) directly in your docs.
 
 ## Learn More
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Fumadocs](https://fumadocs.vercel.app)
-- [AntiRaid Website](https://antiraid.xyz)
 
----
-
-
-*This documentation is a work in progress. Contributions and feedback are welcome!*
+- [Next.js Documentation](https://nextjs.org/docs) – Learn about Next.js features and APIs.
+- [Learn Next.js](https://nextjs.org/learn) – Interactive Next.js tutorial.
+- [Fumadocs](https://fumadocs.vercel.app) – Learn more about Fumadocs and how to customize it.

@@ -1,0 +1,21 @@
+{
+  "title": "Developer Guide",
+  "description": "Basic knowledge for developing with Antiraid",
+  "icon": "Code",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "BadgerFang",
+    "builtins",
+    "cmd",
+    "data",
+    "go_jobs",
+    "hosting",
+    "infra",
+    "rust_settings",
+    "services",
+    "templating",
+    "---API---",
+    "templating-api"
+  ]
+}

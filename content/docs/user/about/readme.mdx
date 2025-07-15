@@ -1,0 +1,115 @@
+---
+title: Introduction
+icon: IoIosDocument
+description: Overview of AntiRaid bot and documentation links.
+---
+
+# Introduction
+
+<Callout variant="warn" title="Important">
+  Just adding AntiRaid (or any Discord bot) to your server will not do much
+  unless you configure it first!
+</Callout>
+
+<Callout title="What is AntiRaid?">
+  AntiRaid is a Discord bot that takes a very unique approach to protecting
+  servers. Instead of providing a one-size-fits-all solution, AntiRaid uses{" "}
+  <strong>structured templating</strong> and a (work in progress/coming soon){" "}
+  <strong>template shop</strong> to let servers protect themselves in a way
+  that’s tailored to their specific needs.
+</Callout>
+
+---
+
+## Documentation Index
+
+<Accordions type="multiple" defaultValue={['dev', 'user']}>
+
+<Accordion title="Developer Docs" value="dev">
+  <Cards>
+    <Card href="./dev/core/" title="Core Libraries">
+      Core components and internal tools
+    </Card>
+    <Card href="./dev/infra/" title="Infrastructure">
+      Infra stack, deployment setup
+    </Card>
+    <Card href="./dev/bot/" title="Bot Service">
+      Bot core logic
+    </Card>
+    <Card href="./dev/api/" title="API Service">
+      REST & GraphQL APIs
+    </Card>
+    <Card href="./dev/jobserver/" title="Jobserver">
+      Background jobs processing
+    </Card>
+    <Card href="./dev/services/" title="Services">
+      Supporting backend services
+    </Card>
+    <Card href="./dev/templating/" title="Templating System">
+      How templates work
+    </Card>
+    <Card href="./dev/templating-api/" title="Templating API Reference">
+      Template API schema
+    </Card>
+    <Card href="./dev/rust_settings/" title="Rust Settings">
+      Rust-powered config
+    </Card>
+    <Card href="./dev/go_jobs/" title="Go Jobserver">
+      Golang job system
+    </Card>
+    <Card href="./dev/builtins/" title="Builtins">
+      Built-in features
+    </Card>
+    <Card href="./dev/cmd/" title="Command-line Tools">
+      CLI utilities
+    </Card>
+    <Card href="./dev/data/" title="Data & Assets">
+      Asset management
+    </Card>
+    <Card href="./dev/hosting/" title="Hosting">
+      Self-hosting & scaling
+    </Card>
+  </Cards>
+</Accordion>
+
+<Accordion title="User Docs" value="user">
+  <Cards>
+    <Card href="../user/" title="User Guides">
+      Getting started & user help
+    </Card>
+  </Cards>
+</Accordion>
+
+</Accordions>
+
+---
+
+## Our Philosophy
+
+While many bots like Wick provide a managed anti-raid/anti-nuke solution, these systems often provide suboptimal user experience to many servers as they may not cater to specific needs of the server.
+
+<Callout>
+  Wick, for example, is often criticized for limiting the abilities of server
+  moderators in a way that makes moderation harder. While Wick is useful in many
+  servers and does work quite well in the anti-raid/anti-nuke field from our
+  experience, it may not be the best solution for all servers.
+</Callout>
+
+Templating, on the other hand, allows servers to tailor their needs directly without needing to go through the pain of making a custom Discord bot, hosting it, and then navigating the complexities of the Discord API manually while reinventing concepts like strings, punishments, permissions, captchas, and more.
+
+---
+
+## Learn More
+
+<Cards>
+  <Card
+    href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating"
+    title="Fetching, Caching, and Revalidating"
+  >
+    Learn more about caching in Next.js
+  </Card>
+  <Card title="Fetch API in Next.js">Learn more about `fetch` in Next.js.</Card>
+  <Card icon={<HomeIcon />} href="/" title="Home">
+    You can include icons too.
+  </Card>
+</Cards>

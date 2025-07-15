@@ -1,35 +1,44 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 import {
+  type Easing,
   motion,
+  type Transition,
   useScroll,
   useTransform,
-  type Easing,
   type Variants,
-  type Transition,
 } from "framer-motion";
+import Link from "next/link";
+import type React from "react";
+import { useCallback, useEffect, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import {
-  FiShield,
-  FiCode,
-  FiSettings,
-  FiUsers,
   FiArrowRight,
   FiBook,
-  FiZap,
-  FiLock,
+  FiCode,
   FiDatabase,
-  FiGithub,
   FiExternalLink,
+  FiGithub,
+  FiLock,
+  FiSettings,
+  FiShield,
+  FiUsers,
+  FiZap,
 } from "react-icons/fi";
-import Link from "next/link";
 
-function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+function ErrorFallback({
+  error,
+  resetErrorBoundary,
+}: {
+  error: Error;
+  resetErrorBoundary: () => void;
+}) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-fd-background">
       <div className="text-center p-8">
-        <h2 className="text-2xl font-bold text-fd-foreground mb-4">Something went wrong</h2>
+        <h2 className="text-2xl font-bold text-fd-foreground mb-4">
+          Something went wrong
+        </h2>
         <p className="text-fd-muted-foreground mb-4">{error.message}</p>
         <button
           onClick={resetErrorBoundary}
@@ -189,17 +198,17 @@ const HomeContent: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-          <Link href="/docs/README">
-            <motion.button
-              className="px-8 py-4 bg-gradient-to-r from-fd-primary to-purple-600 text-white rounded-xl font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <FiBook className="w-5 h-5" />
-              <span>Get Started</span>
-              <FiArrowRight className="w-5 h-5" />
-            </motion.button>
-          </Link>
+            <Link href="/docs/user/about/readme">
+              <motion.button
+                className="px-8 py-4 bg-gradient-to-r from-fd-primary to-purple-600 text-white rounded-xl font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <FiBook className="w-5 h-5" />
+                <span>Get Started</span>
+                <FiArrowRight className="w-5 h-5" />
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
