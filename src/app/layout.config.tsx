@@ -55,7 +55,7 @@ export const baseOptions: BaseLayoutProps = {
           icon: <FaCogs />,
           text: "User Guide",
           description: "How to guide on setting up AntiRaid",
-          url: "/docs/README",
+          url: "/docs/user/about/readme",
         },
         {
           icon: <FaBook />,
