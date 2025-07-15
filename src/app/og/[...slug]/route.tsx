@@ -3,11 +3,11 @@ import { notFound } from "next/navigation";
 import { generateOGImage } from "@/app/og/[...slug]/og";
 import { source } from "@/lib/source";
 
-const font = readFileSync("./app/og/[...slug]/fonts/Inter-Regular.ttf");
+const font = readFileSync("./src/app/og/[...slug]/fonts/Inter-Regular.ttf");
 const fontSemiBold = readFileSync(
-  "./app/og/[...slug]/fonts/Inter-SemiBold.ttf",
+  "./src/app/og/[...slug]/fonts/Inter-SemiBold.ttf",
 );
-const fontBold = readFileSync("./app/og/[...slug]/fonts/Inter-Bold.ttf");
+const fontBold = readFileSync("./src/app/og/[...slug]/fonts/Inter-Bold.ttf");
 
 export async function GET(
   _req: Request,
