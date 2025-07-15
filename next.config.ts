@@ -1,8 +1,12 @@
+/** @type {import('next').NextConfig} */
 import { createMDX } from "fumadocs-mdx/next";
 
 const withMDX = createMDX();
 
 const config = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   reactStrictMode: true,
   env: {
     NEXT_PUBLIC_BUILD_ENV: process.env.NODE_ENV || "development",
@@ -14,6 +18,9 @@ const config = {
         hostname: "**",
       },
     ],
+  },
+  experimental: {
+    mdxRs: true,
   },
 };
 

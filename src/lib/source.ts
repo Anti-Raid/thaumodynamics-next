@@ -55,7 +55,7 @@ export const source = loader({
   source: docs.toFumadocsSource(),
   pageTree: {
     attachFile,
-  },
+  }
 });
 
 export const openapi = createOpenAPI({

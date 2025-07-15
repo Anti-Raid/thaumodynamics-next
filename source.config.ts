@@ -42,7 +42,7 @@ export default defineConfig({
     rehypeCodeOptions: {
       lazy: true,
       experimentalJSEngine: true,
-      langs: ["ts", "js", "html", "tsx", "mdx"],
+      langs: ["ts", "js", "html", "tsx", "mdx", "lua", "luau"],
       inline: "tailing-curly-colon",
       themes: {
         light: "tokyo-night",
@@ -82,5 +82,7 @@ export default defineConfig({
       [remarkInstall, { persist: { id: "package-manager" } }],
     ],
     rehypePlugins: (v) => [rehypeKatex, ...v],
+    format: 'mdx',
+    development: process.env.NODE_ENV === 'development',
   },
 });

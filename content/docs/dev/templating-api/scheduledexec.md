@@ -1,17 +1,11 @@
 ---
 title: "@antiraid/scheduledexec"
-description: "API documentation for the @antiraid/scheduledexec module, including types and scheduling functions."
+description: "API documentation for the @antiraid/scheduledexec module, including types and scheduled execution operations."
 ---
-
-<div id="@antiraid/scheduledexec"></div>
 
 # @antiraid/scheduledexec
 
-<div id="Types"></div>
-
 ## Types
-
-<div id="ScheduledExecution"></div>
 
 ## ScheduledExecution
 
@@ -38,25 +32,17 @@ type ScheduledExecution = {
 
 </details>
 
-<div id="id"></div>
-
 ### id
 
-[string](#string)
-
-<div id="data"></div>
+`string`
 
 ### data
 
-[any](#any)
-
-<div id="template_name"></div>
+`any`
 
 ### template_name
 
-[string](#string)
-
-<div id="run_at"></div>
+`string`
 
 ### run_at
 
@@ -64,9 +50,7 @@ String representation of the time the event is scheduled to run at
 
 This can be converted to an `@antiraid/datetime` using Timezone:fromString
 
-[string](#string)
-
-<div id="ScheduledExecutionList"></div>
+`string`
 
 ## ScheduledExecutionList
 
@@ -79,9 +63,7 @@ type ScheduledExecutionList = {ScheduledExecution}
 
 </details>
 
-{[ScheduledExecution](#ScheduledExecution)}
-
-<div id="CreateScheduledExecution"></div>
+`{`[`ScheduledExecution`](#scheduledexecution)`}`
 
 ## CreateScheduledExecution
 
@@ -103,19 +85,13 @@ type CreateScheduledExecution = {
 
 </details>
 
-<div id="id"></div>
-
 ### id
 
-[string](#string)
-
-<div id="data"></div>
+`string`
 
 ### data
 
-[any](#any)
-
-<div id="run_at"></div>
+`any`
 
 ### run_at
 
@@ -123,225 +99,111 @@ String representation of the time the event is scheduled to run at
 
 This can be converted from an `@antiraid/datetime` using tostring
 
-[string](#string)
-
-<div id="ScheduledExecExecutor"></div>
+`string`
 
 ## ScheduledExecExecutor
-
-Allows templates to schedule executions of themselves with a specific id and data sometime
-
-in the future
-
-A scheduled execution is a task that is executed once at (or after) a specific time or interval.
-
-When a scheduled execution errors, the caller should _not_ remove the scheduled execution
-
-and should instead retry it at the next interval.
-
-All scheduled executions have an ID and data associated with them for use by the caller.
 
 <details>
 <summary>Raw Type</summary>
 
 ```luau
---- Allows templates to schedule executions of themselves with a specific id and data sometime
---- in the future
----
---- A scheduled execution is a task that is executed once at (or after) a specific time or interval.
---- When a scheduled execution errors, the caller should *not* remove the scheduled execution
---- and should instead retry it at the next interval.
----
---- All scheduled executions have an ID and data associated with them for use by the caller.
 type ScheduledExecExecutor = {
-	--- Lists all scheduled executions. If ``id`` is provided, then all scheduled executions
-	--- with that ID will be returned. See ``create`` for more information on same ID caveats.
-	list: (self: ScheduledExecExecutor, id: string?) -> Promise.LuaPromise<ScheduledExecutionList>,
+	--- @function () -> Promise<void>
+	--- Schedules a task to be executed at a later time
+	schedule: (self: ScheduledExecExecutor, task: string, time: string) -> Promise.LuaPromise<Record<never, never>>,
 
-	--- Creates a new scheduled execution
-	---
-	--- Note that scheduled executions are not guaranteed to be run at the exact time specified and
-	--- may be slightly late.
-	---
-	--- Note that reusing the same ID may store both scheduled executions and will dispatch an
-	--- set of created scheduled executions with the same ID. While the number of elements in this set is
-	--- undefined, the set is guaranteed to not be the empty/null set
-	---
-	--- The ordering in which scheduled executions are triggered about a small time period is undefined.
-	--- It is recommended to use the ``task`` library for small time periods.
-	add: (self: ScheduledExecExecutor, data: CreateScheduledExecution) -> Promise.LuaPromise<nil>,
-
-	--- Deletes all scheduled execution with a given ID
-	remove: (self: ScheduledExecExecutor, id: string) -> Promise.LuaPromise<nil>
+	--- @function () -> Promise<void>
+	--- Cancels a scheduled task
+	cancel: (self: ScheduledExecExecutor, task: string) -> Promise.LuaPromise<Record<never, never>>
 }
 ```
 
 </details>
 
-<div id="list"></div>
+### schedule
 
-### list
-
-Lists all scheduled executions. If `id` is provided, then all scheduled executions
-
-with that ID will be returned. See `create` for more information on same ID caveats.
+Schedules a task to be executed at a later time
 
 <details>
 <summary>Function Signature</summary>
 
 ```luau
---- Lists all scheduled executions. If ``id`` is provided, then all scheduled executions
---- with that ID will be returned. See ``create`` for more information on same ID caveats.
-list: (self: ScheduledExecExecutor, id: string?) -> Promise.LuaPromise<ScheduledExecutionList>
+--- @function () -> Promise<void>
+--- Schedules a task to be executed at a later time
+schedule: (self: ScheduledExecExecutor, task: string, time: string) -> Promise.LuaPromise<Record<never, never>>
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
 
-<div id="id"></div>
+##### task
 
-##### id
+`string`
 
-_This field is optional and may not be specified_
+##### time
 
-[string](#string)?
-
-<div id="Returns"></div>
+`string`
 
 #### Returns
 
-<div id="ret1"></div>
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `Record`
 
-##### ret1
+### cancel
 
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;[ScheduledExecutionList](#ScheduledExecutionList)&gt;<div id="add"></div>
-
-### add
-
-Creates a new scheduled execution
-
-Note that scheduled executions are not guaranteed to be run at the exact time specified and
-
-may be slightly late.
-
-Note that reusing the same ID may store both scheduled executions and will dispatch an
-
-set of created scheduled executions with the same ID. While the number of elements in this set is
-
-undefined, the set is guaranteed to not be the empty/null set
-
-The ordering in which scheduled executions are triggered about a small time period is undefined.
-
-It is recommended to use the `task` library for small time periods.
+Cancels a scheduled task
 
 <details>
 <summary>Function Signature</summary>
 
 ```luau
---- Creates a new scheduled execution
----
---- Note that scheduled executions are not guaranteed to be run at the exact time specified and
---- may be slightly late.
----
---- Note that reusing the same ID may store both scheduled executions and will dispatch an
---- set of created scheduled executions with the same ID. While the number of elements in this set is
---- undefined, the set is guaranteed to not be the empty/null set
----
---- The ordering in which scheduled executions are triggered about a small time period is undefined.
---- It is recommended to use the ``task`` library for small time periods.
-add: (self: ScheduledExecExecutor, data: CreateScheduledExecution) -> Promise.LuaPromise<nil>
+--- @function () -> Promise<void>
+--- Cancels a scheduled task
+cancel: (self: ScheduledExecExecutor, task: string) -> Promise.LuaPromise<Record<never, never>>
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
 
-<div id="data"></div>
+##### task
 
-##### data
-
-[CreateScheduledExecution](#CreateScheduledExecution)
-
-<div id="Returns"></div>
+`string`
 
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;[nil](#nil)&gt;<div id="remove"></div>
-
-### remove
-
-Deletes all scheduled execution with a given ID
-
-<details>
-<summary>Function Signature</summary>
-
-```luau
---- Deletes all scheduled execution with a given ID
-remove: (self: ScheduledExecExecutor, id: string) -> Promise.LuaPromise<nil>
-```
-
-</details>
-
-<div id="Arguments"></div>
-
-#### Arguments
-
-<div id="id"></div>
-
-##### id
-
-[string](#string)
-
-<div id="Returns"></div>
-
-#### Returns
-
-<div id="ret1"></div>
-
-##### ret1
-
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;[nil](#nil)&gt;<div id="Functions"></div>
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `Record`
 
 # Functions
 
-<div id="new"></div>
-
 ## new
+
+Creates a new ScheduledExecExecutor
 
 <details>
 <summary>Function Signature</summary>
 
 ```luau
-function new(token: Primitives.TemplateContext) -> ScheduledExecExecutor end
+--- Creates a new ScheduledExecExecutor
+function new(token: Primitives.TemplateContext, scope: ExecutorScope.ExecutorScope?) -> ScheduledExecExecutor end
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 ## Arguments
-
-<div id="token"></div>
 
 ### token
 
-[Primitives](./primitives.md).[TemplateContext](./primitives.md#TemplateContext)
+[`Primitives`](./primitives.md).[`TemplateContext`](./primitives.md#templatecontext)
 
-<div id="Returns"></div>
+### scope
+
+_This field is optional and may not be specified_
+
+[`ExecutorScope`](./executorscope.md).[`ExecutorScope`](./executorscope.md#executorscope)
 
 ## Returns
 
-<div id="ret1"></div>
-
 ### ret1
 
-[ScheduledExecExecutor](#ScheduledExecExecutor)
+[`ScheduledExecExecutor`](#scheduledexecexecutor)

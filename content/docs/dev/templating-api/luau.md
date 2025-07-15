@@ -1,248 +1,82 @@
 ---
 title: "@antiraid/luau"
-description: idk
+description: "API documentation for the @antiraid/luau module, including types and Luau operations."
 ---
-
-<div id="@antiraid/luau"></div>
 
 # @antiraid/luau
 
-<div id="Types"></div>
-
 ## Types
 
-<div id="Chunk"></div>
-
-## Chunk
+## LuauExecutor
 
 <details>
 <summary>Raw Type</summary>
 
 ```luau
-type Chunk = {
-	--- Requires the ``luau:eval.set_environment`` capability to modify
-	environment: {
-		[any]: any
-	}?,
-
-	--- Requires the ``luau:eval.set_optimization_level`` capability to modify
-	optimization_level: number?,
-
-	--- Requires the ``luau:eval.modify_set_code`` capability to modify
-	code: string,
-
-	--- Requires the ``luau:eval.set_chunk_name`` capability to modify
-	chunk_name: string?,
-
-	--- Requires the ``luau:eval.call`` capability to use. Takes in args and returns the
-	--- returned values from the ``code`` being evaluated.
-	call: (self: Chunk, args: any) -> any,
-
-	--- Requires the ``luau:eval.call_async`` capability to use. Takes in args and returns the
-	--- returned values from the ``code`` being evaluated.
-	---
-	--- This runs the code asynchronously
-	call_async: (self: Chunk, args: any) -> Promise.LuaPromise<any>
+type LuauExecutor = {
+	--- @function () -> Promise<void>
+	--- Executes Luau code
+	execute: (self: LuauExecutor, code: string) -> Promise.LuaPromise<Record<never, never>>
 }
 ```
 
 </details>
 
-<div id="call"></div>
+### execute
 
-### call
-
-Requires the `luau:eval.call` capability to use. Takes in args and returns the
-
-returned values from the `code` being evaluated.
+Executes Luau code
 
 <details>
 <summary>Function Signature</summary>
 
 ```luau
---- Requires the ``luau:eval.call`` capability to use. Takes in args and returns the
---- returned values from the ``code`` being evaluated.
-call: (self: Chunk, args: any) -> any
+--- @function () -> Promise<void>
+--- Executes Luau code
+execute: (self: LuauExecutor, code: string) -> Promise.LuaPromise<Record<never, never>>
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
 
-<div id="args"></div>
+##### code
 
-##### args
-
-[any](#any)
-
-<div id="Returns"></div>
+`string`
 
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[any](#any)<div id="call_async"></div>
-
-### call_async
-
-Requires the `luau:eval.call_async` capability to use. Takes in args and returns the
-
-returned values from the `code` being evaluated.
-
-This runs the code asynchronously
-
-<details>
-<summary>Function Signature</summary>
-
-```luau
---- Requires the ``luau:eval.call_async`` capability to use. Takes in args and returns the
---- returned values from the ``code`` being evaluated.
----
---- This runs the code asynchronously
-call_async: (self: Chunk, args: any) -> Promise.LuaPromise<any>
-```
-
-</details>
-
-<div id="Arguments"></div>
-
-#### Arguments
-
-<div id="args"></div>
-
-##### args
-
-[any](#any)
-
-<div id="Returns"></div>
-
-#### Returns
-
-<div id="ret1"></div>
-
-##### ret1
-
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;[any](#any)&gt;<div id="environment"></div>
-
-### environment
-
-Requires the `luau:eval.set_environment` capability to modify
-
-_This field is optional and may not be specified_
-
-{[any]: [any](#any)}?
-
-<div id="optimization_level"></div>
-
-### optimization_level
-
-Requires the `luau:eval.set_optimization_level` capability to modify
-
-_This field is optional and may not be specified_
-
-[number](#number)?
-
-<div id="code"></div>
-
-### code
-
-Requires the `luau:eval.modify_set_code` capability to modify
-
-[string](#string)
-
-<div id="chunk_name"></div>
-
-### chunk_name
-
-Requires the `luau:eval.set_chunk_name` capability to modify
-
-_This field is optional and may not be specified_
-
-[string](#string)?
-
-<div id="Functions"></div>
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `Record`
 
 # Functions
 
-<div id="load"></div>
+## new
 
-## load
-
-Requires the `luau:eval` capability to use. Be careful as this allows
-
-for arbitrary code execution.
+Creates a new LuauExecutor
 
 <details>
 <summary>Function Signature</summary>
 
 ```luau
---- Requires the ``luau:eval`` capability to use. Be careful as this allows
---- for arbitrary code execution.
-function load(token: Primitives.TemplateContext, code: string) -> Chunk end
+--- Creates a new LuauExecutor
+function new(token: Primitives.TemplateContext, scope: ExecutorScope.ExecutorScope?) -> LuauExecutor end
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 ## Arguments
-
-<div id="token"></div>
 
 ### token
 
-[Primitives](./primitives.md).[TemplateContext](./primitives.md#TemplateContext)
+[`Primitives`](./primitives.md).[`TemplateContext`](./primitives.md#templatecontext)
 
-<div id="code"></div>
+### scope
 
-### code
+_This field is optional and may not be specified_
 
-[string](#string)
-
-<div id="Returns"></div>
+[`ExecutorScope`](./executorscope.md).[`ExecutorScope`](./executorscope.md#executorscope)
 
 ## Returns
 
-<div id="ret1"></div>
-
 ### ret1
 
-[Chunk](#Chunk)<div id="format"></div>
-
-## format
-
-Formats a set of values to a string
-
-<details>
-<summary>Function Signature</summary>
-
-```luau
---- Formats a set of values to a string
-function format(...: any) -> string end
-```
-
-</details>
-
-<div id="Arguments"></div>
-
-## Arguments
-
-<div id="..."></div>
-
-### ...
-
-[any](#any)
-
-<div id="Returns"></div>
-
-## Returns
-
-<div id="ret1"></div>
-
-### ret1
-
-[string](#string)
+[`LuauExecutor`](#luauexecutor)

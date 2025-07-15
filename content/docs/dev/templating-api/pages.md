@@ -3,15 +3,9 @@ title: "@antiraid/pages"
 description: "API documentation for the @antiraid/pages module, including types and page operations."
 ---
 
-<div id="@antiraid/pages"></div>
-
 # @antiraid/pages
 
-<div id="Types"></div>
-
 ## Types
-
-<div id="SettingOperations"></div>
 
 ## SettingOperations
 
@@ -39,31 +33,21 @@ type SettingOperations = {
 
 </details>
 
-<div id="view"></div>
-
 ### view
 
-[boolean](#boolean)
-
-<div id="create"></div>
+`boolean`
 
 ### create
 
-[boolean](#boolean)
-
-<div id="update"></div>
+`boolean`
 
 ### update
 
-[boolean](#boolean)
-
-<div id="delete"></div>
+`boolean`
 
 ### delete
 
-[boolean](#boolean)
-
-<div id="ColumnSuggestion"></div>
+`boolean`
 
 ## ColumnSuggestion
 
@@ -92,8 +76,6 @@ Union with variants:
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 ```luau
@@ -107,23 +89,17 @@ _This is an inline table type with the following fields_
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 ```luau
 "Static"
 ```
 
-<div id="suggestions"></div>
-
 #### suggestions
 
-{[string](#string)}
+`{string}`
 
 </details>
-
-<div id="ColumnType"></div>
 
 ## ColumnType
 
@@ -193,8 +169,6 @@ Union with variants:
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 Union with variants:
@@ -217,45 +191,35 @@ Union with variants:
 
 </details>
 
-<div id="inner"></div>
-
 #### inner
 
 ```luau
 "String"
 ```
 
-<div id="min_length"></div>
-
 #### min_length
 
 _This field is optional and may not be specified_
 
-[number](#number)?
-
-<div id="max_length"></div>
+`number`
 
 #### max_length
 
 _This field is optional and may not be specified_
 
-[number](#number)?
-
-<div id="allowed_values"></div>
+`number`
 
 #### allowed_values
 
 If empty, all values are allowed.
 
-{[string](#string)}
-
-<div id="kind"></div>
+`{string}`
 
 #### kind
 
 e.g. textarea, channel, user, role, kittycat-permission, uuid, interval, timestamp etc.
 
-[string](#string)
+`string`
 
 </details>
 
@@ -264,8 +228,6 @@ e.g. textarea, channel, user, role, kittycat-permission, uuid, interval, timesta
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 Union with variants:
@@ -287,8 +249,6 @@ Union with variants:
 ```
 
 </details>
-
-<div id="inner"></div>
 
 #### inner
 
@@ -303,8 +263,6 @@ Union with variants:
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 Union with variants:
@@ -326,8 +284,6 @@ Union with variants:
 ```
 
 </details>
-
-<div id="inner"></div>
 
 #### inner
 
@@ -342,8 +298,6 @@ Union with variants:
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 Union with variants:
@@ -366,25 +320,19 @@ Union with variants:
 
 </details>
 
-<div id="inner"></div>
-
 #### inner
 
 ```luau
 "BitFlag"
 ```
 
-<div id="values"></div>
-
 #### values
 
 _This is an inline table type with the following fields_
 
-<div id="[string]"></div>
-
 ##### [string]
 
-[number](#number)
+`number`
 
 </details>
 
@@ -393,8 +341,6 @@ _This is an inline table type with the following fields_
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 Union with variants:
@@ -416,8 +362,6 @@ Union with variants:
 ```
 
 </details>
-
-<div id="inner"></div>
 
 #### inner
 
@@ -432,8 +376,6 @@ Union with variants:
 
 _This is an inline table type with the following fields_
 
-<div id="type"></div>
-
 #### type
 
 Union with variants:
@@ -456,25 +398,19 @@ Union with variants:
 
 </details>
 
-<div id="inner"></div>
-
 #### inner
 
 ```luau
 "Json"
 ```
 
-<div id="max_bytes"></div>
-
 #### max_bytes
 
 _This field is optional and may not be specified_
 
-[number](#number)?
+`number`
 
 </details>
-
-<div id="OperationType"></div>
 
 ## OperationType
 
@@ -525,8 +461,6 @@ Union with variants:
 
 </details>
 
-<div id="Column"></div>
-
 ## Column
 
 A column in a setting
@@ -567,57 +501,39 @@ type Column = {
 
 </details>
 
-<div id="id"></div>
-
 ### id
 
-[string](#string)
-
-<div id="name"></div>
+`string`
 
 ### name
 
-[string](#string)
-
-<div id="description"></div>
+`string`
 
 ### description
 
-[string](#string)
-
-<div id="column_type"></div>
+`string`
 
 ### column_type
 
-[ColumnType](#ColumnType)
-
-<div id="nullable"></div>
+[`ColumnType`](#columntype)
 
 ### nullable
 
-[boolean](#boolean)
-
-<div id="suggestions"></div>
+`boolean`
 
 ### suggestions
 
-[ColumnSuggestion](#ColumnSuggestion)
-
-<div id="secret"></div>
+[`ColumnSuggestion`](#columnsuggestion)
 
 ### secret
 
-[boolean](#boolean)
-
-<div id="ignored_for"></div>
+`boolean`
 
 ### ignored_for
 
 Semantics are defined by the template.
 
-{[OperationType](#OperationType)}
-
-<div id="Setting"></div>
+`{OperationType}`
 
 ## Setting
 
@@ -652,51 +568,35 @@ type Setting = {
 
 </details>
 
-<div id="id"></div>
-
 ### id
 
-[string](#string)
-
-<div id="name"></div>
+`string`
 
 ### name
 
-[string](#string)
-
-<div id="description"></div>
+`string`
 
 ### description
 
-[string](#string)
-
-<div id="primary_key"></div>
+`string`
 
 ### primary_key
 
 as well but this is not guaranteed and must be checked for by the template.
 
-[string](#string)
-
-<div id="title_template"></div>
+`string`
 
 ### title_template
 
-[string](#string)
-
-<div id="columns"></div>
+`string`
 
 ### columns
 
-{[Column](#Column)}
-
-<div id="supported_operations"></div>
+`{Column}`
 
 ### supported_operations
 
-[SettingOperations](#SettingOperations)
-
-<div id="Page"></div>
+[`SettingOperations`](#settingoperations)
 
 ## Page
 
@@ -718,25 +618,17 @@ type Page = {
 
 </details>
 
-<div id="title"></div>
-
 ### title
 
-[string](#string)
-
-<div id="description"></div>
+`string`
 
 ### description
 
-[string](#string)
-
-<div id="settings"></div>
+`string`
 
 ### settings
 
-{[Setting](#Setting)}
-
-<div id="PageExecutor"></div>
+`{Setting}`
 
 ## PageExecutor
 
@@ -751,21 +643,17 @@ type PageExecutor = {
 
 	--- @function () -> Promise<void>
 	--- Sets a page to be the templates page. This will overwrite any existing page if one exists.
-	set: (self: PageExecutor, page: Page) -> Promise.LuaPromise<{}>,
+	set: (self: PageExecutor, page: Page) -> Promise.LuaPromise<Record<never, never>>,
 
 	--- @function () -> Promise<void>
 	--- Deletes the templates page. This will not delete the page itself, but will remove it from the server's list of custom pages.
-	delete: (self: PageExecutor) -> Promise.LuaPromise<{}>
+	delete: (self: PageExecutor) -> Promise.LuaPromise<Record<never, never>>
 }
 ```
 
 </details>
 
-<div id="get"></div>
-
 ### get
-
-@function () -> Page
 
 Returns the current page.
 
@@ -780,19 +668,11 @@ get: (self: PageExecutor) -> Promise.LuaPromise<Page?>
 
 </details>
 
-<div id="Returns"></div>
-
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;[Page](#Page)?&gt;<div id="set"></div>
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of [`Page`](#page)
 
 ### set
-
-@function () -> Promise<void>
 
 Sets a page to be the templates page. This will overwrite any existing page if one exists.
 
@@ -802,34 +682,22 @@ Sets a page to be the templates page. This will overwrite any existing page if o
 ```luau
 --- @function () -> Promise<void>
 --- Sets a page to be the templates page. This will overwrite any existing page if one exists.
-set: (self: PageExecutor, page: Page) -> Promise.LuaPromise<{}>
+set: (self: PageExecutor, page: Page) -> Promise.LuaPromise<Record<never, never>>
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
-
-<div id="page"></div>
 
 ##### page
 
-[Page](#Page)
-
-<div id="Returns"></div>
+[`Page`](#page)
 
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;{}&gt;<div id="delete"></div>
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `Record`
 
 ### delete
-
-@function () -> Promise<void>
 
 Deletes the templates page. This will not delete the page itself, but will remove it from the server's list of custom pages.
 
@@ -839,24 +707,16 @@ Deletes the templates page. This will not delete the page itself, but will remov
 ```luau
 --- @function () -> Promise<void>
 --- Deletes the templates page. This will not delete the page itself, but will remove it from the server's list of custom pages.
-delete: (self: PageExecutor) -> Promise.LuaPromise<{}>
+delete: (self: PageExecutor) -> Promise.LuaPromise<Record<never, never>>
 ```
 
 </details>
 
-<div id="Returns"></div>
-
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;{}&gt;<div id="Functions"></div>
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `Record`
 
 # Functions
-
-<div id="new"></div>
 
 ## new
 
@@ -872,30 +732,20 @@ function new(token: Primitives.TemplateContext, scope: ExecutorScope.ExecutorSco
 
 </details>
 
-<div id="Arguments"></div>
-
 ## Arguments
-
-<div id="token"></div>
 
 ### token
 
-[Primitives](./primitives.md).[TemplateContext](./primitives.md#TemplateContext)
-
-<div id="scope"></div>
+[`Primitives`](./primitives.md).[`TemplateContext`](./primitives.md#templatecontext)
 
 ### scope
 
 _This field is optional and may not be specified_
 
-[ExecutorScope](./executorscope.md).[ExecutorScope](./executorscope.md#ExecutorScope)?
-
-<div id="Returns"></div>
+[`ExecutorScope`](./executorscope.md).[`ExecutorScope`](./executorscope.md#executorscope)
 
 ## Returns
 
-<div id="ret1"></div>
-
 ### ret1
 
-[PageExecutor](#PageExecutor)
+[`PageExecutor`](#pageexecutor)

@@ -1,207 +1,144 @@
 ---
 title: "@antiraid/userinfo"
-description: "API documentation for the @antiraid/userinfo module, including types and functions for user permission info."
+description: "API documentation for the @antiraid/userinfo module, including types and user information operations."
 ---
-
-<div id="@antiraid/userinfo"></div>
 
 # @antiraid/userinfo
 
-<div id="Types"></div>
-
 ## Types
-
-<div id="UserInfo"></div>
-
-## UserInfo
-
-@class UserInfo
-
-Represents a summary of a users permission related
-
-information on AntiRaid
-
-<details>
-<summary>Raw Type</summary>
-
-```luau
---- @class UserInfo
----
---- Represents a summary of a users permission related
---- information on AntiRaid
----
---- @field discord_permissions discord.Snowflake The users discord permissions
---- @field kittycat_staff_permissions Kittycat.StaffPermissions The users kittycat staff permissions
---- @field kittycat_resolved_permissions {Kittycat.Permission} The users resolved kittycat permissions
---- @field guild_owner_id discord.Snowflake The ID of the guild owner
---- @field guild_roles {[discord.Snowflake]: discord.GuildRoleObject} The users guild roles
---- @field member_roles {discord.Snowflake} The users member roles
----
-type UserInfo = {
-	discord_permissions: discord.Snowflake,
-
-	kittycat_staff_permissions: Kittycat.StaffPermissions,
-
-	kittycat_resolved_permissions: {Kittycat.Permission},
-
-	guild_owner_id: discord.Snowflake,
-
-	guild_roles: {
-		[discord.Snowflake]: discord.GuildRoleObject
-	},
-
-	member_roles: {discord.Snowflake}
-}
-```
-
-</details>
-
-<div id="discord_permissions"></div>
-
-### discord_permissions
-
-[discord](./discord.md).[Snowflake](./discord.md#Snowflake)
-
-<div id="kittycat_staff_permissions"></div>
-
-### kittycat_staff_permissions
-
-[Kittycat](./kittycat.md).[StaffPermissions](./kittycat.md#StaffPermissions)
-
-<div id="kittycat_resolved_permissions"></div>
-
-### kittycat_resolved_permissions
-
-{[Kittycat](./kittycat.md).[Permission](./kittycat.md#Permission)}
-
-<div id="guild_owner_id"></div>
-
-### guild_owner_id
-
-[discord](./discord.md).[Snowflake](./discord.md#Snowflake)
-
-<div id="guild_roles"></div>
-
-### guild_roles
-
-_This is an inline table type with the following fields_
-
-<div id="[discord.Snowflake]"></div>
-
-##### [discord.Snowflake]
-
-[discord](./discord.md).[GuildRoleObject](./discord.md#GuildRoleObject)
-
-<div id="member_roles"></div>
-
-### member_roles
-
-{[discord](./discord.md).[Snowflake](./discord.md#Snowflake)}
-
-<div id="UserInfoExecutor"></div>
 
 ## UserInfoExecutor
 
-@class UserInfoExecutor
-
-Allows templates to get permission-related information about a user
-
 <details>
 <summary>Raw Type</summary>
 
 ```luau
---- @class UserInfoExecutor
----
---- Allows templates to get permission-related information about a user
----
---- @field get (user_id: discord.Snowflake): Promise.LuaPromise<UserInfo> Gets the UserInfo for a user
 type UserInfoExecutor = {
-	--- Gets the UserInfo for a user
-	--- @param user_id discord.Snowflake The ID of the user to get the UserInfo for
-	get: (self: UserInfoExecutor, user_id: discord.Snowflake) -> Promise.LuaPromise<UserInfo>
+	--- @function () -> Promise<string>
+	--- Gets information about a user
+	get: (self: UserInfoExecutor, user_id: string) -> Promise.LuaPromise<string?>,
+
+	--- @function () -> Promise<void>
+	--- Sets information about a user
+	set: (self: UserInfoExecutor, user_id: string, info: string) -> Promise.LuaPromise<Record<never, never>>,
+
+	--- @function () -> Promise<void>
+	--- Deletes information about a user
+	delete: (self: UserInfoExecutor, user_id: string) -> Promise.LuaPromise<Record<never, never>>
 }
 ```
 
 </details>
 
-<div id="get"></div>
-
 ### get
 
-Gets the UserInfo for a user
+Gets information about a user
 
 <details>
 <summary>Function Signature</summary>
 
 ```luau
---- Gets the UserInfo for a user
---- @param user_id discord.Snowflake The ID of the user to get the UserInfo for
-get: (self: UserInfoExecutor, user_id: discord.Snowflake) -> Promise.LuaPromise<UserInfo>
+--- @function () -> Promise<string>
+--- Gets information about a user
+get: (self: UserInfoExecutor, user_id: string) -> Promise.LuaPromise<string?>
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
-
-<div id="user_id"></div>
 
 ##### user_id
 
-discord.Snowflake The ID of the user to get the UserInfo for
-
-[discord](./discord.md).[Snowflake](./discord.md#Snowflake)
-
-<div id="Returns"></div>
+`string`
 
 #### Returns
 
-<div id="ret1"></div>
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `string?`
 
-##### ret1
+### set
 
-[Promise](./promise.md).[LuaPromise](./promise.md#LuaPromise)&lt;[UserInfo](#UserInfo)&gt;<div id="Functions"></div>
-
-# Functions
-
-<div id="new"></div>
-
-## new
+Sets information about a user
 
 <details>
 <summary>Function Signature</summary>
 
 ```luau
+--- @function () -> Promise<void>
+--- Sets information about a user
+set: (self: UserInfoExecutor, user_id: string, info: string) -> Promise.LuaPromise<Record<never, never>>
+```
+
+</details>
+
+#### Arguments
+
+##### user_id
+
+`string`
+
+##### info
+
+`string`
+
+#### Returns
+
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `Record`
+
+### delete
+
+Deletes information about a user
+
+<details>
+<summary>Function Signature</summary>
+
+```luau
+--- @function () -> Promise<void>
+--- Deletes information about a user
+delete: (self: UserInfoExecutor, user_id: string) -> Promise.LuaPromise<Record<never, never>>
+```
+
+</details>
+
+#### Arguments
+
+##### user_id
+
+`string`
+
+#### Returns
+
+[`Promise`](./promise.md).[`LuaPromise`](./promise.md#luapromise) of `Record`
+
+# Functions
+
+## new
+
+Creates a new UserInfoExecutor
+
+<details>
+<summary>Function Signature</summary>
+
+```luau
+--- Creates a new UserInfoExecutor
 function new(token: Primitives.TemplateContext, scope: ExecutorScope.ExecutorScope?) -> UserInfoExecutor end
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 ## Arguments
-
-<div id="token"></div>
 
 ### token
 
-[Primitives](./primitives.md).[TemplateContext](./primitives.md#TemplateContext)
-
-<div id="scope"></div>
+[`Primitives`](./primitives.md).[`TemplateContext`](./primitives.md#templatecontext)
 
 ### scope
 
 _This field is optional and may not be specified_
 
-[ExecutorScope](./executorscope.md).[ExecutorScope](./executorscope.md#ExecutorScope)?
-
-<div id="Returns"></div>
+[`ExecutorScope`](./executorscope.md).[`ExecutorScope`](./executorscope.md#executorscope)
 
 ## Returns
 
-<div id="ret1"></div>
-
 ### ret1
 
-[UserInfoExecutor](#UserInfoExecutor)
+[`UserInfoExecutor`](#userinfoexecutor)

@@ -1,56 +1,31 @@
 ---
 title: "@antiraid/typesext"
-description: "API documentation for the @antiraid/typesext module, including types and usage."
+description: "API documentation for the @antiraid/typesext module, including types and type extension operations."
 ---
-
-<div id="@antiraid/typesext"></div>
 
 # @antiraid/typesext
 
-<div id="Types"></div>
-
 ## Types
 
-<div id="MultiOption"></div>
-
 ## MultiOption
-
-A multi option is either T (Some(Some(T)), a empty table (Some(None)), or nil (None)
 
 <details>
 <summary>Raw Type</summary>
 
 ```luau
---- A multi option is either T (Some(Some(T)), a empty table (Some(None)), or nil (None)
-type MultiOption<T> = T | {} | nil
+type MultiOption<T> = {
+	--- The values in the multi-option
+	values: {T}
+}
 ```
 
 </details>
 
-Union with variants:
+### values
 
-<details>
-<summary>Variant 1</summary>
+The values in the multi-option
 
-[T](#T)
-
-</details>
-
-<details>
-<summary>Variant 2</summary>
-
-_This is an inline table type with the following fields_
-
-</details>
-
-<details>
-<summary>Variant 3</summary>
-
-[nil](#nil)
-
-</details>
-
-<div id="U64Convertibles"></div>
+`{T}`
 
 ## U64Convertibles
 
@@ -68,25 +43,23 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[U64](#U64)
+`U64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
-
-<div id="U64"></div>
 
 ## U64
 
@@ -136,8 +109,6 @@ type U64 = {
 
 </details>
 
-<div id="to_ne_bytes"></div>
-
 ### to_ne_bytes
 
 <details>
@@ -149,15 +120,9 @@ to_ne_bytes: (self: U64) -> {number}
 
 </details>
 
-<div id="Returns"></div>
-
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-{[number](#number)}<div id="from_ne_bytes"></div>
+`{number}`
 
 ### from_ne_bytes
 
@@ -170,25 +135,15 @@ from_ne_bytes: (self: U64, bytes: {number}) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
-
-<div id="bytes"></div>
 
 ##### bytes
 
-{[number](#number)}
-
-<div id="Returns"></div>
+`{number}`
 
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[U64](#U64)<div id="to_le_bytes"></div>
+`U64`
 
 ### to_le_bytes
 
@@ -201,15 +156,9 @@ to_le_bytes: (self: U64) -> {number}
 
 </details>
 
-<div id="Returns"></div>
-
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-{[number](#number)}<div id="from_le_bytes"></div>
+`{number}`
 
 ### from_le_bytes
 
@@ -222,25 +171,15 @@ from_le_bytes: (self: U64, bytes: {number}) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
-
-<div id="bytes"></div>
 
 ##### bytes
 
-{[number](#number)}
-
-<div id="Returns"></div>
+`{number}`
 
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[U64](#U64)<div id="to_be_bytes"></div>
+`U64`
 
 ### to_be_bytes
 
@@ -253,15 +192,9 @@ to_be_bytes: (self: U64) -> {number}
 
 </details>
 
-<div id="Returns"></div>
-
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-{[number](#number)}<div id="from_be_bytes"></div>
+`{number}`
 
 ### from_be_bytes
 
@@ -274,25 +207,15 @@ from_be_bytes: (self: U64, bytes: {number}) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 #### Arguments
-
-<div id="bytes"></div>
 
 ##### bytes
 
-{[number](#number)}
-
-<div id="Returns"></div>
+`{number}`
 
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[U64](#U64)<div id="to_i64"></div>
+`U64`
 
 ### to_i64
 
@@ -305,21 +228,13 @@ to_i64: (self: U64) -> I64
 
 </details>
 
-<div id="Returns"></div>
-
 #### Returns
 
-<div id="ret1"></div>
-
-##### ret1
-
-[I64](#I64)<div id="MetatableFields"></div>
+`I64`
 
 ### Metatable Fields
 
-<div id="__add"></div>
-
-#### \_\_add
+#### __add
 
 <details>
 <summary>Function Signature</summary>
@@ -330,27 +245,17 @@ __add: (self: U64, other: U64Convertibles) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`U64`
 
-##### ret1
-
-[U64](#U64)<div id="__sub"></div>
-
-#### \_\_sub
+#### __sub
 
 <details>
 <summary>Function Signature</summary>
@@ -361,27 +266,17 @@ __sub: (self: U64, other: U64Convertibles) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`U64`
 
-##### ret1
-
-[U64](#U64)<div id="__mul"></div>
-
-#### \_\_mul
+#### __mul
 
 <details>
 <summary>Function Signature</summary>
@@ -392,27 +287,17 @@ __mul: (self: U64, other: U64Convertibles) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`U64`
 
-##### ret1
-
-[U64](#U64)<div id="__div"></div>
-
-#### \_\_div
+#### __div
 
 <details>
 <summary>Function Signature</summary>
@@ -423,27 +308,17 @@ __div: (self: U64, other: U64Convertibles) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`U64`
 
-##### ret1
-
-[U64](#U64)<div id="__mod"></div>
-
-#### \_\_mod
+#### __mod
 
 This is the same as IDiv right now
 
@@ -451,33 +326,22 @@ This is the same as IDiv right now
 <summary>Function Signature</summary>
 
 ```luau
--- This is the same as IDiv right now
 __mod: (self: U64, other: number) -> U64
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[number](#number)
-
-<div id="Returns"></div>
+`number`
 
 ##### Returns
 
-<div id="ret1"></div>
+`U64`
 
-##### ret1
-
-[U64](#U64)<div id="__pow"></div>
-
-#### \_\_pow
+#### __pow
 
 <details>
 <summary>Function Signature</summary>
@@ -488,27 +352,17 @@ __pow: (self: U64, other: U64Convertibles) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`U64`
 
-##### ret1
-
-[U64](#U64)<div id="__idiv"></div>
-
-#### \_\_idiv
+#### __idiv
 
 <details>
 <summary>Function Signature</summary>
@@ -519,27 +373,17 @@ __idiv: (self: U64, other: U64Convertibles) -> U64
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`U64`
 
-##### ret1
-
-[U64](#U64)<div id="__eq"></div>
-
-#### \_\_eq
+#### __eq
 
 This is the same as Div right now
 
@@ -547,33 +391,22 @@ This is the same as Div right now
 <summary>Function Signature</summary>
 
 ```luau
--- This is the same as Div right now
 __eq: (self: U64, other: U64Convertibles) -> boolean
 ```
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`boolean`
 
-##### ret1
-
-[boolean](#boolean)<div id="__lt"></div>
-
-#### \_\_lt
+#### __lt
 
 <details>
 <summary>Function Signature</summary>
@@ -584,27 +417,17 @@ __lt: (self: U64, other: U64Convertibles) -> boolean
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`boolean`
 
-##### ret1
-
-[boolean](#boolean)<div id="__le"></div>
-
-#### \_\_le
+#### __le
 
 <details>
 <summary>Function Signature</summary>
@@ -615,27 +438,17 @@ __le: (self: U64, other: U64Convertibles) -> boolean
 
 </details>
 
-<div id="Arguments"></div>
-
 ##### Arguments
 
-<div id="other"></div>
+###### other
 
-##### other
-
-[U64Convertibles](#U64Convertibles)
-
-<div id="Returns"></div>
+`U64Convertibles`
 
 ##### Returns
 
-<div id="ret1"></div>
+`boolean`
 
-##### ret1
-
-[boolean](#boolean)<div id="__tostring"></div>
-
-#### \_\_tostring
+#### __tostring
 
 <details>
 <summary>Function Signature</summary>
@@ -646,17 +459,11 @@ __tostring: (self: U64) -> string
 
 </details>
 
-<div id="Returns"></div>
-
 ##### Returns
 
-<div id="ret1"></div>
+`string`
 
-##### ret1
-
-[string](#string)<div id="__type"></div>
-
-#### \_\_type
+#### __type
 
 ```luau
 "U64"
@@ -680,28 +487,28 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[U64](#U64)
+`U64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 4</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -767,7 +574,7 @@ to_ne_bytes: (self: I64) -> {number}
 
 ##### ret1
 
-{[number](#number)}<div id="from_ne_bytes"></div>
+`{number}`<div id="from_ne_bytes"></div>
 
 ### from_ne_bytes
 
@@ -788,7 +595,7 @@ from_ne_bytes: (self: I64, bytes: {number}) -> I64
 
 ##### bytes
 
-{[number](#number)}
+`{number}`
 
 <div id="Returns"></div>
 
@@ -798,7 +605,7 @@ from_ne_bytes: (self: I64, bytes: {number}) -> I64
 
 ##### ret1
 
-[I64](#I64)<div id="to_le_bytes"></div>
+`I64`<div id="to_le_bytes"></div>
 
 ### to_le_bytes
 
@@ -819,7 +626,7 @@ to_le_bytes: (self: I64) -> {number}
 
 ##### ret1
 
-{[number](#number)}<div id="from_le_bytes"></div>
+`{number}`<div id="from_le_bytes"></div>
 
 ### from_le_bytes
 
@@ -840,7 +647,7 @@ from_le_bytes: (self: I64, bytes: {number}) -> I64
 
 ##### bytes
 
-{[number](#number)}
+`{number}`
 
 <div id="Returns"></div>
 
@@ -850,7 +657,7 @@ from_le_bytes: (self: I64, bytes: {number}) -> I64
 
 ##### ret1
 
-[I64](#I64)<div id="to_be_bytes"></div>
+`I64`<div id="to_be_bytes"></div>
 
 ### to_be_bytes
 
@@ -871,7 +678,7 @@ to_be_bytes: (self: I64) -> {number}
 
 ##### ret1
 
-{[number](#number)}<div id="from_be_bytes"></div>
+`{number}`<div id="from_be_bytes"></div>
 
 ### from_be_bytes
 
@@ -892,7 +699,7 @@ from_be_bytes: (self: I64, bytes: {number}) -> I64
 
 ##### bytes
 
-{[number](#number)}
+`{number}`
 
 <div id="Returns"></div>
 
@@ -902,7 +709,7 @@ from_be_bytes: (self: I64, bytes: {number}) -> I64
 
 ##### ret1
 
-[I64](#I64)<div id="to_u64"></div>
+`I64`<div id="to_u64"></div>
 
 ### to_u64
 
@@ -923,13 +730,13 @@ to_u64: (self: I64) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="MetatableFields"></div>
+`U64`<div id="MetatableFields"></div>
 
 ### Metatable Fields
 
 <div id="__add"></div>
 
-#### \_\_add
+#### __add
 
 <details>
 <summary>Function Signature</summary>
@@ -953,21 +760,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -979,9 +786,9 @@ Union with variants:
 
 ##### ret1
 
-[I64](#I64)<div id="__sub"></div>
+`I64`<div id="__sub"></div>
 
-#### \_\_sub
+#### __sub
 
 <details>
 <summary>Function Signature</summary>
@@ -1005,21 +812,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1031,9 +838,9 @@ Union with variants:
 
 ##### ret1
 
-[I64](#I64)<div id="__mul"></div>
+`I64`<div id="__mul"></div>
 
-#### \_\_mul
+#### __mul
 
 <details>
 <summary>Function Signature</summary>
@@ -1057,21 +864,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1083,9 +890,9 @@ Union with variants:
 
 ##### ret1
 
-[I64](#I64)<div id="__div"></div>
+`I64`<div id="__div"></div>
 
-#### \_\_div
+#### __div
 
 <details>
 <summary>Function Signature</summary>
@@ -1109,21 +916,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1135,9 +942,9 @@ Union with variants:
 
 ##### ret1
 
-[I64](#I64)<div id="__mod"></div>
+`I64`<div id="__mod"></div>
 
-#### \_\_mod
+#### __mod
 
 <details>
 <summary>Function Signature</summary>
@@ -1156,7 +963,7 @@ __mod: (self: I64, other: number) -> I64
 
 ##### other
 
-[number](#number)
+`number`
 
 <div id="Returns"></div>
 
@@ -1166,9 +973,9 @@ __mod: (self: I64, other: number) -> I64
 
 ##### ret1
 
-[I64](#I64)<div id="__pow"></div>
+`I64`<div id="__pow"></div>
 
-#### \_\_pow
+#### __pow
 
 <details>
 <summary>Function Signature</summary>
@@ -1192,21 +999,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1218,9 +1025,9 @@ Union with variants:
 
 ##### ret1
 
-[I64](#I64)<div id="__idiv"></div>
+`I64`<div id="__idiv"></div>
 
-#### \_\_idiv
+#### __idiv
 
 <details>
 <summary>Function Signature</summary>
@@ -1244,21 +1051,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1270,9 +1077,9 @@ Union with variants:
 
 ##### ret1
 
-[I64](#I64)<div id="__eq"></div>
+`I64`<div id="__eq"></div>
 
-#### \_\_eq
+#### __eq
 
 <details>
 <summary>Function Signature</summary>
@@ -1296,21 +1103,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1322,9 +1129,9 @@ Union with variants:
 
 ##### ret1
 
-[boolean](#boolean)<div id="__lt"></div>
+`boolean`<div id="__lt"></div>
 
-#### \_\_lt
+#### __lt
 
 <details>
 <summary>Function Signature</summary>
@@ -1348,21 +1155,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1374,9 +1181,9 @@ Union with variants:
 
 ##### ret1
 
-[boolean](#boolean)<div id="__le"></div>
+`boolean`<div id="__le"></div>
 
-#### \_\_le
+#### __le
 
 <details>
 <summary>Function Signature</summary>
@@ -1400,21 +1207,21 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
@@ -1426,9 +1233,9 @@ Union with variants:
 
 ##### ret1
 
-[boolean](#boolean)<div id="__tostring"></div>
+`boolean`<div id="__tostring"></div>
 
-#### \_\_tostring
+#### __tostring
 
 <details>
 <summary>Function Signature</summary>
@@ -1447,9 +1254,9 @@ __tostring: (self: I64) -> string
 
 ##### ret1
 
-[string](#string)<div id="__type"></div>
+`string`<div id="__type"></div>
 
-#### \_\_type
+#### __type
 
 ```luau
 "I64"
@@ -1570,7 +1377,7 @@ band: (...: ...U64Convertibles) -> U64
 
 ...
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -1580,7 +1387,7 @@ band: (...: ...U64Convertibles) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="bnot"></div>
+`U64`<div id="bnot"></div>
 
 ### bnot
 
@@ -1601,7 +1408,7 @@ bnot: (U64Convertibles) -> U64
 
 ##### arg1
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -1611,7 +1418,7 @@ bnot: (U64Convertibles) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="bor"></div>
+`U64`<div id="bor"></div>
 
 ### bor
 
@@ -1634,7 +1441,7 @@ bor: (...: ...U64Convertibles) -> U64
 
 ...
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -1644,7 +1451,7 @@ bor: (...: ...U64Convertibles) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="bxor"></div>
+`U64`<div id="bxor"></div>
 
 ### bxor
 
@@ -1667,7 +1474,7 @@ bxor: (...: ...U64Convertibles) -> U64
 
 ...
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -1677,7 +1484,7 @@ bxor: (...: ...U64Convertibles) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="btest"></div>
+`U64`<div id="btest"></div>
 
 ### btest
 
@@ -1700,7 +1507,7 @@ btest: (...: ...U64Convertibles) -> boolean
 
 ...
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -1710,7 +1517,7 @@ btest: (...: ...U64Convertibles) -> boolean
 
 ##### ret1
 
-[boolean](#boolean)<div id="extract"></div>
+`boolean`<div id="extract"></div>
 
 ### extract
 
@@ -1734,13 +1541,13 @@ extract: (n: U64Convertibles, f: number, w: number?) -> U64
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="f"></div>
 
 ##### f
 
-[number](#number)
+`number`
 
 <div id="w"></div>
 
@@ -1748,7 +1555,7 @@ extract: (n: U64Convertibles, f: number, w: number?) -> U64
 
 _This field is optional and may not be specified_
 
-[number](#number)?
+`number`?
 
 <div id="Returns"></div>
 
@@ -1758,7 +1565,7 @@ _This field is optional and may not be specified_
 
 ##### ret1
 
-[U64](#U64)<div id="lrotate"></div>
+`U64`<div id="lrotate"></div>
 
 ### lrotate
 
@@ -1779,13 +1586,13 @@ lrotate: (n: U64Convertibles, i: number) -> U64
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="i"></div>
 
 ##### i
 
-[number](#number)
+`number`
 
 <div id="Returns"></div>
 
@@ -1795,7 +1602,7 @@ lrotate: (n: U64Convertibles, i: number) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="lshift"></div>
+`U64`<div id="lshift"></div>
 
 ### lshift
 
@@ -1816,13 +1623,13 @@ lshift: (n: U64Convertibles, i: number) -> U64
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="i"></div>
 
 ##### i
 
-[number](#number)
+`number`
 
 <div id="Returns"></div>
 
@@ -1832,7 +1639,7 @@ lshift: (n: U64Convertibles, i: number) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="replace"></div>
+`U64`<div id="replace"></div>
 
 ### replace
 
@@ -1856,19 +1663,19 @@ replace: (n: U64Convertibles, r: number, f: number, w: number?) -> U64
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="r"></div>
 
 ##### r
 
-[number](#number)
+`number`
 
 <div id="f"></div>
 
 ##### f
 
-[number](#number)
+`number`
 
 <div id="w"></div>
 
@@ -1876,7 +1683,7 @@ replace: (n: U64Convertibles, r: number, f: number, w: number?) -> U64
 
 _This field is optional and may not be specified_
 
-[number](#number)?
+`number`?
 
 <div id="Returns"></div>
 
@@ -1886,7 +1693,7 @@ _This field is optional and may not be specified_
 
 ##### ret1
 
-[U64](#U64)<div id="rrotate"></div>
+`U64`<div id="rrotate"></div>
 
 ### rrotate
 
@@ -1907,13 +1714,13 @@ rrotate: (n: U64Convertibles, i: number) -> U64
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="i"></div>
 
 ##### i
 
-[number](#number)
+`number`
 
 <div id="Returns"></div>
 
@@ -1923,7 +1730,7 @@ rrotate: (n: U64Convertibles, i: number) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="rshift"></div>
+`U64`<div id="rshift"></div>
 
 ### rshift
 
@@ -1944,13 +1751,13 @@ rshift: (n: U64Convertibles, i: number) -> U64
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="i"></div>
 
 ##### i
 
-[number](#number)
+`number`
 
 <div id="Returns"></div>
 
@@ -1960,7 +1767,7 @@ rshift: (n: U64Convertibles, i: number) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="countlz"></div>
+`U64`<div id="countlz"></div>
 
 ### countlz
 
@@ -1981,7 +1788,7 @@ countlz: (n: U64Convertibles) -> number
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -1991,7 +1798,7 @@ countlz: (n: U64Convertibles) -> number
 
 ##### ret1
 
-[number](#number)<div id="countrz"></div>
+`number`<div id="countrz"></div>
 
 ### countrz
 
@@ -2012,7 +1819,7 @@ countrz: (n: U64Convertibles) -> number
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -2022,7 +1829,7 @@ countrz: (n: U64Convertibles) -> number
 
 ##### ret1
 
-[number](#number)<div id="byteswap"></div>
+`number`<div id="byteswap"></div>
 
 ### byteswap
 
@@ -2043,7 +1850,7 @@ byteswap: (n: U64Convertibles) -> U64
 
 ##### n
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 <div id="Returns"></div>
 
@@ -2053,7 +1860,7 @@ byteswap: (n: U64Convertibles) -> U64
 
 ##### ret1
 
-[U64](#U64)<div id="Functions"></div>
+`U64`<div id="Functions"></div>
 
 # Functions
 
@@ -2090,14 +1897,14 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[U64Convertibles](#U64Convertibles)
+`U64Convertibles`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[nil](#nil)
+`nil`
 
 </details>
 
@@ -2109,7 +1916,7 @@ Union with variants:
 
 ### ret1
 
-[U64](#U64)<div id="I64"></div>
+`U64`<div id="I64"></div>
 
 ## I64
 
@@ -2142,28 +1949,28 @@ Union with variants:
 <details>
 <summary>Variant 1</summary>
 
-[I64](#I64)
+`I64`
 
 </details>
 
 <details>
 <summary>Variant 2</summary>
 
-[string](#string)
+`string`
 
 </details>
 
 <details>
 <summary>Variant 3</summary>
 
-[number](#number)
+`number`
 
 </details>
 
 <details>
 <summary>Variant 4</summary>
 
-[nil](#nil)
+`nil`
 
 </details>
 
@@ -2175,4 +1982,4 @@ Union with variants:
 
 ### ret1
 
-[I64](#I64)
+`I64`
