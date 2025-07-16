@@ -1,0 +1,73 @@
+---
+title: Unban Command
+description: Guide on how to unban users from your Discord server
+icon: MdLockOpen
+---
+
+# Introduction
+
+The unban command allows moderators to remove bans from users, allowing them to rejoin the server. This is useful when a ban was issued by mistake or when a banned user has appealed successfully.
+
+# Usage
+
+This command can be used by users with the **"moderation.unban"** permission by running `/moderation unban`
+
+[!Image](/moderation-unban.png)
+
+# Response
+
+When an unban is successfully applied, you'll receive confirmation with the following information:
+
+| Field             | Description                                                                  |
+|-------------------|------------------------------------------------------------------------------|
+| **Target**        | The user who was unbanned                                                    |
+| **Reason**        | The reason provided for the unban                                            |
+| **Moderator**     | Who issued the unban                                                         |
+| **Original Ban**  | Information about the original ban that was removed                          |
+
+# Customization options
+
+<TypeTable
+  type={{
+    user: {
+      description: 'The user to unban (ID)',
+      type: 'string',
+      required: true,
+    },
+    reason: {
+      description: 'The reason for the unban',
+      type: 'string',
+      default: 'No reason provided',
+    },
+  }}
+/>
+
+# Steps to unban a user
+
+<Steps>
+ <Step>
+### Identify the user
+Make sure you have the correct user ID you want to unban
+ </Step>
+ <Step>
+### Run the unban command
+Use `/moderation unban user:@username` with any desired options
+ </Step>
+ <Step>
+### Provide a reason
+It's recommended to always provide a reason for moderation actions
+ </Step>
+ <Step>
+### Verify the unban
+Check that the user has been successfully unbanned
+ </Step>
+</Steps>
+
+# Important Notes
+
+- Unbans are logged in the server's moderation logs
+- You need the user's ID to unban them
+- Unbanning a user does not automatically reinvite them to the server
+- Only permanently banned users need to be unbanned - temporary bans expire automatically
+- The unban command will fail if the user isn't currently banned
+- After unbanning, the user will need a new invite to rejoin the server 
