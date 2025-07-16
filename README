@@ -16,7 +16,7 @@ AntiRaid is not just another anti-raid or anti-nuke bot. It offers a unique appr
 
 - **Structured Templating:** Personalize bot behavior, messages, and embeds using Lua.
 - **Lockdowns:** Quickly restrict channels or roles during attacks, with multiple lockdown modes.
-- **Backups:** Save and restore your server's structure, roles, channels, and more (see [Backups](https://docs.antiraid.xyz/docs/user/backups/README.md)).
+- **Backups:** Save and restore your server's structure, roles, channels, and more (see [Backups](https://docs.antiraid.xyz/docs/user/backups/README)).
 - **Captcha:** Protect your server with advanced captcha verification.
 - **Permission System:** Combine Discord and custom permissions for ultimate control.
 
@@ -38,7 +38,7 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Using AntiRaid
 
-- **Read the [Introduction](https://docs.antiraid.xyz/docs/README.md)** to understand the bot's philosophy and setup.
+- **Read the [Introduction](https://docs.antiraid.xyz/docs/README)** to understand the bot's philosophy and setup.
 - **Explore [User Guides](https://docs.antiraid.xyz/docs/user/)** for templating, permissions, backups, lockdowns, and more.
 - **Check [Dev Guides](https://docs.antiraid.xyz/docs/dev/)** for advanced usage and integration.
 

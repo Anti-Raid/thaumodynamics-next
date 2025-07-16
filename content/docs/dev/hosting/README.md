@@ -21,13 +21,13 @@ AntiRaid is a modular, production-grade Discord anti-raid and moderation system.
 
 - Easiest and most reproducible way to deploy the full stack
 - Orchestrates all services: bot, API, jobserver, template worker, database, object storage, proxies, and more
-- See [`../docker-hosting.md`](../docker-hosting.md) for a detailed, project-specific guide
+- See [`docker-hosting`](../docker-hosting) for a detailed, project-specific guide
 
 ### 2. Native (Systemd) Hosting
 
 - For advanced users who want to run each service as a native Linux process
 - Provides fine-grained control, integration with systemd, and custom monitoring
-- See [`../native-hosting.md`](../native-hosting.md) for a detailed, project-specific guide
+- See [`native-hosting`](../native-hosting) for a detailed, project-specific guide
 
 ---
 
@@ -52,9 +52,9 @@ AntiRaid is a modular, production-grade Discord anti-raid and moderation system.
 
 ## More Information
 
-- [Docker Hosting Guide](../docker-hosting.md)
-- [Native Hosting Guide](../native-hosting.md)
-- [Main Project README](../../../README.md)
+- [Docker Hosting Guide](../docker-hosting)
+- [Native Hosting Guide](../native-hosting)
+- [Main Project README](../../../README)
 
 ---
 
@@ -64,8 +64,8 @@ This folder provides an overview of all supported hosting and deployment methods
 
 ## Hosting Methods
 
-- **Docker Compose:** Easiest, most reproducible way to deploy the full stack. See [`../docker-hosting.md`](../docker-hosting.md).
-- **Native (Systemd):** For advanced users who want fine-grained control and integration with Linux. See [`../native-hosting.md`](../native-hosting.md).
+- **Docker Compose:** Easiest, most reproducible way to deploy the full stack. See [`docker-hosting`](../docker-hosting).
+- **Native (Systemd):** For advanced users who want fine-grained control and integration with Linux. See [`native-hosting`](../native-hosting).
 
 ## Structure
 
