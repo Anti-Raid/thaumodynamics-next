@@ -1,6 +1,7 @@
 ---
 title: Whois
 description: Provides basic information about a user
+icon: FaInfo
 ---
 
 # Introduction

@@ -1,0 +1,80 @@
+---
+title: Create Backup
+description: guide on how to create a backup for your discord server
+icon: MdBackup
+---
+
+# Introduction
+
+The backup command allows you to create a backup of your Discord server. This includes server settings, roles, channels, and optionally messages. Backups are useful for safeguarding your server data and can be restored in case of accidental deletions or other issues.
+
+# Usage
+
+This command can be used by **"backup.create"** user just by running `/backups create`
+
+![Image](/backup-create.png)
+
+# Response
+
+| Field             | Description                                                                  |
+|-------------------|------------------------------------------------------------------------------|
+| **Backup ID**     | The unique identifier for the backup.                                        |
+| **Created at**    | The time at which the backup was created                                     |
+| **Download url**  | The url to download a backup                                                 |
+
+# Customization options
+
+<TypeTable
+ type={{
+   messages: {
+     description: 'Whether to include messages in the backup (up to 500)',
+     type: 'boolean',
+     default: false,
+   },
+   attachments: {
+     description: 'Whether to include attachments in the backup. Requires "messages" to be enabled',
+     type: 'boolean',
+     default: false,
+   },
+   channels: {
+     description: 'Channels to backup messages from (comma separated), otherwise all channels',
+     type: 'string',
+     default: null,
+   },
+   backup_guild_assets: {
+     description: 'What assets to back up in comma-separated form (icon,splash,banner)',
+     type: 'string',
+     default: null,
+   },
+   rollover_leftovers: {
+     description: 'Roll over leftover message quotas to other channels. May make backups slower',
+     type: 'boolean',
+     default: true,
+   },
+   ignore_message_backup_errors: {
+     description: 'Whether to ignore errors while backing up messages or not and skip these channels',
+     type: 'boolean',
+     default: true,
+   },
+   max_messages: {
+     description: 'The maximum number of messages to backup',
+     type: 'integer',
+     default: 500,
+   },
+   per_channel: {
+     description: 'The number of messages per channel to backup',
+     type: 'integer',
+     default: 100,
+   },
+   special_allocations: {
+     description: 'Specific channel allocation overrides. Format: channel_id=number,channel_id=number',
+     type: 'string',
+     default: null,
+   },
+   password: {
+     description: 'Password to encrypt the backup with. If not provided, the backup will not be encrypted',
+     type: 'string',
+     default: null,
+   },
+ }}
+/>

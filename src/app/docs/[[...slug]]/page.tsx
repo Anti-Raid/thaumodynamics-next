@@ -31,6 +31,7 @@ import { Mermaid } from "@/components/mdx/mermaid";
 import { createMetadata, baseUrl } from "@/lib/metadata";
 import { openapi, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 const generator = createGenerator();
 
@@ -100,6 +101,8 @@ export default async function Page(props: {
               Mermaid,
               TypeTable,
               Accordion,
+              Steps,
+              Step,
               Accordions,
               AutoTypeTable: (props) => (
                 <AutoTypeTable generator={generator} {...props} />

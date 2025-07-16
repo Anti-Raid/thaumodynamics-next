@@ -1,6 +1,7 @@
 ---
 title: Server Info
 description: Shows information about current server
+icon: FaInfo
 ---
 
 # Introduction
