@@ -28,7 +28,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ComponentProps, FC, ReactElement } from "react";
 import { Mermaid } from "@/components/mdx/mermaid";
-import { createMetadata } from "@/lib/metadata";
+import { createMetadata, baseUrl } from "@/lib/metadata";
 import { openapi, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 
@@ -151,7 +151,7 @@ export async function generateMetadata(props: {
     page.data.description ?? "The library for building documentation sites";
 
   const image = {
-    url: ["/og", ...slug, "image.png"].join("/"),
+    url: `${baseUrl}/og/${slug.join("/")}/image.png`,
     width: 1200,
     height: 630,
   };
