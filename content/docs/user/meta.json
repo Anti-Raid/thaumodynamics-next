@@ -4,8 +4,6 @@
   "icon": "Bot",
   "root": true,
   "pages": [
-    "---Information---",
-    "about",
     "---Getting Started---",
     "commands",
     "---Essentials---",

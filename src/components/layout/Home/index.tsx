@@ -198,7 +198,7 @@ const HomeContent: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link href="/docs/user/about/readme">
+            <Link href="/docs/user">
               <motion.button
                 className="px-8 py-4 bg-gradient-to-r from-fd-primary to-purple-600 text-white rounded-xl font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
@@ -347,23 +347,20 @@ const HomeContent: React.FC = () => {
                 className="px-8 py-4 bg-gradient-to-r from-fd-primary to-purple-600 text-white rounded-xl font-semibold text-lg flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() =>
-                  window.open("https://antiraid.xyz/invite", "_blank")
-                }
+                onClick={() => window.open("https://antiraid.xyz/invite", "_blank")}
               >
                 <span>Invite AntiRaid</span>
                 <FiExternalLink className="w-5 h-5" />
               </motion.button>
-              <motion.button
-                className="px-8 py-4 bg-fd-card hover:bg-fd-accent text-fd-card-foreground rounded-xl font-semibold text-lg border border-fd-border transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() =>
-                  window.open("https://docs.antiraid.xyz/docs/README", "_blank")
-                }
-              >
-                View Documentation
-              </motion.button>
+              <Link href="/docs/user" className="flex-1">
+                <motion.button
+                  className="w-full px-8 py-4 bg-fd-card hover:bg-fd-accent text-fd-card-foreground rounded-xl font-semibold text-lg border border-fd-border transition-all duration-300"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  View Documentation
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
         </div>
