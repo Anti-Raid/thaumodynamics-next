@@ -62,14 +62,14 @@ export const baseOptions: BaseLayoutProps = {
           text: "Developer's Guide",
           description:
             "Everything you need to know about AntiRaid's infrastructure.",
-          url: "/docs/dev/go_jobs/README.md",
+          url: "/docs/dev",
         },
         {
           icon: <FaDownload />,
           text: "Setup Guide",
           description:
             "Everything you need to know on how to setup AntiRaid on your local server.",
-          url: "/docs/dev/hosting/README.md",
+          url: "/docs/dev/hosting",
         },
       ],
     },
