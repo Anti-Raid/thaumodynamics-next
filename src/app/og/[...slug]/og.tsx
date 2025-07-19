@@ -43,8 +43,7 @@ export function generate({
         width: "100%",
         height: "100%",
         color: "white",
-        backgroundImage:
-          "radial-gradient(145% 145% at 110% 110%, rgba(31,102,244,1) 0%, rgba(19,72,180,1) 30%, rgba(10,38,96,1) 60%, #000 100%)",
+        backgroundImage: "radial-gradient(145% 145% at 110% 110%, hsl(270,100%,86%) 0%, hsl(270,23%,20%) 30%, hsl(256, 78%, 47%, 1.00) 60%, hsl(0, 0.00%, 0.00%) 100%)"
       }}
     >
       <div
@@ -66,6 +65,16 @@ export function generate({
             color: primaryTextColor,
           }}
         >
+          <img
+            src="https://avatars.githubusercontent.com/u/83183936?s=200&v=4"
+            alt="AntiRaid Logo"
+            width={58}
+            height={58}
+            style={{
+              borderRadius: "8px",
+              objectFit: "contain",
+            }}
+          />
           <p
             style={{
               fontSize: "46px",

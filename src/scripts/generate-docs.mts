@@ -31,7 +31,7 @@ export async function generateDocs() {
 
   await Promise.all([
     OpenAPI.generateFiles({
-      input: ["./content/docs/api-reference/openapi.json"],
+      input: ["https://splashtail-staging.antiraid.xyz/openapi"],
       output: "./content/docs/api-reference/(generated)",
       per: "operation",
       includeDescription: true,
