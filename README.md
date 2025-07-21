@@ -1,33 +1,92 @@
-# Fumadocs Starter
+# 🛡️ AntiRaid Documentation
 
-This is a starter template for building documentation using [Fumadocs](https://fumadocs.vercel.app), integrated with OpenAPI and designed to work seamlessly with the Vercel AI SDK.
+<div align="center">
 
-It’s powered by [Next.js](https://nextjs.org) and was generated using [Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+![AntiRaid Banner](public/banner.png)
 
-## Getting Started
+Your Discord server's intelligent guardian against raids and nukes.
 
-Run the development server:
+[![Discord](https://img.shields.io/discord/YOUR_DISCORD_SERVER_ID?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/antiraid)
+[![Documentation](https://img.shields.io/badge/docs-online-brightgreen)](https://docs.antiraid.xyz)
+[![License](https://img.shields.io/github/license/Anti-Raid/thaumodynamics-next)](LICENSE)
+
+</div>
+
+## ✨ What Makes AntiRaid Special?
+
+AntiRaid revolutionizes Discord server protection with its unique approach to security. Unlike traditional anti-raid bots, we empower you with:
+
+- 🎯 **Structured Templating** - Create custom security workflows using Lua
+- 🔒 **Smart Lockdowns** - Multiple defense modes for different threat levels
+- 💾 **Reliable Backups** - Peace of mind with complete server state preservation
+- 🤖 **Advanced Captcha** - Keep the bots out, let real users in
+- 🎮 **Granular Controls** - Fine-tune every aspect of your server's security
+
+## 🚀 Quick Start
+
+### Using AntiRaid Bot
+
+1. [Add AntiRaid to your server](https://antiraid.xyz/invite)
+2. Read our [Getting Started Guide](https://docs.antiraid.xyz/docs/user/)
+3. Join our [Support Server](https://discord.gg/antiraid) for help
+
+### Running the Docs Locally
 
 ```bash
+# Clone the repository
+git clone https://github.com/Anti-Raid/thaumodynamics-next.git
+cd thaumodynamics-next
+
+# Install dependencies (choose one)
+npm install
+# or
+bun install
+# or
+yarn install
+
+# Start the development server
 npm run dev
-# or
-pnpm dev
-# or
-yarn dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://localhost:3000](http://localhost:3000) to see the docs in action! 🎉
 
-## What’s Inside
+## 📚 Documentation Sections
 
-- 🧩 **Fumadocs** – Fast, flexible documentation powered by MDX.
-- 📘 **Orama** – Built-in search integration.
-- 🧠 **AI SDK** – Supports the [Vercel AI SDK](https://sdk.vercel.ai) for advanced AI chat features.
-- 🧱 **MCP-Ready** – Easily extend with an optional MCP Server for more advanced workflows.
-- ⚡️ **Twoslash** – Embed live, type-checked code examples with rich editor features (errors, completions, hovers) directly in your docs.
+- 📘 [User Guide](https://docs.antiraid.xyz/docs/user/) - Everything for server admins
+- 🛠️ [Developer Guide](https://docs.antiraid.xyz/docs/dev/) - API integration and advanced features
+- 🔧 [Self-Hosting](https://docs.antiraid.xyz/docs/dev/hosting/) - Run your own instance
 
-## Learn More
+## 🌟 Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) – Learn about Next.js features and APIs.
-- [Learn Next.js](https://nextjs.org/learn) – Interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.vercel.app) – Learn more about Fumadocs and how to customize it.
+### Templating System
+
+Create custom responses, automate moderation, and design complex workflows using our powerful Lua-based templating system.
+
+### Smart Backups
+
+- 📦 Complete server structure preservation
+- ⚡ Quick restoration process
+- 🔄 Automated backup scheduling
+
+## 🤝 Contributing
+
+We love contributions! Whether it's:
+
+- 🐛 Bug Reports
+- 💡 Feature Suggestions
+- 📝 Documentation Improvements
+- 🎨 UI Enhancements
+
+Check our [Contributing Guidelines](CONTRIBUTING.md) to get started!
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+Built with ❤️ by Team Purrquinox | [Website](https://antiraid.xyz) | [Documentation](https://docs.antiraid.xyz)
+
+</div>
