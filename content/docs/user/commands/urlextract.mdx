@@ -1,0 +1,36 @@
+---
+title: URL Extract Command
+description: Extract URLs from any message and check for suspicious content
+icon: MdLink
+---
+
+# Introduction
+
+The URL Extract command is a security tool that helps you analyze URLs found in messages. It can extract all URLs from a message, check them for potential threats, and provide safety information about the links.
+
+# Usage
+
+This command can be used by running `/urlextract message:[text containing a message with some link]`
+
+![Image](/url-extractor.png)
+
+# Command Options
+
+<TypeTable
+  type={{
+    message: {
+      description: 'A text containing a message with some link',
+      type: 'string',
+      required: true
+    }
+  }}
+/>
+
+# Features
+
+- Extracts all URLs from the target message
+
+# Response Information
+
+The command will return:
+- A list of all URLs found in the message

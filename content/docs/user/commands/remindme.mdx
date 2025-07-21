@@ -1,0 +1,42 @@
+---
+title: Remind Me
+description: Set reminders for yourself with customizable timing
+icon: MdAlarm
+---
+
+# Introduction
+
+The Remind Me command allows you to set personal reminders that the bot will send you after a specified duration. It's useful for remembering tasks, events, or following up on something later.
+
+# Usage
+
+This command can be used by **any** user by running `/remindme [duration] [reminder]`
+
+![Image](/remindme-start.png)
+
+# Command Options
+
+<TypeTable
+  type={{
+    duration: {
+      description: 'How long to wait before sending the reminder (e.g., 1h, 30m, 2d)',
+      type: 'string',
+      required: true
+    },
+    reminder: {
+      description: 'The message you want to be reminded about',
+      type: 'string',
+      required: true
+    }
+  }}
+/>
+
+# Reminder Delivery
+
+When the specified time has elapsed, the bot will send a message with your reminder:
+
+![Image](/remindme-trigger.png)
+
+# Important Notes
+
+- AntiRaid will send a reminder in the channel you started the reminder in.

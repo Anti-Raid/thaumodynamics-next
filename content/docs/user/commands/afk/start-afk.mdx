@@ -1,0 +1,61 @@
+---
+title: Set AFK Status
+description: Learn how to set your AFK status using the /afk command
+icon: FaClock
+---
+
+# Introduction
+
+The Set AFK command allows users to indicate when they are away from keyboard (AFK). This command helps maintain clear communication by notifying others about your unavailability.
+
+# Usage
+
+This command can be used by **any** user by running `/afk` with an optional reason.
+
+![Image](/afk-start.png)
+
+# Command Options
+
+<TypeTable
+  type={{
+    reason: {
+      description: 'Optional message explaining why you are AFK',
+      type: 'string',
+      default: null,
+    },
+    time: {
+      description: 'How long you want to be afk (1 min, 1 hour)',
+      type: 'string',
+      default: null,
+    }
+  }}
+/>
+
+# Steps to Set AFK Status
+
+<Steps>
+ <Step>
+### Use the /afk Command
+Run `/afk` with or without a reason
+ </Step>
+ <Step>
+### Provide a Reason
+Add a reason to let others know why you're away and possibly when you'll return
+ </Step>
+ <Step>
+### Confirmation
+The bot will confirm your AFK status is set
+ </Step>
+</Steps>
+
+# Response Behavior
+
+When someone mentions an AFK user, they will receive a response like this:
+
+![Image](/afk-test.png)
+
+# Important Notes
+
+- Others will be notified of your AFK status when they mention you
+- You can update your AFK reason by using the command again
+- The status works across all channels in the server
