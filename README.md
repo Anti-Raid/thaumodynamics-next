@@ -28,7 +28,6 @@ AntiRaid revolutionizes Discord server protection with its unique approach to se
 
 1. [Add AntiRaid to your server](https://antiraid.xyz/invite)
 2. Read our [Getting Started Guide](https://docs.antiraid.xyz/docs/user/)
-3. Join our [Support Server](https://discord.gg/antiraid) for help
 
 ### Running the Docs Locally
 

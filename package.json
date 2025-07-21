@@ -98,13 +98,4 @@
   "engines": {
     "node": ">=22"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide",
-      "esbuild",
-      "lefthook",
-      "sharp",
-      "unrs-resolver"
-    ]
-  }
 }
