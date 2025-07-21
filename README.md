@@ -76,8 +76,6 @@ We love contributions! Whether it's:
 - 📝 Documentation Improvements
 - 🎨 UI Enhancements
 
-Check our [Contributing Guidelines](CONTRIBUTING.md) to get started!
-
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
