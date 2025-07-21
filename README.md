@@ -6,7 +6,7 @@
 
 Your Discord server's intelligent guardian against raids and nukes.
 
-[![Discord](https://img.shields.io/discord/YOUR_DISCORD_SERVER_ID?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/antiraid)
+[![Discord](https://img.shields.io/discord/YOUR_DISCORD_SERVER_ID?color=5865F2&logo=discord&logoColor=white)](https://antiraid.xyz/discord)
 [![Documentation](https://img.shields.io/badge/docs-online-brightgreen)](https://docs.antiraid.xyz)
 [![License](https://img.shields.io/github/license/Anti-Raid/thaumodynamics-next)](LICENSE)
 
