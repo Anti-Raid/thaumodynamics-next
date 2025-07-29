@@ -1,0 +1,35 @@
+---
+title: "Permissions"
+description: "Overview of AntiRaid's customizable permission system and integration with Discord and kittycat permissions."
+---
+
+# Permissions
+
+AntiRaid’s built-in commands use **Kittycat permission nodes** to control access. Below are the default permissions required for certain commands.
+
+## Backups
+
+- **`backup.view`** – Allows viewing and listing server backups (used by `/backups list`).
+- **`backup.create`** – Allows creating and deleting backups (used by `/backups create` and `/backups delete`).
+- **`backup.restore`** – Allows restoring a backup (used by `/backups restore`).
+- **`backup.*`** – Allows all backup-related commands.
+
+## Moderation
+
+- **`moderation.ban`** – Allows using the ban command (used by `/moderation ban`).
+- **`moderation.kick`** – Allows using the kick command (used by `/moderation kick`).
+- **`moderation.unban`** – Allows using the unban command (used by `/moderation unban`).
+- **`moderation.*`** – Allows using all moderation commands.
+
+## Lockdown
+
+- **`lockdown.*`** – Allows using all lockdown commands (used by `/lockdown`).
+
+## Global
+
+- **`global.*`** – Allows using all global commands.
+
+---
+
+These permissions are checked by AntiRaid in addition to any required **Discord permissions**.  
+Most utility commands like `/whois`, `/remindme`, or `/afk` do not require special permission nodes.
