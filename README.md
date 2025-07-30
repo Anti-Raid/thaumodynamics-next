@@ -6,7 +6,7 @@
 
 Your Discord server's intelligent guardian against raids and nukes.
 
-[![Discord](https://img.shields.io/discord/YOUR_DISCORD_SERVER_ID?color=5865F2&logo=discord&logoColor=white)](https://antiraid.xyz/discord)
+[![Discord](https://img.shields.io/discord/1064135068928454766?color=5865F2&logo=discord&logoColor=white)](https://antiraid.xyz/discord)
 [![Documentation](https://img.shields.io/badge/docs-online-brightgreen)](https://docs.antiraid.xyz)
 [![License](https://img.shields.io/github/license/Anti-Raid/thaumodynamics-next)](LICENSE)
 
@@ -78,7 +78,7 @@ We love contributions! Whether it's:
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the AGPL License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
