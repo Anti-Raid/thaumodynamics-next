@@ -13,8 +13,6 @@
     "infra",
     "rust_settings",
     "services",
-    "templating",
-    "---API---",
-    "templating-api"
+    "templating"
   ]
 }
