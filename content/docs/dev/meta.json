@@ -9,7 +9,6 @@
     "builtins",
     "cmd",
     "data",
-    "go_jobs",
     "hosting",
     "infra",
     "rust_settings",

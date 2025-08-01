@@ -1,3 +1,16 @@
 {
-  "icon": "FaBook"
+  "icon": "FaBook",
+  "pages": [
+    "---Intro---",
+    "intro",
+    "events",
+    "keyvalue",
+    "luau-ecosystem",
+    "---Arch Notes---",
+    "archnotes",
+    "---Archived---",
+    "2-example",
+    "---API Reference---",
+    "apiref/test"
+  ]
 }

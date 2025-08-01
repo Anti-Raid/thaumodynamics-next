@@ -15,6 +15,3 @@ Members and bots. Note that for members, we have something coming up _soon_ that
 
 Note that new discord features may also not be backed up/restored immediately on release.
 
-## More details
-
-See the [dev guide](../../dev/go_jobs/backups.md) to learn more about the format
