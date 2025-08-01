@@ -5,14 +5,14 @@
   "root": true,
   "pages": [
     "---Getting Started---",
-    "BadgerFang",
+    "templating",
+    "Badgerfang (our website)",
     "builtins",
     "cmd",
     "data",
     "hosting",
     "infra",
     "rust_settings",
-    "services",
-    "templating"
+    "services"
   ]
 }
