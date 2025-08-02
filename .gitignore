@@ -5,6 +5,7 @@
 .contentlayer
 .content-collections
 .source
+auto_apiref/output
 
 # test & build
 /coverage

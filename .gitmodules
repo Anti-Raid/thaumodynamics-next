@@ -1,0 +1,6 @@
+[submodule "auto_apiref/templating-types"]
+	path = auto_apiref/templating-types
+	url = https://github.com/anti-raid/templating-types
+[submodule "auto_apiref/luau-docgen"]
+	path = auto_apiref/luau-docgen
+	url = https://github.com/anti-raid/luau-docgen
