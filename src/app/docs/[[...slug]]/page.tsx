@@ -32,6 +32,7 @@ import { createMetadata, baseUrl } from "@/lib/metadata";
 import { openapi, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 import { Step, Steps } from "fumadocs-ui/components/steps";
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 
 const generator = createGenerator();
 
@@ -107,6 +108,7 @@ export default async function Page(props: {
               AutoTypeTable: (props) => (
                 <AutoTypeTable generator={generator} {...props} />
               ),
+              img: (props) => <ImageZoom {...(props as any)} />,
               blockquote: Callout as unknown as FC<
                 ComponentProps<"blockquote">
               >,

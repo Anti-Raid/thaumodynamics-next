@@ -367,9 +367,9 @@ const HomeContent: React.FC = () => {
           </motion.div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="relative z-10 px-6 py-12 border-t border-fd-border/50">
+
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
@@ -384,6 +384,7 @@ const HomeContent: React.FC = () => {
                 AntiRaid Documentation
               </span>
             </div>
+
             <div className="flex items-center space-x-6 text-fd-muted-foreground">
               <a
                 href="https://antiraid.xyz/legal/privacy"

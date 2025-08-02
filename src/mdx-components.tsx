@@ -19,6 +19,7 @@ import * as TbIcons from "react-icons/tb";
 import * as IoIcons from "react-icons/io5";
 import type { MDXComponents } from "mdx/types";
 import { Mermaid } from "@/components/mdx/mermaid";
+import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -29,6 +30,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...(TbIcons as unknown as MDXComponents),
     ...(IoIcons as unknown as MDXComponents),
     ...defaultMdxComponents,
+    img: (props) => <ImageZoom {...(props as any)} />,
     ...Twoslash,
     File,
     Files,

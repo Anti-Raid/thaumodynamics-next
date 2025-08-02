@@ -10,7 +10,6 @@ export default function Layout({ children }: { children: ReactNode }) {
     <DocsLayout
       {...baseOptions}
       tree={source.pageTree}
-      // just icon items
       links={linkItems.filter((item) => item.type === "icon")}
       nav={{
         ...baseOptions.nav,

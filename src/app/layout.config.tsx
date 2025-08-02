@@ -1,3 +1,4 @@
+import { GithubInfo } from "fumadocs-ui/components/github-info";
 import type { LinkItemType } from "fumadocs-ui/layouts/docs";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import Image from "next/image";
