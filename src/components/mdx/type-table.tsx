@@ -1,4 +1,5 @@
 "use client";
+
 import { Info as InfoIcon, Link as LinkIcon } from "lucide-react";
 import Link from "fumadocs-core/link";
 import { cva } from "class-variance-authority";
@@ -35,6 +36,7 @@ interface ObjectType {
    */
   typeDescriptionLink?: string;
   default?: string;
+  required?: boolean;
   deprecated?: boolean;
 }
 
@@ -51,6 +53,146 @@ const code = cva(
     },
   },
 );
+
+function parseMarkdownType(typeString: string): ReactNode {
+  const parts: (string | ReactNode)[] = [typeString];
+
+  // Markdown link parsing: [text](url)
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (typeof part === 'string') {
+      const text = part;
+      const newParts: (string | ReactNode)[] = [];
+      let lastIndex = 0;
+      let match: RegExpExecArray | null;
+
+      while ((match = linkRegex.exec(text)) !== null) {
+        const [fullMatch, linkText, linkUrl] = match;
+
+        if (match.index > lastIndex) {
+          newParts.push(text.slice(lastIndex, match.index));
+        }
+
+        if (linkText && linkUrl) {
+          newParts.push(
+            <Link
+              key={`link-${i}-${match.index}`}
+              href={linkUrl}
+              className="inline-flex items-center gap-1 text-fd-primary hover:text-fd-primary/80 transition-colors"
+            >
+              <code className={code({ color: "primary" })}>{linkText}</code>
+              <LinkIcon className="size-3" />
+            </Link>
+          );
+        }
+
+        lastIndex = match.index + fullMatch.length;
+      }
+
+      if (lastIndex < text.length) {
+        newParts.push(text.slice(lastIndex));
+      }
+
+      if (newParts.length > 0) {
+        parts.splice(i, 1, ...newParts);
+        i += newParts.length - 1;
+      }
+    }
+  }
+
+  // Bold: **text**
+  const boldRegex = /\*\*([^*]+)\*\*/g;
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (typeof part === 'string') {
+      const text = part;
+      const newParts: (string | ReactNode)[] = [];
+      let lastIndex = 0;
+      let match: RegExpExecArray | null;
+
+      while ((match = boldRegex.exec(text)) !== null) {
+        const [fullMatch, boldText] = match;
+
+        if (match.index > lastIndex) {
+          newParts.push(text.slice(lastIndex, match.index));
+        }
+
+        if (boldText) {
+          newParts.push(
+            <strong key={`bold-${i}-${match.index}`} className="font-semibold">
+              {boldText}
+            </strong>
+          );
+        }
+
+        lastIndex = match.index + fullMatch.length;
+      }
+
+      if (lastIndex < text.length) {
+        newParts.push(text.slice(lastIndex));
+      }
+
+      if (newParts.length > 0) {
+        parts.splice(i, 1, ...newParts);
+        i += newParts.length - 1;
+      }
+    }
+  }
+
+  // Italics: *text*
+  const italicRegex = /(?<!\*)\*([^*]+)\*(?!\*)/g;
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (typeof part === 'string') {
+      const text = part;
+      const newParts: (string | ReactNode)[] = [];
+      let lastIndex = 0;
+      let match: RegExpExecArray | null;
+
+      while ((match = italicRegex.exec(text)) !== null) {
+        const [fullMatch, italicText] = match;
+
+        if (match.index > lastIndex) {
+          newParts.push(text.slice(lastIndex, match.index));
+        }
+
+        if (italicText) {
+          newParts.push(
+            <em key={`italic-${i}-${match.index}`} className="italic">
+              {italicText}
+            </em>
+          );
+        }
+
+        lastIndex = match.index + fullMatch.length;
+      }
+
+      if (lastIndex < text.length) {
+        newParts.push(text.slice(lastIndex));
+      }
+
+      if (newParts.length > 0) {
+        parts.splice(i, 1, ...newParts);
+        i += newParts.length - 1;
+      }
+    }
+  }
+
+  // Wrap plain strings in <code> elements
+  const finalParts = parts.map((part, index) => {
+    if (typeof part === 'string' && part.trim().length > 0) {
+      return (
+        <code key={`code-${index}`} className={code()}>
+          {part}
+        </code>
+      );
+    }
+    return part;
+  });
+
+  return <>{finalParts}</>;
+}
 
 export function TypeTable({ type }: { type: Record<string, ObjectType> }) {
   return (
@@ -76,6 +218,7 @@ export function TypeTable({ type }: { type: Record<string, ObjectType> }) {
                     )}
                   >
                     {key}
+                    {!value.required && '?'}
                   </code>
                   {value.default ? (
                     <Info>
@@ -88,7 +231,7 @@ export function TypeTable({ type }: { type: Record<string, ObjectType> }) {
               </td>
               <td>
                 <div className={field()}>
-                  <code className={code()}>{value.type}</code>
+                  {parseMarkdownType(value.type)}
                   {value.typeDescription ? (
                     <Info>{value.typeDescription}</Info>
                   ) : null}
