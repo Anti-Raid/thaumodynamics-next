@@ -9,7 +9,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "fumadocs-ui/components/tabs";
-import { TypeTable } from "fumadocs-ui/components/type-table";
+import { TypeTable } from "@/components/mdx/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as lucideIcons from "lucide-react";
 import * as FaIcons from "react-icons/fa";

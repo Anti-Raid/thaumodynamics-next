@@ -18,25 +18,25 @@ This command can be used by users with the **"backup.view"** permission by runni
 
 The command will return a list of all backups with the following information for each:
 
-| Field             | Description                                                                  |
-|-------------------|------------------------------------------------------------------------------|
-| **Backup ID**     | The unique identifier for the backup                                         |
-| **Created at**    | The timestamp when the backup was created                                    |
-| **Size**          | The size of the backup file                                                  |
-| **Protected**     | Whether the backup is password protected                                      |
+| Field          | Description                               |
+| -------------- | ----------------------------------------- |
+| **Backup ID**  | The unique identifier for the backup      |
+| **Created at** | The timestamp when the backup was created |
+| **Size**       | The size of the backup file               |
+| **Protected**  | Whether the backup is password protected  |
 
 # Customization options
 
 <TypeTable
   type={{
     page: {
-      description: 'The page number to view (for servers with many backups)',
-      type: 'integer',
+      description: "The page number to view (for servers with many backups)",
+      type: "integer",
       default: 1,
     },
     per_page: {
-      description: 'Number of backups to show per page',
-      type: 'integer',
+      description: "Number of backups to show per page",
+      type: "integer",
       default: 10,
     },
   }}
@@ -45,16 +45,16 @@ The command will return a list of all backups with the following information for
 # Steps to view backups
 
 <Steps>
- <Step>
-### Run `/backups list`
-You can optionally specify the page number and how many backups to show per page
- </Step>
- <Step>
-### Review the list of backups
-Each backup will show its ID, creation date, size, and whether it's password protected
- </Step>
- <Step>
-### Use the backup ID
-You can use the backup ID with other backup commands like restore or delete
- </Step>
+  <Step>
+    ### Run `/backups list` You can optionally specify the page number and how
+    many backups to show per page
+  </Step>
+  <Step>
+    ### Review the list of backups Each backup will show its ID, creation date,
+    size, and whether it's password protected
+  </Step>
+  <Step>
+    ### Use the backup ID You can use the backup ID with other backup commands
+    like restore or delete
+  </Step>
 </Steps>

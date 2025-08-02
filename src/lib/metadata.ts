@@ -7,18 +7,20 @@ export function createMetadata(override: Metadata): Metadata {
   // Handle the override images
   const images = override.openGraph?.images;
   const defaultImage = "/banner.png";
-  
+
   let imageUrl = defaultImage;
   if (images) {
-    if (typeof images === 'string') {
+    if (typeof images === "string") {
       imageUrl = images;
     } else if (Array.isArray(images) && images.length > 0) {
-      imageUrl = typeof images[0] === 'string' ? images[0] : defaultImage;
+      imageUrl = typeof images[0] === "string" ? images[0] : defaultImage;
     }
   }
 
   // Ensure absolute URL
-  const absoluteImageUrl = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
+  const absoluteImageUrl = imageUrl.startsWith("http")
+    ? imageUrl
+    : `${baseUrl}${imageUrl}`;
 
   return {
     ...override,

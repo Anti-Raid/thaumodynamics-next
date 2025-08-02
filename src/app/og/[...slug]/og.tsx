@@ -43,7 +43,8 @@ export function generate({
         width: "100%",
         height: "100%",
         color: "white",
-        backgroundImage: "radial-gradient(145% 145% at 110% 110%, hsl(270,100%,86%) 0%, hsl(270,23%,20%) 30%, hsl(256, 78%, 47%, 1.00) 60%, hsl(0, 0.00%, 0.00%) 100%)"
+        backgroundImage:
+          "radial-gradient(145% 145% at 110% 110%, hsl(270,100%,86%) 0%, hsl(270,23%,20%) 30%, hsl(256, 78%, 47%, 1.00) 60%, hsl(0, 0.00%, 0.00%) 100%)",
       }}
     >
       <div

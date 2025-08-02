@@ -1,7 +1,7 @@
-import { createSearchAPI } from 'fumadocs-core/search/server';
-import { source } from '@/lib/source';
+import { createSearchAPI } from "fumadocs-core/search/server";
+import { source } from "@/lib/source";
 
-export const { GET } = createSearchAPI('advanced', {
+export const { GET } = createSearchAPI("advanced", {
   indexes: await Promise.all(
     source.getPages().map(async (page) => {
       try {
@@ -20,8 +20,8 @@ export const { GET } = createSearchAPI('advanced', {
         console.error(`Error loading page ${page.url}:`, error);
         // Return a minimal index entry if we can't load the full page
         return {
-          title: page.data.title || 'Untitled',
-          description: page.data.description || '',
+          title: page.data.title || "Untitled",
+          description: page.data.description || "",
           url: page.url,
           id: page.url,
           structuredData: {

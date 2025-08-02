@@ -22,8 +22,9 @@ const config = {
   experimental: {
     mdxRs: true,
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://docs.antiraid.xyz' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '' : '',
+  assetPrefix:
+    process.env.NODE_ENV === "production" ? "https://docs.antiraid.xyz" : "",
+  basePath: process.env.NODE_ENV === "production" ? "" : "",
 };
 
 export default withMDX(config);

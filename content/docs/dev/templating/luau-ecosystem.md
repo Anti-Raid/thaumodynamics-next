@@ -15,7 +15,7 @@ AntiRaid exposes some parts of Lune based on sandboxing constraints. See the bel
 - [**@lune/regex**](https://lune-org.github.io/docs/api-reference/regex)
 - [**@lune/serde**](https://lune-org.github.io/docs/api-reference/serde)
 
-Note that ``@lune/roblox`` is not currently available due to how large of an API it is. This may change in the future however.
+Note that `@lune/roblox` is not currently available due to how large of an API it is. This may change in the future however.
 
 ## Legal Disclaimer
 

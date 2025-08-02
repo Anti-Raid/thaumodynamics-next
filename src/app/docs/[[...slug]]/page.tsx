@@ -9,7 +9,7 @@ import { Banner } from "fumadocs-ui/components/banner";
 import { Callout } from "fumadocs-ui/components/callout";
 import { Card, Cards } from "fumadocs-ui/components/card";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
-import { TypeTable } from "fumadocs-ui/components/type-table";
+import { TypeTable } from "@/components/mdx/type-table";
 import {
   PageArticle,
   PageBreadcrumb,
@@ -31,7 +31,7 @@ import { Mermaid } from "@/components/mdx/mermaid";
 import { createMetadata, baseUrl } from "@/lib/metadata";
 import { openapi, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
-import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Step, Steps } from "fumadocs-ui/components/steps";
 
 const generator = createGenerator();
 
@@ -151,7 +151,7 @@ export async function generateMetadata(props: {
   if (!page) notFound();
 
   const description =
-    page.data.description ?? "The library for building documentation sites";
+    page.data.description;
 
   const image = {
     url: `${baseUrl}/og/${slug.join("/")}/image.png`,

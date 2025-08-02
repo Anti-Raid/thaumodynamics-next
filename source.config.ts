@@ -82,7 +82,7 @@ export default defineConfig({
       [remarkInstall, { persist: { id: "package-manager" } }],
     ],
     rehypePlugins: (v) => [rehypeKatex, ...v],
-    format: 'mdx',
-    development: process.env.NODE_ENV === 'development',
+    format: "mdx",
+    development: process.env.NODE_ENV === "development",
   },
 });

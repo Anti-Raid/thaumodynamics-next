@@ -5,11 +5,7 @@ import { baseOptions, linkItems } from "@/app/layout.config";
 import { source } from "@/lib/source";
 import "katex/dist/katex.min.css";
 
-export default function Layout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <DocsLayout
       {...baseOptions}

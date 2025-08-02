@@ -18,54 +18,56 @@ This command can be used by users with the **"backup.restore"** permission by ru
 
 When a backup is successfully restored, you'll receive confirmation with the following information:
 
-| Field             | Description                                                                  |
-|-------------------|------------------------------------------------------------------------------|
-| **Status**        | The status of the restore operation                                          |
-| **Restored at**   | The timestamp when the backup was restored                                   |
-| **Details**       | Summary of what was restored (channels, roles, settings, etc.)               |
+| Field           | Description                                                    |
+| --------------- | -------------------------------------------------------------- |
+| **Status**      | The status of the restore operation                            |
+| **Restored at** | The timestamp when the backup was restored                     |
+| **Details**     | Summary of what was restored (channels, roles, settings, etc.) |
 
 # Customization options
 
 <TypeTable
   type={{
     backup_id: {
-      description: 'The ID of the backup you want to restore',
-      type: 'string',
+      description: "The ID of the backup you want to restore",
+      type: "string",
       required: true,
     },
     password: {
-      description: 'Password for encrypted backups. Required only if the backup is password protected',
-      type: 'string',
+      description:
+        "Password for encrypted backups. Required only if the backup is password protected",
+      type: "string",
       default: null,
     },
     channels_only: {
-      description: 'Only restore channels, ignoring roles and server settings',
-      type: 'boolean',
+      description: "Only restore channels, ignoring roles and server settings",
+      type: "boolean",
       default: false,
     },
     roles_only: {
-      description: 'Only restore roles, ignoring channels and server settings',
-      type: 'boolean',
+      description: "Only restore roles, ignoring channels and server settings",
+      type: "boolean",
       default: false,
     },
     settings_only: {
-      description: 'Only restore server settings, ignoring channels and roles',
-      type: 'boolean',
+      description: "Only restore server settings, ignoring channels and roles",
+      type: "boolean",
       default: false,
     },
     include_messages: {
-      description: 'Whether to restore backed up messages (if any were included in the backup)',
-      type: 'boolean',
+      description:
+        "Whether to restore backed up messages (if any were included in the backup)",
+      type: "boolean",
       default: false,
     },
     delete_channels: {
-      description: 'Whether to delete existing channels before restoring',
-      type: 'boolean',
+      description: "Whether to delete existing channels before restoring",
+      type: "boolean",
       default: false,
     },
     delete_roles: {
-      description: 'Whether to delete existing roles before restoring',
-      type: 'boolean',
+      description: "Whether to delete existing roles before restoring",
+      type: "boolean",
       default: false,
     },
   }}
@@ -74,22 +76,22 @@ When a backup is successfully restored, you'll receive confirmation with the fol
 # Steps to restore a backup
 
 <Steps>
- <Step>
-### Get your backup ID
-Use `/backups list` to find the ID of the backup you want to restore
- </Step>
- <Step>
-### Run the restore command
-Use `/backups restore backup_id:(your backup id)` with any desired options
- </Step>
- <Step>
-### Wait for completion
-The restore process may take a few minutes depending on the backup size
- </Step>
- <Step>
-### Verify the restoration
-Check that all channels, roles, and settings have been restored as expected
- </Step>
+  <Step>
+    ### Get your backup ID Use `/backups list` to find the ID of the backup you
+    want to restore
+  </Step>
+  <Step>
+    ### Run the restore command Use `/backups restore backup_id:(your backup
+    id)` with any desired options
+  </Step>
+  <Step>
+    ### Wait for completion The restore process may take a few minutes depending
+    on the backup size
+  </Step>
+  <Step>
+    ### Verify the restoration Check that all channels, roles, and settings have
+    been restored as expected
+  </Step>
 </Steps>
 
 # Important Notes
@@ -98,4 +100,4 @@ Check that all channels, roles, and settings have been restored as expected
 - If the backup is password protected, you'll need to provide the correct password
 - Consider using the selective restore options (channels_only, roles_only, settings_only) if you only want to restore specific parts
 - Be careful with the delete_channels and delete_roles options as they will remove existing server content
-- Some elements like server boosting status and server-specific emoji may not be included in the backup 
+- Some elements like server boosting status and server-specific emoji may not be included in the backup

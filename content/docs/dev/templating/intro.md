@@ -31,10 +31,10 @@ Note that the above limits are designed to be generous and allow for complex tem
 
 - Each guild is assigned a dedicated Lua(u) VM. This VM is used to execute Lua code that is used in the templates.
 - A guilds Lua(u) VM will persist until marked as broken (either by explicitly requesting it, by exceeding memory limits, through internal errors or if required by our infrastructure). This means that templates can be run multiple times without needing to reinitialize the VM.
-- While a guilds Lua(u) VM will internally have a read-only shared global table for the Luau standard library, AntiRaid provides a special global table that is isolated at the template/script level with a custom `__index` and `__metatable` set to proxy writes (similar to Roblox's setup). This means that builtins will remain read-only, but templates can still use ``_G`` to store/retrieve their own data globally.
+- While a guilds Lua(u) VM will internally have a read-only shared global table for the Luau standard library, AntiRaid provides a special global table that is isolated at the template/script level with a custom `__index` and `__metatable` set to proxy writes (similar to Roblox's setup). This means that builtins will remain read-only, but templates can still use `_G` to store/retrieve their own data globally.
 - The standard `require` statement can be used to either import AntiRaid plugins or to import other Luau assets that belong to the template. AntiRaid internally uses standard Luau require-by-string semantics with full support for `init.luau` files for requires.
 - Note that plugins are read-only/sandboxed and cannot be monkey-patched etc.
-- All events are dispatched by making a Luau thread and then passing the event data (and template context) to the thread. This means that events are dispatched asynchronously (meaning things like the ``task`` library will work as expected in events). See the [Events](./events.md) documentation for more information on the events that are dispatched.
+- All events are dispatched by making a Luau thread and then passing the event data (and template context) to the thread. This means that events are dispatched asynchronously (meaning things like the `task` library will work as expected in events). See the [Events](./events.md) documentation for more information on the events that are dispatched.
 
 In general, all AntiRaid templates should start with the following:
 
@@ -63,7 +63,7 @@ setmetatable({}, interop.array_metatable)
 
 ### Null
 
-In some instances, interactions with AntiRaid may yield a special `null` lightuserdata value (a ``lightuserdata`` is a special lightweight ``userdata`` value managed by AntiRaid internally). This value is exposed under `@antiraid/interop#null` and can also be used template-side as desired:
+In some instances, interactions with AntiRaid may yield a special `null` lightuserdata value (a `lightuserdata` is a special lightweight `userdata` value managed by AntiRaid internally). This value is exposed under `@antiraid/interop#null` and can also be used template-side as desired:
 
 ```lua
 local interop = require '@antiraid/interop'
@@ -81,13 +81,13 @@ print(interop.memusage())
 
 ## Events
 
-All Lua templates are invoked via events. As such, the first argument to the template is an `Event`. See the [Events](./events.md) documentation for more information on the events that are dispatched. The second argument will be the ``TemplateContext`` which is a userdata that provides access to the rest of the AntiRaid Luau API.
+All Lua templates are invoked via events. As such, the first argument to the template is an `Event`. See the [Events](./events.md) documentation for more information on the events that are dispatched. The second argument will be the `TemplateContext` which is a userdata that provides access to the rest of the AntiRaid Luau API.
 
 ## Template Context
 
 Note that unlike `Event`, `TemplateContext` is a _userdata_ (not a table). As such, they cannot be manually constructed in templates whatsoever. A `TemplateContext` is guaranteed to be valid while accessible in the VM.
 
-The ``TemplateContext`` provides access to AntiRaid plugins such as the Discord plugin (`ctx.Discord`) and the key-value store plugin (`ctx.KV`). It also provides basic info about the bot itself (via ``ctx.current_user``), a global store table to share data across scripts (``ctx.store``), the server ID (``ctx.guild_id``) the script is running on, the server ID that owns the template on the shop if a shop template (``ctx.owner_guild_id``), the template's name (``ctx.template_name``), basic data about the template (``ctx.data``), the allowed capabilities the template has access to (``ctx.allowed_caps``) and a way to create a new ``TemplateContext`` with more strict limits/capabilities (``ctx:withlimits({capabilities = {"newcaps"}})``).
+The `TemplateContext` provides access to AntiRaid plugins such as the Discord plugin (`ctx.Discord`) and the key-value store plugin (`ctx.KV`). It also provides basic info about the bot itself (via `ctx.current_user`), a global store table to share data across scripts (`ctx.store`), the server ID (`ctx.guild_id`) the script is running on, the server ID that owns the template on the shop if a shop template (`ctx.owner_guild_id`), the template's name (`ctx.template_name`), basic data about the template (`ctx.data`), the allowed capabilities the template has access to (`ctx.allowed_caps`) and a way to create a new `TemplateContext` with more strict limits/capabilities (`ctx:withlimits({capabilities = {"newcaps"}})`).
 
 ### Example
 

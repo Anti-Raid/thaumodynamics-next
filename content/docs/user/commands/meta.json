@@ -1,5 +1,13 @@
 {
   "title": "Commands",
   "icon": "MdKeyboardCommandKey",
-  "pages": ["server-info", "remindme", "whois", "urlextract", "afk", "backups", "moderation"]
+  "pages": [
+    "server-info",
+    "remindme",
+    "whois",
+    "urlextract",
+    "afk",
+    "backups",
+    "moderation"
+  ]
 }

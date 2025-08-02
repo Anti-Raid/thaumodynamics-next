@@ -18,25 +18,25 @@ This command can be used by users with the **"moderation.kick"** permission by r
 
 When a kick is successfully applied, you'll receive confirmation with the following information:
 
-| Field             | Description                                                                  |
-|-------------------|------------------------------------------------------------------------------|
-| **Target**        | The user who was kicked                                                      |
-| **Reason**        | The reason provided for the kick                                             |
-| **Moderator**     | Who issued the kick                                                          |
+| Field         | Description                      |
+| ------------- | -------------------------------- |
+| **Target**    | The user who was kicked          |
+| **Reason**    | The reason provided for the kick |
+| **Moderator** | Who issued the kick              |
 
 # Customization options
 
 <TypeTable
   type={{
     user: {
-      description: 'The user to kick (mention or ID)',
-      type: 'string',
+      description: "The user to kick (mention or ID)",
+      type: "string",
       required: true,
     },
     reason: {
-      description: 'The reason for the kick',
-      type: 'string',
-      default: 'No reason provided',
+      description: "The reason for the kick",
+      type: "string",
+      default: "No reason provided",
     },
   }}
 />
@@ -44,22 +44,21 @@ When a kick is successfully applied, you'll receive confirmation with the follow
 # Steps to kick a user
 
 <Steps>
- <Step>
-### Identify the user
-Make sure you have the correct user you want to kick
- </Step>
- <Step>
-### Run the kick command
-Use `/moderation kick user:@username` with any desired options
- </Step>
- <Step>
-### Provide a reason
-It's recommended to always provide a reason for moderation actions
- </Step>
- <Step>
-### Verify the kick
-Check that the user has been successfully removed from the server
- </Step>
+  <Step>
+    ### Identify the user Make sure you have the correct user you want to kick
+  </Step>
+  <Step>
+    ### Run the kick command Use `/moderation kick user:@username` with any
+    desired options
+  </Step>
+  <Step>
+    ### Provide a reason It's recommended to always provide a reason for
+    moderation actions
+  </Step>
+  <Step>
+    ### Verify the kick Check that the user has been successfully removed from
+    the server
+  </Step>
 </Steps>
 
 # Important Notes
@@ -68,4 +67,4 @@ Check that the user has been successfully removed from the server
 - Users must be in the server to be kicked
 - Kicked users can rejoin with a new invite
 - Server owners cannot be kicked
-- Kicks are a less severe action than bans and are typically used for temporary removals 
+- Kicks are a less severe action than bans and are typically used for temporary removals

@@ -107,13 +107,16 @@ All service definitions are in `docker-compose.yml`. For Postgres-only setups, u
    git clone https://github.com/Anti-Raid/antiraid --recursive
    ```
 2. **Run the setup script:**
+
    ```sh
    python3 data/docker/setup.py
    ```
 
    - Enter your bot token, client ID, client secret, and alert webhook when prompted.
    - This generates all required config files and secrets.
+
 3. **Start all services:**
+
    ```sh
    docker compose up --build
    ```

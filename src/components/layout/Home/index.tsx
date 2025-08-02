@@ -347,7 +347,9 @@ const HomeContent: React.FC = () => {
                 className="px-8 py-4 bg-gradient-to-r from-fd-primary to-purple-600 text-white rounded-xl font-semibold text-lg flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => window.open("https://antiraid.xyz/invite", "_blank")}
+                onClick={() =>
+                  window.open("https://antiraid.xyz/invite", "_blank")
+                }
               >
                 <span>Invite AntiRaid</span>
                 <FiExternalLink className="w-5 h-5" />

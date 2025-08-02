@@ -18,34 +18,34 @@ This command can be used by users with the **"moderation.ban"** permission by ru
 
 When a ban is successfully applied, you'll receive confirmation with the following information:
 
-| Field             | Description                                                                  |
-|-------------------|------------------------------------------------------------------------------|
-| **Target**        | The user who was banned                                                      |
-| **Reason**        | The reason provided for the ban                                              |
-| **Moderator**     | Who issued the ban                                                           |
+| Field         | Description                     |
+| ------------- | ------------------------------- |
+| **Target**    | The user who was banned         |
+| **Reason**    | The reason provided for the ban |
+| **Moderator** | Who issued the ban              |
 
 # Customization options
 
 <TypeTable
   type={{
     user: {
-      description: 'The user to ban (mention or ID)',
-      type: 'string',
+      description: "The user to ban (mention or ID)",
+      type: "string",
       required: true,
     },
     reason: {
-      description: 'The reason for the ban',
-      type: 'string',
-      default: 'No reason provided',
+      description: "The reason for the ban",
+      type: "string",
+      default: "No reason provided",
     },
     delete_messages_days: {
-      description: 'Whether to delete the user\'s recent messages day wise',
-      type: 'number',
+      description: "Whether to delete the user's recent messages day wise",
+      type: "number",
       default: false,
     },
     delete_message_seconds: {
-      description: 'hether to delete the user\'s recent messages seconds wise',
-      type: 'boolean',
+      description: "hether to delete the user's recent messages seconds wise",
+      type: "boolean",
       default: true,
     },
   }}
@@ -54,22 +54,20 @@ When a ban is successfully applied, you'll receive confirmation with the followi
 # Steps to ban a user
 
 <Steps>
- <Step>
-### Identify the user
-Make sure you have the correct user you want to ban
- </Step>
- <Step>
-### Run the ban command
-Use `/moderation ban user:@username` with any desired options
- </Step>
- <Step>
-### Provide a reason
-It's recommended to always provide a reason for moderation actions
- </Step>
- <Step>
-### Verify the ban
-Check that the user has been successfully banned
- </Step>
+  <Step>
+    ### Identify the user Make sure you have the correct user you want to ban
+  </Step>
+  <Step>
+    ### Run the ban command Use `/moderation ban user:@username` with any
+    desired options
+  </Step>
+  <Step>
+    ### Provide a reason It's recommended to always provide a reason for
+    moderation actions
+  </Step>
+  <Step>
+    ### Verify the ban Check that the user has been successfully banned
+  </Step>
 </Steps>
 
 # Important Notes
@@ -77,4 +75,4 @@ Check that the user has been successfully banned
 - Bans are logged in the server's moderation logs
 - Users can be banned even if they're not currently in the server
 - Banned users will see a "You are banned" message when trying to join
-- Server owners cannot be banned 
+- Server owners cannot be banned
