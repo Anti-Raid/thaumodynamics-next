@@ -2,12 +2,13 @@
   "title": "Commands",
   "icon": "MdKeyboardCommandKey",
   "pages": [
+    "backups",
+    "moderation",
+    "lockdown",
     "server-info",
     "remindme",
     "whois",
     "urlextract",
-    "afk",
-    "backups",
-    "moderation"
+    "afk"
   ]
 }

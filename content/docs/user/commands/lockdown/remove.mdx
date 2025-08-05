@@ -1,0 +1,43 @@
+---
+title: Remove Lockdown
+icon: Trash2
+description: Remove an active lockdown from a channel or role.
+---
+
+# Remove Lockdown
+
+The `/lockdowns remove` command allows you to remove an active lockdown from a specific channel or role. This is useful for restoring normal access after a threat has passed.
+
+## Usage
+
+```
+/lockdowns remove id:<lockdown_id>
+```
+
+![Image](/lockdowns-remove.png)
+
+# Options
+
+<TypeTable
+  type={{
+    id: {
+      description: "The ID of the lockdown to remove (autocompletes)",
+      required: true,
+      type: "string",
+    },
+  }}
+/>
+
+## Permissions
+
+- `lockdowns.remove` — Allows removing lockdowns from channels or roles.
+
+## What it does
+
+- Lifts the lockdown from the specified channel or role, restoring previous permissions.
+- Useful for quickly reopening parts of your server after a lockdown event.
+
+## See Also
+
+- [List Lockdowns](/docs/user/commands/lockdown/list)
+- [API: LockdownSet](/docs/dev/templating/apiref/antiraid-ext-lockdowns-lockdownset)

@@ -1,0 +1,46 @@
+---
+title: Channel Lockdown
+icon: Lock
+description: Lock down a specific channel to restrict access during incidents.
+---
+
+# Channel Lockdown
+
+The `/lockdowns channel` command lets you lock down a single channel, restricting message sending and other permissions for critical roles.
+
+## Usage
+
+```
+/lockdowns channel channel:<#channel> reason:<reason>
+```
+
+![Image](/lockdowns-channel.png)
+
+# Options
+
+<TypeTable
+  type={{
+    channel: {
+      description: "The channel to lock down (required)",
+      type: "string",
+    },
+    reason: {
+      description: "The the reason why you want the lockdown to initiate",
+      type: "string",
+    },
+  }}
+/>
+
+## Permissions
+
+- `lockdowns.scl` — Required to use this command.
+
+## What it does
+
+- Restricts the specified channel for all critical roles (see [getCriticalRoles API](/docs/dev/templating/apiref/antiraid-ext-lockdowns-utils.md#getCriticalRoles)).
+- Useful for isolating incidents to a single channel.
+
+## See Also
+
+- [Role Lockdown](/docs/user/commands/lockdown/role)
+- [API: SingleChannelLockdown](/docs/dev/templating/apiref/antiraid-ext-lockdowns-modes-singlechannellockdown)

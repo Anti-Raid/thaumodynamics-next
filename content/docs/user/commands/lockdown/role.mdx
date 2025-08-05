@@ -1,0 +1,47 @@
+---
+title: Role Lockdown
+icon: Shield
+description: Lock down a specific role to restrict its permissions during incidents.
+---
+
+# Role Lockdown
+
+The `/lockdowns role` command lets you lock down a specific role, restricting actions for all users with that role.
+
+## Usage
+
+```
+/lockdowns role role:<@role> reason:<reason>
+```
+
+![Image](/lockdowns-role.png)
+
+# Options
+
+<TypeTable
+  type={{
+    role: {
+      description: "The name of the role you want to lockdown",
+      type: "string",
+    },
+    reason: {
+      description: "The the reason why you want the lockdown to initiate",
+      type: "string",
+    },
+  }}
+/>
+
+
+## Permissions
+
+- `lockdowns.srl` — Required to use this command.
+
+## What it does
+
+- Restricts the specified role according to your lockdown configuration.
+- Useful for quickly limiting the actions of a group of users without affecting the entire server.
+
+## See Also
+
+- [Channel Lockdown](/docs/user/commands/lockdown/channel)
+- [API: RoleLockdown](/docs/dev/templating/apiref/antiraid-ext-lockdowns-modes-rolelockdown)

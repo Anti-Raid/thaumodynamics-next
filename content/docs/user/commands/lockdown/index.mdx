@@ -1,0 +1,104 @@
+---
+title: Lockdown
+description:  A list of comprehensive commands that can be used to locking down a server during events such as a raid.
+icon: TbLockDown 
+---
+
+
+# Lockdown System
+
+Lockdowns are a way to allow restricting (or 'locking down') specific channels or roles within a server when under an attack or other such crises.
+
+## Quick Actions
+
+<Cards>
+  <Card
+    title="Overview & Philosophy"
+    href="/docs/user/commands/lockdown/"
+    icon={<ShieldAlert />}
+  >
+    General philosophy, migration notes, and usage overview for lockdowns.
+  </Card>
+  <Card
+    title="List Lockdowns"
+    href="/docs/user/commands/lockdown/list"
+    icon={<ListChecks />}
+  >
+    View all currently active lockdowns on your server.
+  </Card>
+  <Card
+    title="Remove Lockdown"
+    href="/docs/user/commands/lockdown/remove"
+    icon={<Trash2 />}
+  >
+    Remove an active lockdown from a channel or role.
+  </Card>
+  <Card
+    title="Full Server Lockdown"
+    href="/docs/user/commands/lockdown/full"
+    icon={<ShieldAlert />}
+  >
+    Lock down the entire server quickly in response to a raid.
+  </Card>
+  <Card
+    title="Channel Lockdown"
+    href="/docs/user/commands/lockdown/channel"
+    icon={<Lock />}
+  >
+    Lock down a specific channel.
+  </Card>
+  <Card
+    title="Role Lockdown"
+    href="/docs/user/commands/lockdown/role"
+    icon={<Shield />}
+  >
+    Lock down a specific role.
+  </Card>
+</Cards>
+
+---
+
+# Philosophy
+
+Lockdowns are a way to allow restricting (or 'locking down') specific channels or roles within a server when under an attack or other such crises.
+
+## Migrating from other bots
+
+If you are coming from Wick or another anti-nuke bot, please note that AntiRaid's lockdown functionality only applies to locking down channels and roles. The following Wick features are not present in AntiRaid lockdowns and are instead part of other modules:
+
+- Join Auto Kick (see Inspector Auto Response Member Join)
+- Join Auto Ban (see Inspector Auto Response Member Join)
+- Role Lockdown (WIP, not yet implemented)
+- All / Server Wide (Most likely will not be implemented)
+
+Blind lockdowns are not yet implemented in Anti-Raid.
+
+For comparison:
+- Quick Server Lockdown (`qsl`) -> Wick's Channels (`sc`) lockdown
+- Traditional Server Lockdown (`tsl`) -> No equivalent in Wick
+- Single-Channel Lockdown (`scl`) -> Wick's Channel (`c`) lockdown
+
+## Usage Notes
+
+For more details on each type of lockdown, how they are applied, and how multiple lockdown conflicts are resolved, see the [dev docs for lockdown](../../dev/rust_bot_modules_lockdown/README.md).
+
+---
+
+## Member Roles
+
+When you first setup lockdown, you will be prompted for a set of member roles. These are the 'critical roles' that AntiRaid will actually lock down.
+
+---
+
+## Permissions
+
+- **`lockdown.*`** – Allows using all lockdown commands (used by `/lockdown`).
+
+---
+
+## See Also
+
+- [Lockdown Dev Docs](../../dev/rust_bot_modules_lockdown/README)
+
+
+

@@ -1,0 +1,47 @@
+---
+title: Full Server Lockdown
+icon: ShieldAlert
+description: Lock down the entire server quickly in response to a raid.
+---
+
+# Full Server Lockdown
+
+The `/lockdowns quick` commands allow you to quickly lock down your entire server. These are the fastest ways to restrict all channels and roles during a raid or major incident.
+
+## Usage
+
+```
+/lockdowns quick reason:<reason>
+```
+
+![Image](/lockdowns-full.png)
+
+# Options
+
+<TypeTable
+  type={{
+    reason: {
+      description: "The the reason why you want the lockdown to initiate",
+      required: true,
+      type: "string",
+    },
+  }}
+/>
+
+
+## Permissions
+
+- `lockdowns.qsl` — Required for quick server lockdown.
+- `lockdowns.tsl` — Required for traditional server lockdown.
+
+## What it does
+
+- Restricts all channels and roles according to your lockdown configuration.
+- Best used in emergencies to prevent further disruption.
+- "Quick" and "Traditional" modes may differ in how they apply restrictions (see API docs for details).
+
+## See Also
+
+- [Channel Lockdown](/docs/user/commands/lockdown/channel)
+- [Role Lockdown](/docs/user/commands/lockdown/role)
+- [API: FullServerLockdown](/docs/dev/templating/apiref/antiraid-ext-lockdowns-modes-fullserverlockdown)
