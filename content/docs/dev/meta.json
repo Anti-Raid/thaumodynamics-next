@@ -6,6 +6,7 @@
   "pages": [
     "---Getting Started---",
     "templating",
+    "templateworker",
     "BadgerFang",
     "builtins",
     "cmd",
