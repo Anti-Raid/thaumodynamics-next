@@ -1,0 +1,188 @@
+---
+title: Delete Blocked URL
+description: Remove URLs from your server's block list
+icon: MdDelete
+---
+
+# Introduction
+
+The delete command allows moderators to unblock previously blocked URLs, restoring the ability for users to share those links in the server. This is useful when a URL was blocked in error, when a previously malicious domain is now safe, or when you simply want to allow a URL again.
+
+Once unblocked, the URL can immediately be shared in messages without restriction.
+
+# Usage
+
+This command can be used by users with the **"urlblock.delete"** permission by running `/urlblock delete`
+
+![Image](/urlblock-delete.png)
+
+# Response
+
+When a URL is successfully unblocked, you'll receive confirmation with the following information:
+
+| Field | Description |
+| ------------- | ------------------------------- |
+| **URL** | The specific URL that was unblocked |
+| **Status** | Confirmation that unblocking is complete |
+
+## Success Response
+```
+✅ URL Unblocked
+The URL `malicious-site.com` has been unblocked.
+```
+
+## Not Blocked Response
+```
+❌ URL Not Blocked
+The specified URL is not blocked right now and hence cannot be unblocked.
+```
+
+## No URL Specified Response
+```
+❌ No URL specified
+Please specify a URL to unblock
+```
+
+# Customization Options
+
+<TypeTable
+  type={{
+    url: {
+      description: "The exact URL to unblock from the server's block list",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+# URL Format Examples
+
+## Standard Unblock
+```
+/urlblock delete url:example.com
+```
+
+## With Full Protocol
+```
+/urlblock delete url:https://example.com
+```
+
+## Subdomain Unblock
+```
+/urlblock delete url:subdomain.example.com
+```
+
+# Steps to Unblock a URL
+
+<Steps>
+  <Step>
+    ### Check Current Blocks
+    Use `/urlblock list` to see all currently blocked URLs and find the exact format
+  </Step>
+  <Step>
+    ### Copy Exact URL
+    Copy the URL exactly as it appears in the block list to ensure successful removal
+  </Step>
+  <Step>
+    ### Run the delete command
+    Use `/urlblock delete url:example.com` with the exact URL from your list
+  </Step>
+  <Step>
+    ### Verify Removal
+    Check `/urlblock list` again to confirm the URL no longer appears
+  </Step>
+  <Step>
+    ### Test if Needed
+    Optional: Test that the URL can now be shared in messages
+  </Step>
+</Steps>
+
+# Important Notes
+
+## Exact Match Required
+- The URL must match **exactly** as it appears in the block list
+- Format differences (http vs https, www vs non-www) matter
+- Use `/urlblock list` to see the exact format that was blocked
+
+## Immediate Effect
+- Unblocked URLs become shareable immediately
+- No delay or cache refresh needed
+- Changes take effect in real-time across the server
+
+## Cannot Unblock Non-Blocked URLs
+- You can only unblock URLs that are currently blocked
+- Attempting to unblock a URL that isn't blocked will show an error
+- Check your blocked list first if you're unsure
+
+## Single URL Only
+- Unlike the add command, delete only accepts one URL at a time
+- To unblock multiple URLs, run the command multiple times
+
+## No Undo Warning
+- Once unblocked, the URL can be shared immediately
+- There is no confirmation prompt or undo option
+- Consider if you want to re-block it later before unblocking
+
+# Common Use Cases
+
+## False Positive Correction
+Unblock a legitimate URL that was blocked by mistake:
+```
+/urlblock delete url:legitimate-site.com
+```
+
+## Temporary Block Removal
+Remove a temporary block after an issue is resolved:
+```
+/urlblock delete url:temporarily-compromised.com
+```
+
+## Policy Change
+Unblock URLs that are now allowed under updated server policies:
+```
+/urlblock delete url:previously-banned-content.com
+```
+
+## Domain Recovery
+Unblock a domain that was previously malicious but has been cleaned:
+```
+/urlblock delete url:recovered-domain.com
+```
+
+# Troubleshooting
+
+## "URL Not Blocked" Error
+**Problem**: Getting an error that the URL isn't blocked
+
+**Solutions**:
+- Use `/urlblock list` to check exact blocked URL formats
+- Verify you're using the correct domain (check for typos)
+- Check if you're using the right protocol (http/https)
+- Ensure you're not including extra characters or spaces
+
+## Wrong URL Format
+**Problem**: Unable to unblock despite the URL being in the list
+
+**Solutions**:
+- Copy the URL exactly from `/urlblock list`
+- Check for protocol differences (https:// vs http://)
+- Verify subdomain matches (www vs non-www)
+- Look for any trailing slashes or paths in the blocked version
+
+## Unblock Not Taking Effect
+**Problem**: URL still being blocked after unblocking
+
+**Solutions**:
+- Use `/urlblock listcached` to check if cache is updated
+- Verify the URL was successfully removed with `/urlblock list`
+- Check if a similar URL pattern is still blocked
+- Ensure you unblocked the exact URL that matches the shared link
+
+## Permission Issues
+**Problem**: Cannot execute the unblock command
+
+**Solutions**:
+- Verify you have the `urlblock.delete` permission
+- Contact a server administrator to grant the permission
+- Check your role's permission settings
+

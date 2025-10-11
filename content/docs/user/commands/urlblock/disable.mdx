@@ -1,0 +1,167 @@
+---
+title: Disable URL Blocking
+description: Temporarily deactivate URL blocking in your Discord server
+icon: MdBlock
+---
+
+# Introduction
+
+The disable command temporarily deactivates the URL blocking system in your server, allowing all URLs to be posted without restriction. The blocked URL list remains intact and will be enforced again when you re-enable the system.
+
+This is useful for temporary maintenance, testing, or special events where you want to allow all links temporarily.
+
+# Usage
+
+This command can be used by users with the **"urlblock.disable"** permission by running `/urlblock disable`
+
+![Image](/urlblock-disable.png)
+
+# Response
+
+When URL blocking is successfully disabled, you'll receive confirmation:
+
+## Success Response
+```
+✅ URL Blocking Disabled
+URL blocking has been disabled in this server.
+```
+
+# Customization Options
+
+This command has no additional options - it simply disables the URL blocking system.
+
+# Steps to Disable URL Blocking
+
+<Steps>
+  <Step>
+    ### Assess the Need
+    Determine if you really need to disable the system or if you should just remove specific URLs
+  </Step>
+  <Step>
+    ### Inform Your Team
+    Let other moderators know you're disabling URL blocking and why
+  </Step>
+  <Step>
+    ### Run the disable command
+    Use `/urlblock disable` to deactivate the system
+  </Step>
+  <Step>
+    ### Monitor Activity
+    Keep extra vigilance for malicious URLs while the system is disabled
+  </Step>
+  <Step>
+    ### Re-enable When Ready
+    Use `/urlblock enable` to reactivate protection when you're done
+  </Step>
+</Steps>
+
+# What Happens When Disabled
+
+## Message Scanning Stops
+Messages are no longer scanned for blocked URLs - all links can be posted freely.
+
+## Block List Preserved
+Your blocked URL list remains intact and unchanged - it's just not being enforced.
+
+## Immediate Effect
+URL blocking stops immediately - users can post any URLs without restriction.
+
+## Cache Remains
+The blocked URL cache stays in memory, ready for when you re-enable the system.
+
+# Important Notes
+
+## Temporary Nature
+- Disabling is meant to be temporary, not permanent
+- Your block list is preserved and ready for re-enabling
+- Consider removing individual URLs instead of disabling entirely
+
+## Security Impact
+- All URLs can be posted while disabled, including malicious ones
+- Monitor your server extra carefully during this time
+- Have moderators on standby to handle potential issues
+
+## Does Not Delete Block List
+- Your blocked URLs remain in the database
+- They'll be enforced again when you re-enable
+- Use `/urlblock delete` if you want to permanently remove URLs
+
+## Permission Required
+- Only users with `urlblock.disable` permission can deactivate the system
+- This permission should be granted carefully as it reduces server protection
+
+## No Configuration Loss
+- All settings and blocked URLs are preserved
+- Re-enabling restores full functionality immediately
+- No need to reconfigure anything after re-enabling
+
+# Common Use Cases
+
+## Testing and Debugging
+Temporarily disable to test if URL blocking is causing unexpected issues:
+```
+1. /urlblock disable
+2. Test your issue
+3. /urlblock enable
+```
+
+## Special Events
+Allow all URLs during special events or community activities:
+```
+Before event: /urlblock disable
+After event: /urlblock enable
+```
+
+## Maintenance Window
+Disable during bot maintenance or major changes:
+```
+/urlblock disable
+(perform maintenance)
+/urlblock enable
+```
+
+## False Positive Investigation
+Temporarily disable to investigate if legitimate URLs are being blocked:
+```
+/urlblock disable
+(investigate and adjust block list)
+/urlblock enable
+```
+
+# Troubleshooting
+
+## URLs Still Being Blocked
+**Problem**: URLs still blocked after disabling
+
+**Solutions**:
+- Verify the disable command completed successfully
+- Check `/urlblock listcached` to see the enabled status
+- Ensure no other anti-spam systems are blocking URLs
+- Try re-running the disable command
+
+## Cannot Re-Enable
+**Problem**: Unable to enable after disabling
+
+**Solutions**:
+- Check you have `urlblock.enable` permission
+- Verify the bot is still online and responsive
+- Try running `/urlblock list` to check system status
+- Contact support if issue persists
+
+## Unexpected Disabling
+**Problem**: System disabled without your action
+
+**Solutions**:
+- Check moderation logs to see who disabled it
+- Verify your permission settings
+- Re-enable immediately if it was unintentional
+- Review who has `urlblock.disable` permission
+
+## Permission Errors
+**Problem**: Cannot disable the system
+
+**Solutions**:
+- Verify you have `urlblock.disable` permission
+- Contact server administrators
+- Check your role's permission configuration
+

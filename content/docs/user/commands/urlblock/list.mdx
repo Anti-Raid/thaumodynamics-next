@@ -1,0 +1,221 @@
+---
+title: List Blocked URLs
+description: View all blocked URLs in your Discord server with detailed information
+icon: MdList
+---
+
+# Introduction
+
+The list command displays all URLs currently blocked in your server, showing comprehensive details about each entry including who blocked it, when it was blocked, and the reason. This command uses pagination to present the information in an organized, easy-to-read format.
+
+This is essential for auditing your block list, understanding your server's URL restrictions, and managing your URL blocking strategy effectively.
+
+# Usage
+
+This command can be used by users with the **"urlblock.list"** permission by running `/urlblock list`
+
+![Image](/urlblock-list.png)
+
+# Response
+
+The list command displays blocked URLs in a paginated embed format. Each page shows detailed information about one blocked URL.
+
+## Blocked URL Display
+
+Each blocked URL entry shows:
+
+| Field | Description |
+| ------------- | ------------------------------- |
+| **URL** | The exact URL that is blocked |
+| **Reason** | Why the URL was blocked |
+| **Blocked by** | The moderator who added the block |
+| **Created At** | The date and time when it was blocked |
+
+## Example Display
+```
+🚫 Blocked URL #1
+
+URL: `malicious-site.com`
+Reason: `Blocked at moderator request`
+Blocked by: <@123456789>
+
+Created At: 2025-10-11 14:30:45
+```
+
+## Empty List Response
+```
+✅ No URLs Blocked
+There are no URLs currently blocked in this server.
+```
+
+# Navigation
+
+The list uses interactive pagination buttons to navigate through your blocked URLs:
+
+- **◀️ Previous**: Go to the previous blocked URL
+- **▶️ Next**: Go to the next blocked URL
+- **Page Indicator**: Shows current position (e.g., "Page 1 of 15")
+
+# Customization Options
+
+This command has no additional options - it displays all blocked URLs automatically.
+
+# Steps to View Blocked URLs
+
+<Steps>
+  <Step>
+    ### Run the list command
+    Use `/urlblock list` to see all blocked URLs
+  </Step>
+  <Step>
+    ### Review First Entry
+    The first blocked URL will be displayed with full details
+  </Step>
+  <Step>
+    ### Navigate Through List
+    Use the Previous/Next buttons to browse through all entries
+  </Step>
+  <Step>
+    ### Note Important Entries
+    Record any URLs that need attention or review
+  </Step>
+  <Step>
+    ### Take Action if Needed
+    Use `/urlblock delete` to remove outdated entries
+  </Step>
+</Steps>
+
+# Information Displayed
+
+## URL Field
+The exact URL as it's stored in the block list, including protocol if specified.
+
+## Reason Field
+The reason provided when the URL was blocked:
+- Default: "Blocked at moderator request"
+- Custom reasons if implemented in your system
+- Helps understand the context of why URLs were blocked
+
+## Blocked By Field
+Shows the moderator who added the block:
+- Displays as a user mention (<@userID>)
+- Allows you to follow up with the moderator if needed
+- Useful for accountability and questions
+
+## Created At Field
+The exact timestamp when the URL was blocked:
+- Format: YYYY-MM-DD HH:MM:SS
+- Shows in your server's timezone
+- Helps track when blocks were added
+
+# Important Notes
+
+## Pagination System
+- Each page shows one blocked URL with full details
+- Use navigation buttons to move between entries
+- The system remembers your position if you need to return
+
+## Real-Time Data
+- The list reflects the current state of your block list
+- Any changes made via add/delete commands are immediately reflected
+- No caching delays or refresh needed
+
+## Permission Required
+- Only users with `urlblock.list` permission can view the list
+- Protects potentially sensitive URL information
+- Ensures only authorized staff can audit blocks
+
+## No Filtering
+- Shows all blocked URLs without filtering
+- Cannot search or filter by specific criteria
+- For quick checks, use `/urlblock listcached` instead
+
+## Chronological Order
+- URLs are typically listed in the order they were added
+- Newer blocks appear later in the list
+- Order may vary based on database implementation
+
+# Common Use Cases
+
+## Regular Audits
+Review blocked URLs periodically to maintain a clean list:
+```
+/urlblock list
+(review each entry)
+(remove outdated blocks with /urlblock delete)
+```
+
+## New Moderator Training
+Show new moderators what URLs are blocked and why:
+```
+/urlblock list
+(explain each entry to the trainee)
+```
+
+## Incident Investigation
+Check if a URL is already blocked when responding to reports:
+```
+/urlblock list
+(search for the reported URL)
+```
+
+## Block List Documentation
+Export blocked URLs for documentation purposes:
+```
+/urlblock list
+(manually record important entries)
+```
+
+## Coordination with Team
+Share block list status with other moderators:
+```
+/urlblock list
+(review together during team meetings)
+```
+
+# Troubleshooting
+
+## Empty List Despite Blocks
+**Problem**: List shows "No URLs Blocked" but you've added URLs
+
+**Solutions**:
+- Verify blocks were added successfully
+- Check if blocks were deleted accidentally
+- Use `/urlblock listcached` to see cached entries
+- Try adding a test URL to verify the system is working
+
+## Cannot Navigate Pages
+**Problem**: Pagination buttons not working
+
+**Solutions**:
+- Ensure you're clicking the correct buttons
+- Check if the interaction has timed out (buttons expire after 15 minutes)
+- Run the command again to get fresh pagination
+- Report the issue if it persists
+
+## Missing Information
+**Problem**: Some fields show incomplete data
+
+**Solutions**:
+- This may be expected for older blocks
+- Default reason is "Blocked at moderator request"
+- Some data may not be stored for legacy blocks
+- Newer blocks should show complete information
+
+## Permission Denied
+**Problem**: Cannot run the list command
+
+**Solutions**:
+- Verify you have `urlblock.list` permission
+- Contact server administrators to grant access
+- Check your role's permission settings
+- Ensure the bot has proper permissions
+
+## Long Load Times
+**Problem**: List takes a while to display
+
+**Solutions**:
+- This is normal for very large block lists (100+ entries)
+- The system needs to fetch data from the database
+- Consider using `/urlblock listcached` for faster results
+- Contact support if consistently slow

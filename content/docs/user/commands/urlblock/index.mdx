@@ -1,58 +1,85 @@
 ---
-title: Lockdown
-description:  A list of comprehensive commands that can be used to locking down a server during events such as a raid.
-icon: TbLockDown 
+title: URL Block System
+description: Comprehensive guide to blocking and managing URLs in your Discord server
+icon: MdBlock
 ---
 
-# Lockdown System
+# Introduction
 
-Lockdowns are a way to allow restricting (or 'locking down') specific channels or roles within a server when under an attack or other such crises.
+The URL Block system provides powerful tools to prevent specific URLs from being shared in your server. This feature helps maintain a safe environment by blocking malicious, spam, or unwanted links before they can be posted.
 
-## Quick Actions
+When enabled, the system automatically scans messages for blocked URLs and takes action to prevent their distribution.
+
+# Key Features
+
+## Automated Protection
+The URL Block system runs in real-time, scanning every message for blocked URLs and preventing them from being posted.
+
+## Flexible Management
+Add, remove, enable, or disable URL blocking with simple commands. Support for blocking multiple URLs at once using comma-separated lists.
+
+## Comprehensive Logging
+Every blocked URL is tracked with details including who blocked it, when it was blocked, and the reason for blocking.
+
+## Smart URL Handling
+The system automatically handles URLs with or without protocols (http://, https://), normalizing them for consistent blocking.
+
+# Quick Actions
 
 <Cards>
-  <Card
-    title="Overview & Philosophy"
-    href="/docs/user/commands/lockdown/"
-    icon={<ShieldAlert />}
-  >
-    General philosophy, migration notes, and usage overview for lockdowns.
+  <Card title="Add Blocked URL" href="/docs/user/commands/urlblock/add" icon="🚫">
+    Block specific URLs from being posted in your server
   </Card>
-  <Card
-    title="List Lockdowns"
-    href="/docs/user/commands/lockdown/list"
-    icon={<ListChecks />}
-  >
-    View all currently active lockdowns on your server.
+  <Card title="Remove Blocked URL" href="/docs/user/commands/urlblock/delete" icon="✅">
+    Unblock previously blocked URLs
   </Card>
-  <Card
-    title="Remove Lockdown"
-    href="/docs/user/commands/lockdown/remove"
-    icon={<Trash2 />}
-  >
-    Remove an active lockdown from a channel or role.
+  <Card title="Enable Protection" href="/docs/user/commands/urlblock/enable" icon="🛡️">
+    Activate URL blocking in your server
   </Card>
-  <Card
-    title="Full Server Lockdown"
-    href="/docs/user/commands/lockdown/full"
-    icon={<ShieldAlert />}
-  >
-    Lock down the entire server quickly in response to a raid.
+  <Card title="Disable Protection" href="/docs/user/commands/urlblock/disable" icon="⏸️">
+    Temporarily disable URL blocking
   </Card>
-  <Card
-    title="Channel Lockdown"
-    href="/docs/user/commands/lockdown/channel"
-    icon={<Lock />}
-  >
-    Lock down a specific channel.
+  <Card title="View Blocked URLs" href="/docs/user/commands/urlblock/list" icon="📋">
+    See all currently blocked URLs with details
   </Card>
-  <Card
-    title="Role Lockdown"
-    href="/docs/user/commands/lockdown/role"
-    icon={<Shield />}
-  >
-    Lock down a specific role.
+  <Card title="View Cache" href="/docs/user/commands/urlblock/listcached" icon="💾">
+    Check cached blocked URLs for quick reference
   </Card>
 </Cards>
 
----
+# How It Works
+
+## Message Scanning
+When URL blocking is enabled, every message sent in the server is automatically scanned for blocked URLs before it's posted.
+
+## Instant Action
+If a blocked URL is detected, the message is prevented from being sent, and the user is notified that the URL is blocked.
+
+## Pattern Matching
+The system checks against all blocked URL patterns, including exact matches and domain-level blocks.
+
+# Common Use Cases
+
+## Phishing Protection
+Block known phishing domains to protect your community from scam attempts and credential theft.
+
+## Spam Prevention
+Prevent spam links from being shared repeatedly by blocking common spam domains.
+
+## Content Control
+Block URLs to inappropriate content, competing servers, or unwanted external resources.
+
+## Malware Defense
+Protect your server by blocking domains known to distribute malware or malicious software.
+
+# Permission Requirements
+
+All URL Block commands require specific permissions:
+
+| Command | Required Permission |
+| ------- | ------------------- |
+| Add | `urlblock.add` |
+| Delete | `urlblock.delete` |
+| Enable | `urlblock.enable` |
+| Disable | `urlblock.disable` |
+| List | `urlblock.list` |
