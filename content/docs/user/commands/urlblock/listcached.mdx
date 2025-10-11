@@ -1,0 +1,226 @@
+---
+title: List Cached Blocked URLs
+description: View cached blocked URLs for quick reference and system verification
+icon: MdStorage
+---
+
+# Introduction
+
+The listcached command displays all URLs currently stored in the bot's cache, providing a fast way to verify which URLs are being actively checked against messages. This command also shows whether URL blocking is currently enabled, making it useful for quick system status checks.
+
+Unlike the regular list command, listcached retrieves data from memory rather than the database, resulting in instant response times even with large block lists.
+
+# Usage
+
+This command can be used by users with the **"urlblock.list"** permission by running `/urlblock listcached`
+
+![Image](/urlblock-listcached.png)
+
+# Response
+
+The listcached command displays cached URLs in a paginated embed format, showing one URL per page along with the system's enabled status.
+
+## Cached URL Display
+
+Each cached URL entry shows:
+
+| Field | Description |
+| ------------- | ------------------------------- |
+| **URL** | The exact URL in the cache |
+| **Is Enabled** | Whether URL blocking is currently active |
+
+## Example Display
+```
+💾 Blocked URL #1
+
+URL: `malicious-site.com`
+Is Enabled: true
+```
+
+## Empty Cache Response
+```
+✅ No URLs Blocked
+There are no URLs currently blocked in this server.
+```
+
+# Navigation
+
+The listcached command uses the same pagination system as the regular list:
+
+- **◀️ Previous**: Go to the previous cached URL
+- **▶️ Next**: Go to the next cached URL
+- **Page Indicator**: Shows current position (e.g., "Page 1 of 15")
+
+# Customization Options
+
+This command has no additional options - it displays all cached URLs automatically.
+
+# Steps to View Cached URLs
+
+<Steps>
+  <Step>
+    ### Run the listcached command
+    Use `/urlblock listcached` for instant cache view
+  </Step>
+  <Step>
+    ### Check System Status
+    Verify "Is Enabled" shows the correct status (true/false)
+  </Step>
+  <Step>
+    ### Navigate Through Cache
+    Browse all cached entries to verify completeness
+  </Step>
+  <Step>
+    ### Compare with Database
+    Use `/urlblock list` to compare cache with actual database if needed
+  </Step>
+  <Step>
+    ### Verify Changes
+    Confirm recent add/delete operations are reflected in cache
+  </Step>
+</Steps>
+
+# Cache vs Database List
+
+## Key Differences
+
+| Feature | `/urlblock list` | `/urlblock listcached` |
+| ------- | ---------------- | ---------------------- |
+| **Data Source** | Database | Memory cache |
+| **Speed** | Slower | Instant |
+| **Details** | Full (reason, moderator, timestamp) | Minimal (URL only) |
+| **Accuracy** | Always current | Usually current |
+| **Use Case** | Full audits | Quick checks |
+
+## When to Use Each
+
+**Use `/urlblock list` when:**
+- You need full details about blocks
+- You want to see who blocked URLs and when
+- You're conducting a thorough audit
+- You need the reason for blocks
+
+**Use `/urlblock listcached` when:**
+- You need a quick reference
+- You want to verify cache is working
+- You're checking if a URL is blocked right now
+- You want instant results without database load
+
+# Important Notes
+
+## Cache Purpose
+The cache exists for performance:
+- Allows instant URL lookups on every message
+- Prevents database queries for each message sent
+- Updates automatically when URLs are added/removed
+- Essential for real-time message scanning
+
+## Synchronization
+The cache should always match the database:
+- Updates immediately when you add URLs
+- Updates immediately when you delete URLs
+- Reflects current enabled/disabled state
+- Discrepancies may indicate system issues
+
+## Performance Benefits
+- No database query needed
+- Instant response regardless of list size
+- Minimal server load
+- Can be run frequently without concern
+
+## Limited Information
+- Only shows URL and enabled status
+- Doesn't show reason, moderator, or timestamp
+- For full details, use `/urlblock list` instead
+- Designed for quick verification, not auditing
+
+## Same Permission Required
+- Requires `urlblock.list` permission like the regular list
+- Protects cache information the same way
+- Ensures only authorized staff can view
+
+# Common Use Cases
+
+## Quick URL Check
+Verify if a URL is in the cache without waiting for database query:
+```
+/urlblock listcached
+(quickly scan for the URL in question)
+```
+
+## System Verification
+Confirm the cache is functioning properly:
+```
+1. /urlblock add url:test.com
+2. /urlblock listcached
+3. Verify test.com appears in cache
+```
+
+## Performance Testing
+Check cache performance with large lists:
+```
+/urlblock listcached
+(note the instant response even with 100+ URLs)
+```
+
+## Status Confirmation
+Quickly check if URL blocking is enabled:
+```
+/urlblock listcached
+(check "Is Enabled" field on any entry)
+```
+
+## Post-Maintenance Check
+Verify cache after system changes:
+```
+(after maintenance)
+/urlblock listcached
+(confirm cache is populated correctly)
+```
+
+# Troubleshooting
+
+## Cache Empty Despite Blocks
+**Problem**: Listcached shows no URLs but you've added blocks
+
+**Solutions**:
+- Check if URL blocking was recently enabled
+- Cache may need to be rebuilt - try `/urlblock disable` then `/urlblock enable`
+- Verify blocks exist with `/urlblock list`
+- Contact support if cache won't populate
+
+## Discrepancy with Database
+**Problem**: Listcached shows different URLs than `/urlblock list`
+
+**Solutions**:
+- This should rarely happen - cache updates automatically
+- Try adding a test URL to trigger cache refresh
+- Disable and re-enable URL blocking to rebuild cache
+- Report the issue if it persists
+
+## "Is Enabled" Shows Wrong Status
+**Problem**: Enabled status doesn't match actual state
+
+**Solutions**:
+- Run `/urlblock enable` or `/urlblock disable` to sync
+- Check with `/urlblock list` for database status
+- Cache should update immediately with enable/disable commands
+- Report if status remains incorrect
+
+## Cannot See Recent Changes
+**Problem**: URLs just added don't appear in cache
+
+**Solutions**:
+- Verify the add command completed successfully
+- Check `/urlblock list` to confirm URL is in database
+- Cache should update instantly - try running listcached again
+- May indicate a system issue if persistent
+
+## Performance Still Slow
+**Problem**: Listcached not responding instantly
+
+**Solutions**:
+- This is unusual - cache should be instant
+- Check server load and bot status
+- May indicate memory issues with the bot
+- Contact support if consistently slow

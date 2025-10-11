@@ -5,6 +5,7 @@
     "backups",
     "moderation",
     "lockdown",
+    "urlblock",
     "server-info",
     "remindme",
     "whois",

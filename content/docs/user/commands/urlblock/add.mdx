@@ -1,0 +1,210 @@
+---
+title: Add Blocked URL
+description: Block specific URLs from being posted in your Discord server
+icon: MdAddCircle
+---
+
+# Introduction
+
+The add command allows moderators to block specific URLs from being shared in the server. Once a URL is blocked, any message containing that URL will be prevented from being posted, helping maintain a safe and controlled environment.
+
+Multiple URLs can be blocked at once by providing a comma-separated list, making it easy to quickly block several malicious or unwanted domains.
+
+# Usage
+
+This command can be used by users with the **"urlblock.add"** permission by running `/urlblock add`
+
+![Image](/urlblock-add.png)
+
+# Response
+
+When URLs are successfully blocked, you'll receive confirmation with the following information:
+
+| Field | Description |
+| ------------- | ------------------------------- |
+| **URLs Blocked** | List of all newly blocked URLs |
+| **Status** | Confirmation that blocking is active |
+| **Duplicates** | Note if any URLs were already blocked |
+
+## Success Response
+```
+✅ URLs Blocked
+The following URLs have been blocked:
+- `malicious-site.com`
+- `spam-domain.net`
+- `phishing-link.org`
+```
+
+## Already Blocked Response
+```
+❌ No URLs blocked
+The specified URLs are already blocked.
+```
+
+## Invalid URL Response
+```
+❌ Invalid URL
+The URL cannot contain spaces. Please provide a valid URL: `bad url.com`
+```
+
+# Customization Options
+
+<TypeTable
+  type={{
+    url: {
+      description: "The URL(s) to block. Multiple URLs can be separated by commas",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+# URL Format Examples
+
+## Single URL
+```
+/urlblock add url:malicious-site.com
+```
+
+## Multiple URLs
+```
+/urlblock add url:spam.com, phishing.net, scam.org
+```
+
+## With Protocol
+```
+/urlblock add url:https://dangerous-site.com
+```
+
+## Without Protocol
+The system automatically adds `https://` if no protocol is provided:
+```
+/urlblock add url:example.com
+→ Blocks: https://example.com
+```
+
+# Steps to Block a URL
+
+<Steps>
+  <Step>
+    ### Identify the URL
+    Determine the exact URL or domain you want to block. Check for correct spelling and format.
+  </Step>
+  <Step>
+    ### Run the add command
+    Use `/urlblock add url:example.com` or list multiple URLs separated by commas
+  </Step>
+  <Step>
+    ### Provide context
+    The system logs "Blocked at moderator request" - consider adding a note in your moderation channel
+  </Step>
+  <Step>
+    ### Verify the block
+    Use `/urlblock list` to confirm the URL appears in your blocked list
+  </Step>
+  <Step>
+    ### Test if needed
+    Optional: Test in a private channel that the URL is properly blocked
+  </Step>
+</Steps>
+
+# Advanced Usage
+
+## Blocking Multiple Domains
+Block several related domains at once:
+```
+/urlblock add url:spam1.com, spam2.com, spam3.com
+```
+
+## Subdomain Blocking
+Block specific subdomains:
+```
+/urlblock add url:malicious.example.com
+```
+
+## Different Protocols
+Block both HTTP and HTTPS versions if needed:
+```
+/urlblock add url:http://bad-site.com, https://bad-site.com
+```
+
+# Important Notes
+
+## URL Validation
+- URLs **cannot contain spaces** - the command will fail if spaces are detected
+- Malformed URLs will be rejected with an error message
+- Each URL is validated before being added to the block list
+
+## Duplicate Prevention
+- URLs already in the block list will be skipped
+- You'll receive feedback if any URLs were duplicates
+- Only newly blocked URLs are confirmed in the response
+
+## Automatic Normalization
+- URLs without protocols automatically get `https://` added
+- This ensures consistent blocking regardless of how users share links
+
+## Immediate Effect
+- Blocked URLs take effect immediately after adding
+- The cache is updated automatically
+- No server restart or delay required
+
+## Record Keeping
+Every blocked URL is logged with:
+- The moderator who added it (your user ID)
+- The timestamp when it was blocked
+- The reason (defaults to "Blocked at moderator request")
+
+# Common Use Cases
+
+## Emergency Phishing Response
+Quickly block phishing URLs that are being actively shared:
+```
+/urlblock add url:phishing-discord.com
+```
+
+## Bulk Spam Domain Block
+Block multiple known spam domains at once:
+```
+/urlblock add url:spam1.com, spam2.com, spam3.com, spam4.com
+```
+
+## Competitor Link Prevention
+Block links to competing communities or servers:
+```
+/urlblock add url:competitor-server.com
+```
+
+## Malware Protection
+Block domains known to distribute malicious software:
+```
+/urlblock add url:malware-download-site.com
+```
+
+# Troubleshooting
+
+## "Invalid URL" Error
+**Problem**: Getting errors when trying to block a URL
+
+**Solutions**:
+- Remove all spaces from the URL
+- Check for special characters that might cause issues
+- Try adding the protocol explicitly (https://)
+- Verify there are no typos in the URL
+
+## "Already Blocked" Message
+**Problem**: Trying to block a URL that's already blocked
+
+**Solutions**:
+- Use `/urlblock list` to see all blocked URLs
+- Verify you're not trying to add a duplicate
+- Check if a similar domain or subdomain is already blocked
+
+## URLs Not Blocking After Adding
+**Problem**: URLs still appearing in messages after blocking
+
+**Solutions**:
+- Verify URL blocking is enabled with `/urlblock enable`
+- Check the exact URL format that's being shared
+- Use `/urlblock listcached` to verify the cache is updated
+- Ensure you blocked the correct URL format (with/without www, etc.)

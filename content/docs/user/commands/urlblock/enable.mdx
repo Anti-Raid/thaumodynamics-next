@@ -1,0 +1,161 @@
+---
+title: Enable URL Blocking
+description: Activate URL blocking protection in your Discord server
+icon: MdShield
+---
+
+# Introduction
+
+The enable command activates the URL blocking system in your server, allowing the bot to automatically scan messages and prevent blocked URLs from being posted. Once enabled, all messages will be checked against your blocked URL list in real-time.
+
+This is the master switch for URL blocking - even if you have URLs in your block list, they won't be blocked until the system is enabled.
+
+# Usage
+
+This command can be used by users with the **"urlblock.enable"** permission by running `/urlblock enable`
+
+![Image](/urlblock-enable.png)
+
+# Response
+
+When URL blocking is successfully enabled, you'll receive confirmation:
+
+## Success Response
+```
+✅ URL Blocking Enabled
+URL blocking has been enabled in this server.
+```
+
+# Customization Options
+
+This command has no additional options - it simply enables the URL blocking system.
+
+# Steps to Enable URL Blocking
+
+<Steps>
+  <Step>
+    ### Prepare Your Block List
+    Add URLs to your block list using `/urlblock add` before enabling (optional but recommended)
+  </Step>
+  <Step>
+    ### Run the enable command
+    Use `/urlblock enable` to activate the system
+  </Step>
+  <Step>
+    ### Verify Status
+    Confirm the system is active - messages will now be scanned for blocked URLs
+  </Step>
+  <Step>
+    ### Test the System
+    Optional: Test in a private channel that blocked URLs are being caught
+  </Step>
+  <Step>
+    ### Monitor Activity
+    Keep an eye on the system to ensure it's working as expected
+  </Step>
+</Steps>
+
+# What Happens When Enabled
+
+## Message Scanning Begins
+Every message sent in the server is automatically scanned for URLs that match your block list.
+
+## Real-Time Protection
+Blocked URLs are prevented from being posted instantly - users will receive a notification that their URL is blocked.
+
+## Event Registration
+The system registers for MESSAGE events to monitor all incoming messages.
+
+## Cache Activation
+The blocked URL cache becomes active for fast, efficient lookups on every message.
+
+# Important Notes
+
+## Immediate Effect
+- URL blocking starts working immediately after enabling
+- All new messages are scanned automatically
+- No restart or delay required
+
+## Requires Block List
+- Enabling alone doesn't block anything - you need URLs in your block list
+- Add URLs with `/urlblock add` before or after enabling
+
+## Performance Impact
+- The system is optimized for performance with caching
+- Minimal impact on message send times
+- Scales efficiently even with large block lists
+
+## Already Enabled
+- Running the command when already enabled is safe
+- It simply confirms the system is active
+- No negative effects from enabling multiple times
+
+## Permission Required
+- Only users with `urlblock.enable` permission can activate the system
+- Typically granted to administrators and senior moderators
+
+# Common Use Cases
+
+## Initial Setup
+Enable URL blocking for the first time after adding your initial block list:
+```
+1. /urlblock add url:spam.com, malicious.net
+2. /urlblock enable
+```
+
+## After Maintenance
+Re-enable URL blocking after temporarily disabling it for maintenance:
+```
+/urlblock enable
+```
+
+## Emergency Activation
+Quickly enable protection when discovering an active threat:
+```
+1. /urlblock enable
+2. /urlblock add url:active-threat.com
+```
+
+## Server Transfer
+Enable URL blocking when migrating from another bot or system:
+```
+/urlblock enable
+```
+
+# Troubleshooting
+
+## URLs Not Being Blocked
+**Problem**: URLs still appearing after enabling
+
+**Solutions**:
+- Verify URLs are in your block list with `/urlblock list`
+- Check the exact format of URLs being shared
+- Ensure you're blocking the correct domain/format
+- Use `/urlblock listcached` to verify cache is working
+
+## Performance Issues
+**Problem**: Message sending seems slower after enabling
+
+**Solutions**:
+- Check your block list size with `/urlblock list`
+- Verify the cache is functioning with `/urlblock listcached`
+- Contact support if issues persist
+- Consider consolidating similar URLs
+
+## Permission Errors
+**Problem**: Cannot enable the system
+
+**Solutions**:
+- Verify you have `urlblock.enable` permission
+- Contact server administrators for permission
+- Check your role's permissions settings
+
+## System Not Responding
+**Problem**: Enable command doesn't seem to work
+
+**Solutions**:
+- Check bot permissions in the server
+- Verify the bot has access to read messages
+- Ensure the bot is online and responding
+- Try running `/urlblock listcached` to verify system status
+
