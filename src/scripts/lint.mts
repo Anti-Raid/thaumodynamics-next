@@ -69,13 +69,13 @@ async function getHeadings(path: string, content: string) {
 
 async function checkLinks() {
   const docsFiles = await Promise.all(
-    await glob("content/docs/**/*.mdx").then((files) =>
+    await glob("content/docs/**/*.{md,mdx}").then((files) =>
       files.map(readFromPath),
     ),
   );
 
   const blogFiles = await Promise.all(
-    await glob("content/blog/**/*.mdx").then((files) =>
+    await glob("content/blog/**/*.{md,mdx}").then((files) =>
       files.map(readFromPath),
     ),
   );
@@ -99,6 +99,7 @@ async function checkLinks() {
   });
 
   const scanned = await scanURLs({
+    preset: "next",
     populate: {
       "(home)/blog/[slug]": await Promise.all(blogs),
       "docs/[...slug]": await Promise.all(docs),
@@ -109,14 +110,19 @@ async function checkLinks() {
     `collected ${scanned.urls.size} URLs, ${scanned.fallbackUrls.length} fallbacks`,
   );
 
-  const getUrl = createGetUrl("/docs");
+  const getDocsUrl = createGetUrl("/docs");
+  const getBlogUrl = createGetUrl("/blog");
   printErrors(
     await validateFiles([...docsFiles, ...blogFiles], {
       scanned,
-
+      checkExternal: process.env.VALIDATE_EXTERNAL === "true",
       pathToUrl(value) {
+        if (value.startsWith("content/blog")) {
+          const info = parseFilePath(path.relative("content/blog", value));
+          return getBlogUrl(getSlugs(info)[0]);
+        }
         const info = parseFilePath(path.relative("content/docs", value));
-        return getUrl(getSlugs(info));
+        return getDocsUrl(getSlugs(info));
       },
     }),
     true,
