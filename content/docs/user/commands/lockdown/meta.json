@@ -8,6 +8,5 @@
   ],
   "title": "Lockdown",
   "icon": "TbLockDown",
-  "description": "A list of comprehensive commands that can be used to locking down a server during events such as a raid.",
   "category": "lockdown"
 }

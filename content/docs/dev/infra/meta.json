@@ -1,6 +1,5 @@
 {
   "icon": "FaNetworkWired",
   "title": "Infra",
-  "description": "Infrastructure, proxies, and daemons.",
   "keywords": ["infrastructure", "proxies", "daemons"]
 }

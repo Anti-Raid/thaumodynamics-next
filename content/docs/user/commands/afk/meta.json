@@ -2,6 +2,5 @@
   "pages": ["start-afk", "stop-afk"],
   "title": "AFK",
   "icon": "MdAccessTime",
-  "description": "Commands to set and manage your AFK status",
   "category": "User Commands"
 }

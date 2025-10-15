@@ -30,9 +30,7 @@ export const docs = defineDocs({
     }),
   },
   meta: {
-    schema: metaSchema.extend({
-      description: z.string().optional(),
-    }),
+    schema: metaSchema,
   },
 });
 
