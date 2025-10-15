@@ -1,0 +1,61 @@
+---
+title: Adding Permission to a Role
+description: A fun and easy guide on assigning permissions to a role through the website.
+---
+
+# Introduction
+
+Well, Hello there pal!
+
+Looking to give a role some shiny new permissions? Worry not — we got you covered, quick and easy! 💪  
+
+Before we start, make sure you're logged in to our [website](https://antiraid.xyz).  
+
+# Options
+
+<TypeTable
+  type={{
+    role: {
+      description:
+        'Select the role you want to modify from the dropdown.',
+      type: 'string',
+    },
+    permissions: {
+      description:
+        'Specify which permissions this role should have.',
+      type: 'string',
+    },
+    index: {
+      description:
+        'Defines where this role stands in the permission hierarchy on Anti-Raid. A lower index means higher priority in the hierarchy, and vice versa.',
+      type: 'number',
+    },
+  }}
+/>
+
+# Procedure
+
+<Steps>
+  <Step>
+    ### Step 1: Select the Role  
+    From the dropdown, pick the role you’d like to grant permissions to. Make sure it’s the right one — no sneaky mix-ups! 😅
+  </Step>
+
+  <Step>
+    ### Step 2: Assign Permissions  
+    Choose the permissions you want the role to have.  
+    You can also set its **index** if you want to control where it sits in the hierarchy.
+  </Step>
+
+  <Callout title="Pro Tip 💡" type="info">
+    You can assign **multiple permissions** to a role!  
+    Just click the **Add Permission** button below and keep stacking them up. 🚀
+  </Callout>
+
+  <Step>
+    ### Step 3: Save Changes  
+    Once everything looks good, hit **Save** — and voilà! Your role now has the right permissions. 🎉
+  </Step>
+</Steps>
+
+![Screenshot of the permissions setup page](./adding-perms-site.png)
