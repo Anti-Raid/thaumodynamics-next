@@ -1,9 +1,9 @@
 {
   "title": "User Guide",
-  "description": "Basic knowledge for using Antiraid",
   "icon": "Bot",
   "root": true,
   "pages": [
+    "index",
     "---Getting Started---",
     "commands",
     "---Essentials---",

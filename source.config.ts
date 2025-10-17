@@ -15,24 +15,14 @@ import { remarkAutoTypeTable } from "fumadocs-typescript";
 import type { ElementContent } from "hast";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import { z } from "zod";
 
 export const docs = defineDocs({
   docs: {
     async: true,
-    schema: frontmatterSchema.extend({
-      preview: z.string().optional(),
-      index: z.boolean().default(false),
-      /**
-       * API routes only
-       */
-      method: z.string().optional(),
-    }),
+    schema: frontmatterSchema,
   },
   meta: {
-    schema: metaSchema.extend({
-      description: z.string().optional(),
-    }),
+    schema: metaSchema,
   },
 });
 
