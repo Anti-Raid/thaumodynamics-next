@@ -96,7 +96,7 @@
     "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=20"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
