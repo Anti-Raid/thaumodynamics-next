@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import {
   FiArrowRight,
@@ -56,11 +56,18 @@ const HomeContent: React.FC = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
   const y2 = useTransform(scrollY, [0, 300], [0, -100]);
+  const animationFrameRef = useRef<number | null>(null);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    // Throttle mouse move updates to prevent excessive state updates
-    requestAnimationFrame(() => {
+    // Cancel previous animation frame if it exists
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+    
+    // Schedule new animation frame
+    animationFrameRef.current = requestAnimationFrame(() => {
       setMousePosition({ x: e.clientX, y: e.clientY });
+      animationFrameRef.current = null;
     });
   }, []);
 
@@ -68,6 +75,10 @@ const HomeContent: React.FC = () => {
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      // Clean up any pending animation frame
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
   }, [handleMouseMove]);
 

@@ -1,6 +1,6 @@
 import * as path from "node:path";
 import Link from "fumadocs-core/link";
-import { getPageTreePeers } from "fumadocs-core/server";
+import { getPageTreePeers } from 'fumadocs-core/page-tree';
 import { APIPage } from "fumadocs-openapi/ui";
 import * as Twoslash from "fumadocs-twoslash/ui";
 import { createGenerator } from "fumadocs-typescript";
@@ -46,7 +46,7 @@ export default async function Page(props: {
 
   if (!page) notFound();
 
-  const { body: Mdx, toc, lastModified } = await page.data.load();
+  const { body: Mdx, toc, lastModified } = await (page.data as any).load();
 
   return (
     <PageRoot
@@ -116,9 +116,10 @@ export default async function Page(props: {
                 <APIPage {...openapi.getAPIPageProps(props)} />
               ),
               DocsCategory: ({ url }) => <DocsCategory url={url ?? page.url} />,
+              UserDocsCards: ({ url }: { url?: string }) => <UserDocsCards url={url} />,
             })}
           />
-          {page.data.index ? <DocsCategory url={page.url} /> : null}
+          {(page.data as any).index ? <DocsCategory url={page.url} /> : null}
         </div>
         {lastModified && <PageLastUpdate date={lastModified} />}
         <PageFooter />
@@ -134,6 +135,18 @@ export default async function Page(props: {
 }
 
 function DocsCategory({ url }: { url: string }) {
+  return (
+    <Cards>
+      {getPageTreePeers(source.pageTree, url).map((peer) => (
+        <Card key={peer.url} title={peer.name} href={peer.url}>
+          {peer.description}
+        </Card>
+      ))}
+    </Cards>
+  );
+}
+
+function UserDocsCards({ url = '/docs/user' }: { url?: string }) {
   return (
     <Cards>
       {getPageTreePeers(source.pageTree, url).map((peer) => (

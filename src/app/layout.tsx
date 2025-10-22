@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { RootProvider } from "fumadocs-ui/provider";
+import { RootProvider } from "fumadocs-ui/provider/next";
 import type { Viewport } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";

@@ -31,7 +31,6 @@ export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
       lazy: true,
-      experimentalJSEngine: true,
       langs: ["ts", "js", "html", "tsx", "mdx", "lua", "luau"],
       inline: "tailing-curly-colon",
       themes: {

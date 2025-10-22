@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               width="32"
               height="32"
             />
-            <span className="font-medium max-md:hidden [.uwu_&]:hidden">
+            <span className="font-medium max-md:hidden in-[.uwu]:hidden">
               AntiRaid
             </span>
           </>
