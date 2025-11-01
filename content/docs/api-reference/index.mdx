@@ -1,0 +1,212 @@
+---
+title: API Reference
+description: Complete API documentation for AntiRaid - Discord bot management and automation
+---
+
+# API Reference
+
+Welcome to the **AntiRaid Developer Documentation**! This comprehensive guide covers everything you need to integrate with AntiRaid's powerful Discord bot management platform.
+
+## Overview
+
+AntiRaid provides a robust REST API built with Axum and Utoipa, offering seamless integration for Discord bot management, guild settings, user sessions, and real-time bot statistics.
+
+**Base Information:**
+- **Version:** 0.2.0
+
+## Authentication
+
+All protected endpoints require authentication using Bearer tokens in the `Authorization` header:
+
+```http
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+### Security Schemes
+
+- **PublicAuth:** API key authentication via header
+- **UserAuth:** OAuth2-based user authentication
+
+## Quick Start
+
+### 1. Get API Configuration
+
+Retrieve base API configuration including client ID and support server information:
+
+```bash
+GET /config
+```
+
+No authentication required. Returns essential configuration data for your integration.
+
+### 2. Authenticate via OAuth2
+
+Create a session using Discord OAuth2:
+
+```bash
+POST /oauth2
+Content-Type: application/json
+
+{
+  "code": "DISCORD_OAUTH_CODE",
+  "redirect_uri": "https://yourapp.com/callback"
+}
+```
+
+Returns a session token for authenticated requests.
+
+### 3. Access Protected Resources
+
+Use your token to access user-specific data:
+
+```bash
+GET /sessions/@me
+Authorization: Bearer YOUR_TOKEN
+```
+
+## API Categories
+
+### 🔐 Authentication & Sessions
+
+Manage user authentication, sessions, and API tokens.
+
+- **Create OAuth2 Session** - `POST /oauth2`
+- **Get Current Session** - `GET /sessions/@me`
+- **List User Sessions** - `GET /sessions`
+- **Create API Token** - `POST /sessions`
+- **Delete Session** - `DELETE /sessions/{session_id}`
+
+<Callout type="info">
+API tokens never expire but can be manually revoked. OAuth2 sessions have configurable expiry times.
+</Callout>
+
+### 🏰 Guild Management
+
+Access and manage Discord guild (server) information.
+
+- **List User Guilds** - `GET /users/@me/guilds`
+- **Get Guild Info** - `GET /users/@me/guilds/{guild_id}`
+- **Get Guild Settings** - `GET /guilds/{guild_id}/settings`
+- **Execute Setting** - `POST /guilds/{guild_id}/settings`
+
+### 📊 Bot Statistics & Status
+
+Monitor bot health, shard connections, and performance metrics.
+
+- **Get Bot Stats** - `GET /bot-stats`
+- **Get Bot State** - `GET /bot-state`
+
+### ⚙️ Configuration
+
+Access system-wide configuration and available commands.
+
+- **Get API Config** - `GET /config`
+
+## Core Concepts
+
+### Settings System
+
+AntiRaid uses a flexible settings system with the following structure:
+
+- **Settings** - Top-level configuration categories
+- **Columns** - Individual configuration fields
+- **Operations** - Actions that can be performed (View, Create, Update, Delete)
+
+Each setting defines:
+- Columns with types (String, Integer, Boolean, BitFlag, etc.)
+- Supported operations
+- Validation rules
+- UI templates
+
+### Column Types
+
+Settings support various column types:
+
+| Type | Description | Use Case |
+|------|-------------|----------|
+| `Scalar` | Single value | Text inputs, numbers, booleans |
+| `Array` | Multiple values | Lists of roles, channels |
+| `Widget` | UI components | Info messages, action buttons |
+
+### Permissions
+
+The API respects Discord's permission system:
+
+- User permissions are calculated per-channel
+- Bot permissions are validated before operations
+- Role hierarchy is enforced
+
+## Response Format
+
+### Success Response
+
+```json
+{
+  "data": {
+    // Response data
+  },
+  "type": "Ok"
+}
+```
+
+### Error Response
+
+```json
+{
+  "message": "Error description",
+  "code": "ErrorCode"
+}
+```
+
+### Error Codes
+
+| Code | Description | HTTP Status |
+|------|-------------|-------------|
+| `InternalAuthError` | Authentication system error | 500 |
+| `NoAuthToken` | Missing authentication token | 401 |
+| `ApiBanned` | User/token is banned | 403 |
+| `InvalidToken` | Token is invalid or expired | 401 |
+| `InternalError` | Unexpected server error | 500 |
+| `Restricted` | Insufficient permissions | 403 |
+| `NotFound` | Resource not found | 404 |
+| `BadRequest` | Invalid request data | 400 |
+
+## Rate Limiting
+
+<Callout type="warning">
+The API implements rate limiting to ensure fair usage and system stability. Respect rate limit headers in responses.
+</Callout>
+
+Currently, rate limits are applied per:
+- IP address for unauthenticated requests
+- User ID for authenticated requests
+- Endpoint-specific limits for heavy operations
+
+## Best Practices
+
+### 1. Token Management
+
+- Store tokens securely (never in client-side code)
+- Implement token refresh logic
+- Use API tokens for server-to-server communication
+- Use OAuth2 for user-facing applications
+
+### 2. Guild Settings Operations
+
+When executing settings:
+
+1. Fetch current settings with `GET /guilds/{guild_id}/settings`
+2. Validate changes client-side using `validation_template`
+3. Submit changes with `POST /guilds/{guild_id}/settings`
+4. Handle response and update UI
+
+### 4. Webhook Integration
+
+For real-time updates, consider implementing Discord webhooks alongside API polling.
+
+## Resources
+
+- **Support Server:** Join for help and updates
+- **GitHub:** Report issues and contribute
+- **Status Page:** Monitor API uptime and incidents
+

@@ -1,0 +1,14 @@
+{
+  "title": "API Reference",
+  "icon": "TbApi",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "get",
+    "create",
+    "execute",
+    "delete",
+    "misc",
+    "index"
+  ]
+}
