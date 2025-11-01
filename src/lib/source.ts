@@ -59,7 +59,7 @@ export const source = loader({
 });
 
 export const openapi = createOpenAPI({
-  proxyUrl: "/api/proxy",
+  proxyUrl: "https://splashtail-staging.antiraid.xyz",
   shikiOptions: {
     themes: {
       light: "tokyo-night",
