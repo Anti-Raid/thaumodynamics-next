@@ -24,6 +24,10 @@ The template-worker service is maintained in a separate repository:
 
 **GitHub:** [https://github.com/Anti-Raid/template-worker](https://github.com/Anti-Raid/template-worker)
 
+<Callout title="HTTP Documentation Notes" type="info">
+  All types used by the HTTP API must either be in `src/api/types.rs` or `src/events`. They must also be annotated with `#[derive(utoipa::ToSchema)]` to ensure they are documented in the OpenAPI spec.
+</Callout>
+
 ## Key Features
 
 ### Template Execution
@@ -40,8 +44,6 @@ The service exposes an HTTP API for:
 - VM management operations
 - Health checks and monitoring
 - Expiry task management
-
-All API types must be defined in `src/api/types.rs` or `src/events` and annotated with `#[derive(utoipa::ToSchema)]` for OpenAPI documentation.
 
 ### Expiry Tasks
 
@@ -68,13 +70,25 @@ The template-worker communicates with other services via:
 - **Internal message queues** for event dispatching
 - **Port 60000** (default) for HTTP API
 
-## Quick Links
+## Documentation
 
-- [Architecture](./architecture.md) - VM distribution, lifecycle, and runtime details
-- [Internals](./internals.md) - Deep dive into implementation details, code patterns, and internal architecture
-- [HTTP API](./http-api.md) - API endpoints, types, and OpenAPI documentation
-- [Deployment](./deployment.md) - Docker and native deployment guides
-- [Development](./development.md) - Building, testing, and code structure
+<Cards>
+  <Card title="Architecture" href="/docs/dev/services/template-worker/architecture">
+    VM distribution strategies, lifecycle management, and runtime details
+  </Card>
+  <Card title="Internals" href="/docs/dev/services/template-worker/internals">
+    Deep dive into implementation details, code patterns, and internal architecture
+  </Card>
+  <Card title="HTTP API" href="/docs/dev/services/template-worker/http-api">
+    API endpoints, types, and OpenAPI documentation
+  </Card>
+  <Card title="Deployment" href="/docs/dev/services/template-worker/deployment">
+    Docker and native deployment guides
+  </Card>
+  <Card title="Development" href="/docs/dev/services/template-worker/development">
+    Building, testing, and code structure
+  </Card>
+</Cards>
 
 ## Related Documentation
 
@@ -87,4 +101,3 @@ The template-worker communicates with other services via:
 ---
 
 For more information on the templating system from a user perspective, see the [Templating Documentation](../templating/).
-
