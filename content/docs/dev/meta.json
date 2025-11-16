@@ -3,6 +3,7 @@
   "icon": "Code",
   "root": true,
   "pages": [
+    "index",
     "---Getting Started---",
     "templating",
     "badgerfang",

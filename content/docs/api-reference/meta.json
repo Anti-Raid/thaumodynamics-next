@@ -3,6 +3,7 @@
   "icon": "TbApi",
   "root": true,
   "pages": [
+    "index",
     "---Getting Started---",
     "get",
     "create",

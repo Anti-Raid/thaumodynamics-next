@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "index",
+    "architecture",
+    "internals",
+    "http-api",
+    "deployment",
+    "development"
+  ]
+}
+

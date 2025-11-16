@@ -1,0 +1,90 @@
+---
+title: "Template Worker Service"
+description: "Developer documentation for the template-worker service - the template execution engine that runs user-defined Lua/Luau scripts in a sandboxed environment."
+---
+
+# Template Worker Service
+
+The template-worker is a Rust-based microservice responsible for executing user-defined Lua/Luau templates in a secure, sandboxed environment. It provides the runtime infrastructure for AntiRaid's templating system, enabling users to customize bot behavior through Lua scripts.
+
+## Overview
+
+The template-worker service:
+
+- **Executes Lua/Luau templates** in isolated, per-guild virtual machines (VMs)
+- **Manages VM lifecycle** including creation, persistence, and cleanup
+- **Handles template dispatching** and runs expiry tasks as needed
+- **Enforces resource limits** (memory, execution time, stack size)
+- **Provides sandboxing** to prevent malicious code execution
+- **Exposes HTTP API** for template execution and management
+
+## Repository
+
+The template-worker service is maintained in a separate repository:
+
+**GitHub:** [https://github.com/Anti-Raid/template-worker](https://github.com/Anti-Raid/template-worker)
+
+## Key Features
+
+### Template Execution
+
+- Per-guild Lua(u) VM instances
+- Persistent VM state across template executions
+- Asynchronous event dispatching
+- Resource limit enforcement
+
+### HTTP API
+
+The service exposes an HTTP API for:
+- Template execution requests
+- VM management operations
+- Health checks and monitoring
+- Expiry task management
+
+All API types must be defined in `src/api/types.rs` or `src/events` and annotated with `#[derive(utoipa::ToSchema)]` for OpenAPI documentation.
+
+### Expiry Tasks
+
+The service runs expiry tasks as needed, handling:
+- Key-value store expiration events
+- Scheduled template executions
+- Cleanup operations
+
+## Architecture
+
+The template-worker uses:
+
+- **Rust** for the core service implementation
+- **Luau** (Roblox Lua) for template execution
+- **Khronos** runtime for Lua VM management
+- **Tokio** for async runtime
+- **Utoipa** for OpenAPI documentation
+
+## Service Communication
+
+The template-worker communicates with other services via:
+
+- **HTTP/RPC protocols** for receiving template execution requests
+- **Internal message queues** for event dispatching
+- **Port 60000** (default) for HTTP API
+
+## Quick Links
+
+- [Architecture](./architecture.md) - VM distribution, lifecycle, and runtime details
+- [Internals](./internals.md) - Deep dive into implementation details, code patterns, and internal architecture
+- [HTTP API](./http-api.md) - API endpoints, types, and OpenAPI documentation
+- [Deployment](./deployment.md) - Docker and native deployment guides
+- [Development](./development.md) - Building, testing, and code structure
+
+## Related Documentation
+
+- [Templating Introduction](../templating/intro.md) - User-facing templating docs
+- [Templating Architecture](../templating/archnotes.md) - VM distribution and architecture details
+- [Templating API Reference](../templating/apiref/) - Available Lua APIs and plugins
+- [Services Overview](../index.mdx) - Overview of all AntiRaid services
+- [Hosting Guides](../hosting/) - Deployment and hosting information
+
+---
+
+For more information on the templating system from a user perspective, see the [Templating Documentation](../templating/).
+
