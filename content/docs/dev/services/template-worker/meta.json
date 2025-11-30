@@ -1,6 +1,9 @@
 {
   "pages": [
     "index",
+    "worker",
+    "legacy-arch",
+    "worker",
     "architecture",
     "internals",
     "http-api",
