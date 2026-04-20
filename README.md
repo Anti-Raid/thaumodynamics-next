@@ -36,15 +36,8 @@ AntiRaid revolutionizes Discord server protection with its unique approach to se
 git clone https://github.com/Anti-Raid/thaumodynamics-next.git
 cd thaumodynamics-next
 
-# Install dependencies (choose one)
-npm install
-# or
 bun install
-# or
-yarn install
 
-# Start the development server
-npm run dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) to see the docs in action! 🎉
