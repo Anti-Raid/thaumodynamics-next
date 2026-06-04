@@ -398,13 +398,19 @@ const HomeContent: React.FC = () => {
 
             <div className="flex items-center space-x-6 text-fd-muted-foreground">
               <a
-                href="https://antiraid.xyz/legal/privacy"
+                href="https://purrquinox.com/privacy"
                 className="hover:text-fd-foreground transition-colors"
               >
                 Privacy
               </a>
+               <a
+                href="https://purrquinox.com/cookies"
+                className="hover:text-fd-foreground transition-colors"
+              >
+                Cookie
+              </a>
               <a
-                href="https://antiraid.xyz/legal/terms"
+                href="https://purrquinox.com/terms"
                 className="hover:text-fd-foreground transition-colors"
               >
                 Terms
